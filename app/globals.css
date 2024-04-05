@@ -16,16 +16,15 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
 }
-
+@media (max-width: 1199px) {
+  .inner {
+    padding: 0 10px;
+  }
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;
