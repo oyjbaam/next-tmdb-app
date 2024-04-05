@@ -1,5 +1,9 @@
-import Image from 'next/image'
+import MainImage from './components/main/main-image'
 
-export default function Home() {
-  return <h1>Main</h1>
+export default async function Home() {
+  return (
+    <>
+      <MainImage />
+    </>
+  )
 }
