@@ -6,8 +6,8 @@ const buttonStyles = cva('flex items-center justify-center transition duration-2
   variants: {
     intent: {
       filled:
-        'text-white bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 hover:bg-indigo-500 active:opacity-[0.85]',
-      outlined: 'ring-1 ring-inset ring-indigo-300 hover:bg-indigo-200 active:bg-indigo-300',
+        'text-white bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 hover:bg-blue-700 active:opacity-[0.85]',
+      outlined: 'ring-1 ring-inset ring-blue-500 hover:bg-blue-200 active:bg-blue-300',
       text: 'active:ring-transparent hover:opacity-80',
     },
     size: {
@@ -17,7 +17,6 @@ const buttonStyles = cva('flex items-center justify-center transition duration-2
       text: 'text-sm',
     },
     rounded: {
-      normal: '',
       full: 'rounded-full',
     },
     disabled: {
@@ -28,7 +27,6 @@ const buttonStyles = cva('flex items-center justify-center transition duration-2
   defaultVariants: {
     intent: 'filled',
     size: 'md',
-    rounded: 'normal',
   },
 })
 
@@ -51,4 +49,4 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   }
 )
 Button.displayName = 'Button'
-export default Button
+export { Button, buttonStyles }

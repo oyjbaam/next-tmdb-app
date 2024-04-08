@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import SearchBar from './searchBar'
-import Button from '@/app/ui/button'
+import { Button, buttonStyles } from '@/app/ui/button'
 
 const MainHeader = () => {
   return (
@@ -20,14 +20,14 @@ const MainHeader = () => {
 
         <ul className="flex gap-2">
           <li>
-            <Button intent="filled" size="sm">
+            <Link className={buttonStyles({ intent: 'filled', size: 'sm' })} href="/login">
               Login
-            </Button>
+            </Link>
           </li>
           <li>
-            <Button intent="filled" size="sm">
+            <Link className={buttonStyles({ intent: 'filled', size: 'sm' })} href="/join">
               Join
-            </Button>
+            </Link>
           </li>
         </ul>
       </div>
