@@ -2,16 +2,16 @@ import React from 'react'
 import ActiveLink from './activeLink'
 
 const moviePath = [
-  { text: '인기 영화', path: '/movie-popular' },
-  { text: '현재 상영중', path: '/movie-now_playing' },
-  { text: '개봉 예정', path: '/movie-upcoming' },
-  { text: '높은 평점', path: '/movie-top_rated' },
+  { text: '인기 영화', path: '/popular' },
+  { text: '현재 상영중', path: '/now_playing' },
+  { text: '개봉 예정', path: '/upcoming' },
+  { text: '높은 평점', path: '/top_rated' },
 ]
 const tvPath = [
-  { text: '인기 TV', path: '/tv-popular' },
-  { text: '오늘 방영', path: '/tv-airing_today' },
-  { text: 'TV 방영중', path: '/tv-on_the_air' },
-  { text: '높은 평점', path: '/tv-top_rated' },
+  { text: '인기 TV', path: '/popular' },
+  { text: '오늘 방영', path: '/airing_today' },
+  { text: 'TV 방영중', path: '/on_the_air' },
+  { text: '높은 평점', path: '/top_rated' },
 ]
 
 const SideNavigation = () => {
@@ -41,7 +41,7 @@ const SideNavigation = () => {
               key={path.path}
               className="text-sm hover:bg-white hover:text-indigo-600 transition duration-200 rounded-r-full cursor-pointer"
             >
-              <ActiveLink href={path.path} label={path.text}>
+              <ActiveLink href={`/movie${path.path}`} label={path.text}>
                 {path.text}
               </ActiveLink>
             </li>
@@ -73,7 +73,7 @@ const SideNavigation = () => {
             key={path.path}
             className="text-sm hover:bg-white hover:text-indigo-600 transition duration-200 rounded-r-full cursor-pointer"
           >
-            <ActiveLink href={path.path} label={path.text}>
+            <ActiveLink href={`/tv${path.path}`} label={path.text}>
               {path.text}
             </ActiveLink>
           </li>

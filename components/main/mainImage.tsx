@@ -1,6 +1,6 @@
-import { BackDropImage } from '@/app/types/backDrop'
+import { BackDropImage } from '@/types/backDrop'
 import Image from 'next/image'
-import { fetcher } from '@/app/util/fetcher'
+import { fetcher } from '@/util/fetcher'
 
 const MainImage = async () => {
   const backDrop: BackDropImage = await fetcher(

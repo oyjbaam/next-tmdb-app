@@ -1,29 +1,48 @@
 import React from 'react'
-import { Button } from '../ui/button'
-import IconButton from '../ui/iconButton'
-import { Input } from '../ui/input'
-import { PlusIcon, CheckCircleIcon } from '@heroicons/react/20/solid'
+import { Button } from '../../ui/button'
+import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
+import IconInput from '../../ui/iconInput'
+import Link from 'next/link'
+
 const LoginPage = () => {
   return (
-    <>
-      <h2 className="text-2xl text-center">로그인</h2>
-      <form action="" className="flex flex-col gap-4">
-        <div>
-          <label htmlFor="email_address" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-            이메일 주소 *
-          </label>
-          <Input type="email" id="email_address" placeholder="email-ID@example.com" rounded="md" required />
-        </div>
-        <div>
-          <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-            비밀번호 *
-          </label>
-          <Input type="password" id="password" placeholder="비밀번호" rounded="md" validate required />
-        </div>
+    <div className="flex flex-col w-80 mx-auto">
+      <div className="h-20 flex items-center justify-center">
+        <h2 className="font-bold text-3xl text-center">로그인</h2>
+      </div>
+
+      <form action="" className="flex flex-col gap-4 w-80">
+        <label htmlFor="email_address" className="flex flex-col gap-2">
+          <span>이메일 주소 *</span>
+          <IconInput
+            icon={EnvelopeIcon}
+            type="email"
+            id="email_address"
+            placeholder="email-ID@example.com"
+            sizes="lg"
+            required
+            fullwidth
+          />
+        </label>
+        <label htmlFor="password" className="flex flex-col gap-2">
+          <span>비밀번호 *</span>
+          <IconInput
+            icon={LockClosedIcon}
+            type="password"
+            id="password"
+            placeholder="비밀번호"
+            sizes="lg"
+            required
+            fullwidth
+            autoComplete="off"
+          />
+        </label>
         <Button intent="filled">로그인</Button>
-        <IconButton sizes="lg" intent="filled" icon={PlusIcon} className="w-fit" />
       </form>
-    </>
+      <p className="text-right my-4">
+        <Link href="/join">회원가입 페이지로 이동</Link>
+      </p>
+    </div>
   )
 }
 

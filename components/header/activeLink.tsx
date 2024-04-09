@@ -11,7 +11,6 @@ interface ActiveLinkProps {
 
 const ActiveLink = ({ children, href, label }: ActiveLinkProps) => {
   const path = usePathname()
-
   const isActiveClass = path.startsWith(href) ? 'bg-white text-indigo-600 ' : null
 
   return (

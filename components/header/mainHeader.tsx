@@ -1,6 +1,7 @@
 import Link from 'next/link'
-import SearchBar from './searchBar'
-import { Button, buttonStyles } from '@/app/ui/button'
+import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { buttonStyles } from '@/ui/button'
+import IconInput from '@/ui/iconInput'
 
 const MainHeader = () => {
   return (
@@ -15,17 +16,30 @@ const MainHeader = () => {
           </Link>
         </div>
       </div>
-      <div className="col-span-7 flex justify-between">
-        <SearchBar />
-
+      <div className="col-span-7 flex justify-between items-center">
+        <IconInput
+          icon={MagnifyingGlassIcon}
+          sizes="sm"
+          aria-label="영화,TV 제목 검색창"
+          placeholder="영화,TV 제목 검색"
+          type="text"
+        />
         <ul className="flex gap-2">
           <li>
-            <Link className={buttonStyles({ intent: 'filled', sizes: 'sm' })} href="/login">
+            <Link
+              className={buttonStyles({ intent: 'filled', sizes: 'sm' })}
+              href="/login"
+              aria-label="로그인 페이지로 이동"
+            >
               Login
             </Link>
           </li>
           <li>
-            <Link className={buttonStyles({ intent: 'filled', sizes: 'sm' })} href="/join">
+            <Link
+              className={buttonStyles({ intent: 'filled', sizes: 'sm' })}
+              href="/join"
+              aria-label="회원가입 페이지로 이동"
+            >
               Join
             </Link>
           </li>
