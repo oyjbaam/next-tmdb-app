@@ -20,12 +20,12 @@ const MainHeader = () => {
 
         <ul className="flex gap-2">
           <li>
-            <Link className={buttonStyles({ intent: 'filled', size: 'sm' })} href="/login">
+            <Link className={buttonStyles({ intent: 'filled', sizes: 'sm' })} href="/login">
               Login
             </Link>
           </li>
           <li>
-            <Link className={buttonStyles({ intent: 'filled', size: 'sm' })} href="/join">
+            <Link className={buttonStyles({ intent: 'filled', sizes: 'sm' })} href="/join">
               Join
             </Link>
           </li>

@@ -18,7 +18,7 @@ export default function RootLayout({
         <MainHeader />
         <div className="grid grid-cols-8 gap-2">
           <SideNavigation />
-          <main className="col-span-7">{children}</main>
+          <main className="col-span-7 mx-auto">{children}</main>
         </div>
       </body>
     </html>
