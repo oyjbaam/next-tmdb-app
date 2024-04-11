@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import type { MovieResultType } from '@/types/movieType'
 import Image from 'next/image'
@@ -22,9 +23,9 @@ const Card = ({ data }: CardProps) => {
         />
       </div>
       <div className="p-2">
-        <div className="flex justify-between py-1">
-          <p className="text-xs font-medium">{data.release_date}</p>
-          <p className="text-xs font-medium">{Math.floor(data.vote_average || 0)}</p>
+        <div className="flex justify-between py-1 text-xs font-medium">
+          <p>{data.release_date}</p>
+          <p>{Math.floor(data.vote_average || 0)}</p>
         </div>
         <span className="font-bold">
           {(data.title?.length ?? 0) > 18 ? data.title?.slice(0, 18) + '...' : data.title}

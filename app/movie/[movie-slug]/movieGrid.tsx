@@ -7,7 +7,7 @@ interface MovieGrid {
 }
 const MovieGrid = ({ datas }: MovieGrid) => {
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-4 gap-4 justify-items-center">
       {datas.map(movie => (
         <Card data={movie} key={movie.id}></Card>
       ))}

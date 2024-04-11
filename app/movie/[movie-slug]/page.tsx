@@ -4,7 +4,7 @@ import { fetcher } from '@/util/fetcher'
 import { MovieType } from '@/types/movieType'
 import Pagination from '@/app/components/common/pagination'
 interface MovieSlugPageProps {
-  params: { 'movie-slug': string }
+  params: { [key: string]: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }
 

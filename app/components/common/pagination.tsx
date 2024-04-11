@@ -4,7 +4,7 @@ import { buttonStyles } from '@/app/ui/button'
 interface PaginationProps {
   page: string | string[]
   totalPages: (number | string)[]
-  params: { 'movie-slug': string }
+  params: { [key: string]: string }
 }
 const Pagination = ({ page, totalPages, params }: PaginationProps) => {
   const pageNum = Number(page)
