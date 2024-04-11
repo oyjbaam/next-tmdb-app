@@ -2,16 +2,16 @@ import React from 'react'
 import ActiveLink from './activeLink'
 
 const moviePath = [
-  { text: '인기 영화', path: '/popular' },
-  { text: '현재 상영중', path: '/now_playing' },
-  { text: '개봉 예정', path: '/upcoming' },
-  { text: '높은 평점', path: '/top_rated' },
+  { text: '인기 영화', path: '/popular?page=1' },
+  { text: '현재 상영중', path: '/now_playing?page=1' },
+  { text: '개봉 예정', path: '/upcoming?page=1' },
+  { text: '높은 평점', path: '/top_rated?page=1' },
 ]
 const tvPath = [
-  { text: '인기 TV', path: '/popular' },
-  { text: '오늘 방영', path: '/airing_today' },
-  { text: 'TV 방영중', path: '/on_the_air' },
-  { text: '높은 평점', path: '/top_rated' },
+  { text: '인기 TV', path: '/popular?page=1' },
+  { text: '오늘 방영', path: '/airing_today?page=1' },
+  { text: 'TV 방영중', path: '/on_the_air?page=1' },
+  { text: '높은 평점', path: '/top_rated?page=1' },
 ]
 
 const SideNavigation = () => {
@@ -39,7 +39,7 @@ const SideNavigation = () => {
           return (
             <li
               key={path.path}
-              className="text-sm hover:bg-white hover:text-indigo-600 transition duration-200 rounded-r-full cursor-pointer"
+              className="text-sm hover:bg-blue-600 hover:text-white transition duration-200 rounded-r-full cursor-pointer"
             >
               <ActiveLink href={`/movie${path.path}`} label={path.text}>
                 {path.text}
@@ -71,7 +71,7 @@ const SideNavigation = () => {
         {tvPath.map(path => (
           <li
             key={path.path}
-            className="text-sm hover:bg-white hover:text-indigo-600 transition duration-200 rounded-r-full cursor-pointer"
+            className="text-sm hover:bg-blue-600 hover:text-white transition duration-200 rounded-r-full cursor-pointer"
           >
             <ActiveLink href={`/tv${path.path}`} label={path.text}>
               {path.text}

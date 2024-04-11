@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import { buttonStyles } from '@/ui/button'
-import IconInput from '@/ui/iconInput'
+import { buttonStyles } from '@/app/ui/button'
+import IconInput from '@/app/ui/iconInput'
 
 const MainHeader = () => {
   return (

@@ -1,10 +1,12 @@
-import MainImage from '../components/main/mainImage'
-import WhatsPopular from '../components/main/whatsPopular/whatsPopular'
-export default async function Home() {
+import MainImage from './components/main/mainImage'
+import WhatsPopularPage from './whatsPopular/page'
+const Home = () => {
   return (
     <>
       <MainImage />
-      <WhatsPopular />
+      <WhatsPopularPage />
     </>
   )
 }
+
+export default Home

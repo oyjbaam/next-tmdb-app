@@ -1,14 +1,14 @@
 export interface MovieType {
   page: number
-  results: MovieResult[]
+  results: MovieResultType[]
   total_pages: number
   total_results: number
 }
 export interface FavoriteWithId {
   id: string
-  movie: MovieResult
+  movie: MovieResultType
 }
-export interface MovieResult {
+export interface MovieResultType {
   adult?: boolean
   backdrop_path?: string
   genre_ids?: number[]

@@ -1,5 +1,5 @@
 import { cva, VariantProps } from 'class-variance-authority'
-import { cn } from '../util/twMerge'
+import { cn } from '../../util/twMerge'
 import React, { ButtonHTMLAttributes, forwardRef } from 'react'
 
 const buttonStyles = cva('font-semibold transition duration-200 ease-in-out', {
@@ -7,7 +7,7 @@ const buttonStyles = cva('font-semibold transition duration-200 ease-in-out', {
     intent: {
       filled:
         'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700',
-      outlined: 'bg-slate-200 text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-slate-300 active:bg-slate-400',
+      outlined: 'border border-1 border-blue-700 hover:bg-blue-600 hover:text-white active:bg-blue-600',
       text: 'hover:text-blue-600 active:text-blue-200',
     },
     sizes: {
@@ -21,7 +21,7 @@ const buttonStyles = cva('font-semibold transition duration-200 ease-in-out', {
     },
     disabled: {
       false: '',
-      true: 'cursor-not-allowed bg-gray-400 hover:bg-gray-400 active:bg-gray-400',
+      true: 'cursor-not-allowed',
     },
     _content: {
       text: '',
@@ -30,6 +30,14 @@ const buttonStyles = cva('font-semibold transition duration-200 ease-in-out', {
     },
   },
   compoundVariants: [
+    { intent: 'filled', disabled: true, className: 'bg-gray-200 text-gray-400 hover:bg-gray-200 active:bg-gray-200' },
+    {
+      intent: 'outlined',
+      disabled: true,
+      className:
+        'bg-gray-50 border border-1 border-gray-400 text-gray-400 hover:bg-gray-50 hover:text-gray-400 active:bg-gray-50 active:text-gray-400',
+    },
+    { intent: 'text', disabled: true, className: 'text-gray-400 hover:text-gray-400 active:text-gray-400' },
     { sizes: 'sm', rounded: 'normal', className: 'rounded' },
     { sizes: ['md', 'lg'], rounded: 'normal', className: 'rounded-md' },
     { sizes: 'sm', _content: ['text', 'textAndIcon'], className: 'gap-x-1.5 py-2 px-4' },
@@ -81,7 +89,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     return (
       <button
-        disabled={disabled ? disabled : undefined}
+        disabled={disabled}
         className={cn(
           buttonStyles({
             intent,

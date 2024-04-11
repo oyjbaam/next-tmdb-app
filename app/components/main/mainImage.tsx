@@ -3,10 +3,7 @@ import Image from 'next/image'
 import { fetcher } from '@/util/fetcher'
 
 const MainImage = async () => {
-  const backDrop: BackDropImage = await fetcher(
-    'get',
-    'https://api.themoviedb.org/3/discover/movie?with_network=123&language=en-US'
-  )
+  const backDrop: BackDropImage = await fetcher('/discover/movie?with_network=123&language=en-US', 'get')
   const imgUrl = `https://image.tmdb.org/t/p/w780${backDrop.results[0].backdrop_path}`
 
   return (
@@ -16,7 +13,7 @@ const MainImage = async () => {
         <h3 className="text-2xl font-extrabold">Millions of Movies, Tv Shows and People to discover.</h3>
       </div>
       <div className="absolute w-full h-full filter bg-indigo-800">
-        <Image src={imgUrl} alt="main page image" fill className="object-cover opacity-40 saturate-50" />
+        <Image src={imgUrl} alt="main page image" fill className="object-cover opacity-40 saturate-50" priority />
       </div>
     </div>
   )

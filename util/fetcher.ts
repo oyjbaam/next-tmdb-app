@@ -1,4 +1,5 @@
 const API_KEY = process.env.NEXT_PUBLIC_TMDB_API
+export const BASE_URL = process.env.NEXT_PUBLIC_BASEURL
 type Method = 'get' | 'post' | 'delete' | 'put' | 'patch'
 
 const fetchOption = (method: Method) => {
@@ -12,7 +13,11 @@ const fetchOption = (method: Method) => {
   return options
 }
 
-export const fetcher = async (method: Method, url: string) => {
-  const res = await fetch(url, fetchOption(method))
-  return res.json()
+export const fetcher = async (url: string, method: Method) => {
+  const res = await fetch(`${BASE_URL}${url}`, fetchOption(method))
+  if (res.ok) {
+    return res.json()
+  } else {
+    throw new Error('Something wrong Error..')
+  }
 }
