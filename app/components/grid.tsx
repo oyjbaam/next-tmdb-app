@@ -2,10 +2,10 @@ import React from 'react'
 import Card from '@/app/ui/card'
 import { MovieResultType } from '@/types/movieType'
 
-interface MovieGrid {
+interface Grid {
   datas: MovieResultType[]
 }
-const MovieGrid = ({ datas }: MovieGrid) => {
+const Grid = ({ datas }: Grid) => {
   return (
     <div className="grid grid-cols-4 gap-4 justify-items-center">
       {datas.map(movie => (
@@ -15,4 +15,4 @@ const MovieGrid = ({ datas }: MovieGrid) => {
   )
 }
 
-export default MovieGrid
+export default Grid
