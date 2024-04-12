@@ -4,9 +4,9 @@ import { buttonStyles } from '@/app/ui/button'
 interface PaginationProps {
   page: string | string[]
   totalPages: (number | string)[]
-  params: { [key: string]: string }
+  url: string
 }
-const Pagination = ({ page, totalPages, params }: PaginationProps) => {
+const Pagination = ({ page, totalPages, url }: PaginationProps) => {
   const pageNum = Number(page)
   let startArrayNumber: (number | string)[] = []
   let dotsInitial = '...'
@@ -38,7 +38,7 @@ const Pagination = ({ page, totalPages, params }: PaginationProps) => {
           } `}
         >
           <Link
-            href={`/movie/${params['movie-slug']}?page=${pageNum > 1 ? pageNum - 1 : 1}`}
+            href={`${url}?page=${pageNum > 1 ? pageNum - 1 : 1}`}
             className={buttonStyles({ intent: 'text', rounded: 'full', sizes: 'sm', disabled: pageNum === 1 })}
           >
             Prev
@@ -53,7 +53,7 @@ const Pagination = ({ page, totalPages, params }: PaginationProps) => {
           return (
             <li className="rounded-full inline-flex justify-center overflow-hidden w-8 hover:bg-gray-200" key={index}>
               <Link
-                href={`/movie/${params['movie-slug']}?page=${movePage}`}
+                href={`${url}?page=${movePage}`}
                 className={buttonStyles({ intent: 'text', rounded: 'full', sizes: 'sm', className: isActivePageClass })}
               >
                 {page}
@@ -67,7 +67,7 @@ const Pagination = ({ page, totalPages, params }: PaginationProps) => {
           } `}
         >
           <Link
-            href={`/movie/${params['movie-slug']}?page=${pageNum < totalPages.length ? pageNum + 1 : pageNum}`}
+            href={`${url}?page=${pageNum < totalPages.length ? pageNum + 1 : pageNum}`}
             className={buttonStyles({
               intent: 'text',
               rounded: 'full',
