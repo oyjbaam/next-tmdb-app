@@ -3,7 +3,7 @@ import React, { forwardRef, InputHTMLAttributes } from 'react'
 import { cn } from '../../util/twMerge'
 
 const inputStyles = cva(
-  'placeholder:italic placeholder:text-slate-400 bg-white border border-black focus:outline-none focus:border-blue-500 focus:ring-sky-500 focus:ring-1',
+  'placeholder:italic placeholder:text-slate-400 bg-white border border-black focus:outline-none focus:border-blue-500 focus:ring-sky-500 focus:ring-1 dark:bg-slate-600 dark:placeholder:text-slate-300',
   {
     variants: {
       sizes: {

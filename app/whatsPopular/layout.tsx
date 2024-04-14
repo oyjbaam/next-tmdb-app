@@ -6,9 +6,9 @@ interface WhatsPopularLayoutProps {
 const WhatsPopularLayout = ({ children }: WhatsPopularLayoutProps) => {
   return (
     <>
-      {/* <div>adsfasf</div> */}
+      <div>adsfasf</div>
       {/* <Tabs tabPannel={['영화', 'Tv']} /> */}
-      {/* {children} */}
+      {children}
     </>
   )
 }

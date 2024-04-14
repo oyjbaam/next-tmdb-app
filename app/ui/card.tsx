@@ -12,7 +12,7 @@ const Card = ({ data }: CardProps) => {
   const isPosterPath = data.poster_path ? `https://image.tmdb.org/t/p/w300${data.poster_path}` : defaultPosterImage
 
   return (
-    <div className="w-52 h-full min-h-min flex-shrink-0 rounded-md flex flex-col overflow-hidden bg-white transi duration-200 cursor-pointer border border-transparent hover:border hover:border-yellow-300 hover:text-yellow-400 shadow-md">
+    <div className="w-52 h-full min-h-min flex-shrink-0 rounded-md flex flex-col overflow-hidden bg-white transi duration-200 cursor-pointer border border-slate-200 hover:border-yellow-300 hover:text-yellow-400 dark:bg-slate-700 dark:border-slate-600 shadow-md">
       <div className="h-72 w-full p-2 relative">
         <Image
           src={isPosterPath}
