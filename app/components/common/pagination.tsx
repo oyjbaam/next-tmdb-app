@@ -38,7 +38,7 @@ const Pagination = ({ page, totalPages, url }: PaginationProps) => {
           } `}
         >
           <Link
-            href={`${url}?page=${pageNum > 1 ? pageNum - 1 : 1}`}
+            href={`${url}=${pageNum > 1 ? pageNum - 1 : 1}`}
             className={buttonStyles({ intent: 'text', rounded: 'full', sizes: 'sm', disabled: pageNum === 1 })}
           >
             Prev
@@ -53,7 +53,7 @@ const Pagination = ({ page, totalPages, url }: PaginationProps) => {
           return (
             <li className="rounded-full inline-flex justify-center overflow-hidden w-8 hover:bg-gray-200" key={index}>
               <Link
-                href={`${url}?page=${movePage}`}
+                href={`${url}=${movePage}`}
                 className={buttonStyles({ intent: 'text', rounded: 'full', sizes: 'sm', className: isActivePageClass })}
               >
                 {page}
@@ -67,7 +67,7 @@ const Pagination = ({ page, totalPages, url }: PaginationProps) => {
           } `}
         >
           <Link
-            href={`${url}?page=${pageNum < totalPages.length ? pageNum + 1 : pageNum}`}
+            href={`${url}=${pageNum < totalPages.length ? pageNum + 1 : pageNum}`}
             className={buttonStyles({
               intent: 'text',
               rounded: 'full',
