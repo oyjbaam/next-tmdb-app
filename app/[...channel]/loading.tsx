@@ -1,7 +1,7 @@
 import CardSkeleton from '@/app/components/common/cardSkeleton'
-import React from 'react'
 import Grid from '@/app/components/common/grid'
-const TvLoading = () => {
+
+const loading = () => {
   return (
     <Grid>
       <CardSkeleton />
@@ -9,4 +9,4 @@ const TvLoading = () => {
   )
 }
 
-export default TvLoading
+export default loading

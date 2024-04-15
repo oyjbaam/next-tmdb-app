@@ -1,5 +1,4 @@
 'use client'
-import React from 'react'
 import type { MovieResultType } from '@/types/movieType'
 import Image from 'next/image'
 import defaultPosterImage from '@/app/assets/images/defaultImage.png'

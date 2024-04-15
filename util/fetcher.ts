@@ -24,6 +24,6 @@ export const fetcher = async (url: string, method: Method) => {
   if (res.ok) {
     return res.json()
   } else {
-    throw new Error('Something wrong Error..')
+    throw new Error('Something went wrong Error..')
   }
 }

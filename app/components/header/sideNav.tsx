@@ -1,17 +1,18 @@
 import React from 'react'
 import ActiveLink from './activeLink'
 import { FilmIcon } from '@heroicons/react/24/outline'
+import { PATH_NAME } from '@/app/constants'
 const moviePath = [
-  { text: '인기 영화', path: '/popular?page=1' },
-  { text: '현재 상영중', path: '/now_playing?page=1' },
-  { text: '개봉 예정', path: '/upcoming?page=1' },
-  { text: '높은 평점', path: '/top_rated?page=1' },
+  { text: '인기 영화', path: `/movie/${PATH_NAME.popular}?page=1` },
+  { text: '현재 상영중', path: `/movie/${PATH_NAME.now_playing}?page=1` },
+  { text: '개봉 예정', path: `/movie/${PATH_NAME.upcoming}?page=1` },
+  { text: '높은 평점', path: `/movie/${PATH_NAME.top_rated}?page=1` },
 ]
 const tvPath = [
-  { text: '인기 TV', path: '/popular?page=1' },
-  { text: '오늘 방영', path: '/airing_today?page=1' },
-  { text: 'TV 방영중', path: '/on_the_air?page=1' },
-  { text: '높은 평점', path: '/top_rated?page=1' },
+  { text: '인기 TV', path: `/tv/${PATH_NAME.popular}?page=1` },
+  { text: '오늘 방영', path: `/tv/${PATH_NAME.airing_today}?page=1` },
+  { text: 'TV 방영중', path: `/tv/${PATH_NAME.on_the_air}?page=1` },
+  { text: '높은 평점', path: `/tv/${PATH_NAME.top_rated}?page=1` },
 ]
 
 const SideNavigation = () => {
@@ -28,7 +29,7 @@ const SideNavigation = () => {
               key={path.path}
               className="text-sm hover:bg-blue-600 hover:text-white transition duration-200 rounded-r-full cursor-pointer "
             >
-              <ActiveLink href={`/movie${path.path}`} label={path.text}>
+              <ActiveLink href={path.path} label={path.text}>
                 {path.text}
               </ActiveLink>
             </li>
@@ -60,7 +61,7 @@ const SideNavigation = () => {
             key={path.path}
             className="text-sm hover:bg-blue-600 hover:text-white transition duration-200 rounded-r-full cursor-pointer"
           >
-            <ActiveLink href={`/tv${path.path}`} label={path.text}>
+            <ActiveLink href={path.path} label={path.text}>
               {path.text}
             </ActiveLink>
           </li>
