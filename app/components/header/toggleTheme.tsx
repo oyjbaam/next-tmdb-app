@@ -6,6 +6,7 @@ import IconButton from '@/app/ui/iconButton'
 import { Button } from '@/app/ui/button'
 import useOutsideClick from '@/app/hooks/useOutsideClick'
 import { useTheme } from 'next-themes'
+
 const IconList = [
   { id: 'light', name: 'Light', icon: SunIcon },
   { id: 'dark', name: 'Dark', icon: MoonIcon },
@@ -14,8 +15,7 @@ const IconList = [
 
 const ToggleTheme = () => {
   const [openToggleMenu, setOpenToggleMenu] = useState(false)
-  const { setTheme } = useTheme()
-
+  const { theme, setTheme } = useTheme()
   const handleToggleMenu = (e: React.MouseEvent) => {
     e.stopPropagation()
     setOpenToggleMenu(prev => !prev)
@@ -29,8 +29,9 @@ const ToggleTheme = () => {
 
   return (
     <div className="relative inline-block text-left" ref={toggleMenuRef}>
-      <IconButton icon={MoonIcon} intent="text" onClick={handleToggleMenu} />
-
+      {theme === 'light' && <IconButton icon={SunIcon} intent="text" onClick={handleToggleMenu} />}
+      {theme === 'dark' && <IconButton icon={MoonIcon} intent="text" onClick={handleToggleMenu} />}
+      {theme === 'system' && <IconButton icon={ComputerDesktopIcon} intent="text" onClick={handleToggleMenu} />}
       <div
         className={`absolute py-2 right-0 z-20 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-slate-600 transition duration-200 transform ${toggleMenuClass}`}
         role="menu"

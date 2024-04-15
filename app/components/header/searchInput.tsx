@@ -2,18 +2,10 @@
 import IconInput from '@/app/ui/iconInput'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { useFormState } from 'react-dom'
-import { getSearch } from '@/lib/actions'
-import { useRouter } from 'next/navigation'
+import { navigateSearchPage } from '@/lib/actions'
 
 const SearchInput = () => {
-  const router = useRouter()
-
-  const goSearchPage = (prevState: null | void, formData: FormData) => {
-    const inputText = formData.get('search-input')
-    router.push(`/search/multi?query=${inputText}&page=1`)
-  }
-
-  const [state, formAction] = useFormState(goSearchPage, null)
+  const [state, formAction] = useFormState(navigateSearchPage, null)
 
   return (
     <form action={formAction}>

@@ -4,9 +4,9 @@ import { buttonStyles } from '@/app/ui/button'
 interface PaginationProps {
   page: string | string[]
   totalPages: (number | string)[]
-  url: string
+  path: string
 }
-const Pagination = ({ page, totalPages, url }: PaginationProps) => {
+const Pagination = ({ page, totalPages, path }: PaginationProps) => {
   const pageNum = Number(page)
   let startArrayNumber: (number | string)[] = []
   let dotsInitial = '...'
@@ -38,7 +38,7 @@ const Pagination = ({ page, totalPages, url }: PaginationProps) => {
           } `}
         >
           <Link
-            href={`${url}=${pageNum > 1 ? pageNum - 1 : 1}`}
+            href={`${path}=${pageNum > 1 ? pageNum - 1 : 1}`}
             className={buttonStyles({ intent: 'text', rounded: 'full', sizes: 'sm', disabled: pageNum === 1 })}
           >
             Prev
@@ -53,7 +53,7 @@ const Pagination = ({ page, totalPages, url }: PaginationProps) => {
           return (
             <li className="rounded-full inline-flex justify-center overflow-hidden w-8 hover:bg-gray-200" key={index}>
               <Link
-                href={`${url}=${movePage}`}
+                href={`${path}=${movePage}`}
                 className={buttonStyles({ intent: 'text', rounded: 'full', sizes: 'sm', className: isActivePageClass })}
               >
                 {page}
@@ -67,7 +67,7 @@ const Pagination = ({ page, totalPages, url }: PaginationProps) => {
           } `}
         >
           <Link
-            href={`${url}=${pageNum < totalPages.length ? pageNum + 1 : pageNum}`}
+            href={`${path}=${pageNum < totalPages.length ? pageNum + 1 : pageNum}`}
             className={buttonStyles({
               intent: 'text',
               rounded: 'full',

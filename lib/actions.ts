@@ -1,8 +1,7 @@
 'use server'
-import type { MovieType } from '@/types/movieType'
-import { fetcher } from '@/util/fetcher'
 import { redirect } from 'next/navigation'
-export const getSearch = async (prevState: null | void, formData: FormData) => {
-  const inputText = formData.get('search-input')
-  if (!inputText) return
+export const navigateSearchPage = async (prevState: null | void, formData: FormData) => {
+  const inputText = formData.get('search-input') as string
+  if (!inputText.trim()) return
+  redirect(`/search/multi?query=${inputText}&page=1`)
 }

@@ -13,6 +13,12 @@ const fetchOption = (method: Method) => {
   return options
 }
 
+/**
+ *
+ * @param url path
+ * @param method 'get' | 'post' | 'delete' | 'put' | 'patch'
+ * @returns res.json()
+ */
 export const fetcher = async (url: string, method: Method) => {
   const res = await fetch(`${BASE_URL}${url}`, fetchOption(method))
   if (res.ok) {

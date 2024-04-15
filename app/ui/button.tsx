@@ -7,7 +7,7 @@ const buttonStyles = cva('font-semibold transition duration-200 ease-in-out', {
     intent: {
       filled:
         'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700',
-      outlined: 'border border-1 border-blue-700 hover:bg-blue-600 hover:text-white active:bg-blue-600',
+      outlined: 'border border-blue-700 hover:bg-blue-600 hover:text-white active:bg-blue-600',
       text: 'hover:text-blue-600 active:text-blue-200 dark:hover:text-blue-500',
     },
     sizes: {

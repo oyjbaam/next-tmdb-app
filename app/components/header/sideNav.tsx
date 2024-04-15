@@ -17,8 +17,8 @@ const tvPath = [
 const SideNavigation = () => {
   return (
     <aside className="col-span-1 dark:text-slate-400">
-      <div className="text-xl font-semibold pb-2 flex items-center gap-1">
-        <FilmIcon className="h-6 w-6" />
+      <div className="text-lg font-semibold pb-2 flex items-center gap-1">
+        <FilmIcon className="h-4 w-4" />
         <span>Movie</span>
       </div>
       <ul className="flex gap-2 flex-col ">
@@ -36,14 +36,14 @@ const SideNavigation = () => {
         })}
       </ul>
       <div className="block h-px w-full my-4 bg-gray-600"></div>
-      <div className="text-xl font-semibold pb-2 flex items-center gap-1">
+      <div className="text-lg font-semibold pb-2 flex items-center gap-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-4 h-4"
         >
           <path
             strokeLinecap="round"

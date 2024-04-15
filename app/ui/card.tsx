@@ -16,7 +16,7 @@ const Card = ({ data }: CardProps) => {
       <div className="h-72 w-full p-2 relative">
         <Image
           src={isPosterPath}
-          alt={data.title || '포스터 이미지'}
+          alt={data.title || data.original_name || '포스터 이미지'}
           fill
           loading="lazy"
           className="object-cover"

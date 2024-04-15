@@ -1,8 +1,10 @@
 import Grid from '@/app/components/common/grid'
 import Pagination from '@/app/components/common/pagination'
+import Card from '@/app/ui/card'
 import { MovieType } from '@/types/movieType'
 import { fetcher } from '@/util/fetcher'
-import React from 'react'
+import Link from 'next/link'
+
 interface SearchSlugPageProps {
   params: { [key: string]: string }
   searchParams: { [key: string]: string | string[] | undefined }
@@ -17,8 +19,14 @@ const SearchSlugPage = async ({ params, searchParams }: SearchSlugPageProps) => 
       : Array.from({ length: data.total_pages }, (_, index) => index + 1)
   return (
     <div className="flex w-full flex-col justify-center gap-5">
-      <Grid datas={data.results} />
-      <Pagination page={page} totalPages={totalPages} url={`/search/multi?query=${query}&page`} />
+      <Grid>
+        {data.results.map(search => (
+          <Link href={`/detail/${search.id}`} key={search.id}>
+            <Card data={search} />
+          </Link>
+        ))}
+      </Grid>
+      <Pagination page={page} totalPages={totalPages} path={`/search/multi?query=${query}&page`} />
     </div>
   )
 }

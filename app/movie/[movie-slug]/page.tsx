@@ -3,6 +3,8 @@ import { fetcher } from '@/util/fetcher'
 import { MovieType } from '@/types/movieType'
 import Pagination from '@/app/components/common/pagination'
 import Grid from '@/app/components/common/grid'
+import Card from '@/app/ui/card'
+import Link from 'next/link'
 
 interface MovieSlugPageProps {
   params: { [key: string]: string }
@@ -19,8 +21,14 @@ const MovieSlugPage = async ({ params, searchParams }: MovieSlugPageProps) => {
       : Array.from({ length: data.total_pages }, (_, index) => index + 1)
   return (
     <div className="flex w-full flex-col justify-center gap-5">
-      <Grid datas={data.results} />
-      <Pagination page={page} totalPages={totalPages} url={`/movie/${params['movie-slug']}?page`} />
+      <Grid>
+        {data.results.map(movie => (
+          <Link href={`/detail/${movie.id}`} key={movie.id}>
+            <Card data={movie} />
+          </Link>
+        ))}
+      </Grid>
+      <Pagination page={page} totalPages={totalPages} path={`/movie/${params['movie-slug']}?page`} />
     </div>
   )
 }

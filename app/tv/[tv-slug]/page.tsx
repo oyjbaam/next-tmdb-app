@@ -2,7 +2,8 @@ import Pagination from '@/app/components/common/pagination'
 import Grid from '@/app/components/common/grid'
 import { MovieType } from '@/types/movieType'
 import { fetcher } from '@/util/fetcher'
-import React from 'react'
+import Card from '@/app/ui/card'
+import Link from 'next/link'
 
 interface TvSlugPageProps {
   params: { [key: string]: string }
@@ -19,8 +20,14 @@ const TvSlugPage = async ({ params, searchParams }: TvSlugPageProps) => {
       : Array.from({ length: data.total_pages }, (_, index) => index + 1)
   return (
     <div className="flex w-full flex-col justify-center gap-5">
-      <Grid datas={data.results} />
-      <Pagination page={page} totalPages={totalPages} url={`/tv/${params['tv-slug']}?page`} />
+      <Grid>
+        {data.results.map(tv => (
+          <Link href={`/detail/${tv.id}`} key={tv.id}>
+            <Card data={tv} />
+          </Link>
+        ))}
+      </Grid>
+      <Pagination page={page} totalPages={totalPages} path={`/tv/${params['tv-slug']}?page`} />
     </div>
   )
 }
