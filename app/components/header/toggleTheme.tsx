@@ -4,7 +4,7 @@ import { MoonIcon, ComputerDesktopIcon } from '@heroicons/react/20/solid'
 import { SunIcon } from '@heroicons/react/24/outline'
 import IconButton from '@/app/ui/iconButton'
 import { Button } from '@/app/ui/button'
-import useOutsideClick from '@/app/hooks/useOutsideClick'
+import useOutsideClick from '@/hooks/useOutsideClick'
 import { useTheme } from 'next-themes'
 
 const IconList = [

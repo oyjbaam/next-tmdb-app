@@ -3,7 +3,7 @@ import React from 'react'
 const CardSkeleton = () => {
   return (
     <>
-      {Array.from({ length: 20 }, (_, index) => index + 1).map(skeleton => (
+      {[...Array(20)].map(skeleton => (
         <div
           key={skeleton}
           className="w-52 h-full min-h-min flex-shrink-0 rounded-md flex flex-col overflow-hidden border border-slate-200 dark:border-slate-700"

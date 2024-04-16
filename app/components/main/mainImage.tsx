@@ -1,6 +1,6 @@
 import { BackDropImage } from '@/types/backDrop'
 import Image from 'next/image'
-import { fetcher } from '@/util/fetcher'
+import { fetcher } from '@/lib/actions'
 
 const MainImage = async () => {
   const backDrop: BackDropImage = await fetcher('/discover/movie?with_network=123&language=en-US', 'get')

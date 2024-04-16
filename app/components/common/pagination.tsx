@@ -28,17 +28,13 @@ const Pagination = ({ page, totalPages, param }: PaginationProps) => {
     const sliced = totalPages.slice(totalPages.length - 4)
     startArrayNumber = [1, dotsLeft, ...sliced]
   }
-
+  const prevClass = pageNum === 1 ? '' : 'hover:bg-gray-200'
+  const nextClass = pageNum < totalPages.length ? 'hover:bg-gray-200' : ''
   return (
-    <nav className="w-full text-center" aria-label="Page navigation">
+    <nav className="w-full text-center my-8" aria-label="Page navigation">
       <ul className="inline-flex items-center gap-4 text-sm">
-        <li
-          className={`rounded-full inline-flex justify-center overflow-hidden w-10 ${
-            pageNum === 1 ? '' : 'hover:bg-gray-200'
-          } `}
-        >
+        <li className={`rounded-full inline-flex justify-center overflow-hidden w-10 ${prevClass}`}>
           <Link
-            // href={createQueryString(param, `${pageNum > 1 ? pageNum - 1 : 1}`)}
             href={`${param}${pageNum > 1 ? pageNum - 1 : 1}`}
             className={buttonStyles({ intent: 'text', rounded: 'full', sizes: 'sm', disabled: pageNum === 1 })}
           >
@@ -62,11 +58,7 @@ const Pagination = ({ page, totalPages, param }: PaginationProps) => {
             </li>
           )
         })}
-        <li
-          className={`rounded-full inline-flex justify-center overflow-hidden w-10 ${
-            pageNum < totalPages.length ? 'hover:bg-gray-200' : ''
-          } `}
-        >
+        <li className={`rounded-full inline-flex justify-center overflow-hidden w-10 ${nextClass}`}>
           <Link
             href={`${param}${pageNum < totalPages.length ? pageNum + 1 : pageNum}`}
             className={buttonStyles({
