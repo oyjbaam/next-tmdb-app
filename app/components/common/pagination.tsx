@@ -1,72 +1,56 @@
 import Link from 'next/link'
 import { buttonStyles } from '@/app/ui/button'
-
+import { generatePagination } from '@/util/generatePagination'
 interface PaginationProps {
   page: string | string[]
   totalPages: number[]
   param: string
 }
 const Pagination = ({ page, totalPages, param }: PaginationProps) => {
-  const pageNum = Number(page)
-  let startArrayNumber: (number | string)[] = []
-  let dotsInitial = '...'
-  let dotsLeft = '... '
-  let dotsRight = ' ...'
-
-  if (totalPages.length < 6) {
-    startArrayNumber = [...totalPages]
-  } else if (pageNum >= 1 && pageNum <= 3) {
-    startArrayNumber = [1, 2, 3, 4, dotsInitial, totalPages.length]
-  } else if (pageNum === 4) {
-    const sliced = totalPages.slice(0, 5)
-    startArrayNumber = [...sliced, dotsInitial, totalPages.length]
-  } else if (pageNum > 4 && pageNum < totalPages.length - 2) {
-    const sliced1 = totalPages.slice(pageNum - 2, pageNum)
-    const sliced2 = totalPages.slice(pageNum, pageNum + 1)
-    startArrayNumber = [1, dotsLeft, ...sliced1, ...sliced2, dotsRight, totalPages.length]
-  } else if (pageNum > totalPages.length - 3) {
-    const sliced = totalPages.slice(totalPages.length - 4)
-    startArrayNumber = [1, dotsLeft, ...sliced]
-  }
-  const prevClass = pageNum === 1 ? '' : 'hover:bg-gray-200'
-  const nextClass = pageNum < totalPages.length ? 'hover:bg-gray-200' : ''
+  const currentPageNum = Number(page)
+  const arrNum = generatePagination(currentPageNum, totalPages)
+  const prevClass = currentPageNum === 1 ? '' : 'hover:bg-gray-200'
+  const nextClass = currentPageNum < totalPages.length ? 'hover:bg-gray-200' : ''
+  const pageNumDefaultClass = 'rounded-full inline-flex justify-center overflow-hidden'
   return (
     <nav className="w-full text-center my-8" aria-label="Page navigation">
       <ul className="inline-flex items-center gap-4 text-sm">
-        <li className={`rounded-full inline-flex justify-center overflow-hidden w-10 ${prevClass}`}>
+        <li className={`${pageNumDefaultClass} w-10 ${prevClass}`}>
           <Link
-            href={`${param}${pageNum > 1 ? pageNum - 1 : 1}`}
-            className={buttonStyles({ intent: 'text', rounded: 'full', sizes: 'sm', disabled: pageNum === 1 })}
+            href={`${param}${currentPageNum > 1 ? currentPageNum - 1 : 1}`}
+            className={buttonStyles({ intent: 'text', rounded: 'full', sizes: 'sm', disabled: currentPageNum === 1 })}
+            scroll={currentPageNum === 1 ? false : true}
           >
             Prev
           </Link>
         </li>
 
-        {startArrayNumber.map((page, index) => {
-          const isActivePageClass = page === pageNum ? 'bg-blue-500 text-white' : ''
-          const movePage =
-            page === dotsLeft ? pageNum - 1 : page === dotsInitial || page === dotsRight ? pageNum + 1 : page
+        {arrNum.map((page, index) => {
+          const isActivePageClass = page === currentPageNum ? 'bg-blue-500 text-white' : ''
+          const movePage = typeof page === 'number' ? page : currentPageNum
 
           return (
-            <li className="rounded-full inline-flex justify-center overflow-hidden w-8 hover:bg-gray-200" key={index}>
+            <li className={`${pageNumDefaultClass} w-8 hover:bg-gray-200`} key={index}>
               <Link
                 href={`${param}${movePage}`}
                 className={buttonStyles({ intent: 'text', rounded: 'full', sizes: 'sm', className: isActivePageClass })}
+                scroll={typeof page === 'number' ? true : false}
               >
                 {page}
               </Link>
             </li>
           )
         })}
-        <li className={`rounded-full inline-flex justify-center overflow-hidden w-10 ${nextClass}`}>
+        <li className={`${pageNumDefaultClass} w-10 ${nextClass}`}>
           <Link
-            href={`${param}${pageNum < totalPages.length ? pageNum + 1 : pageNum}`}
+            href={`${param}${currentPageNum < totalPages.length ? currentPageNum + 1 : currentPageNum}`}
             className={buttonStyles({
               intent: 'text',
               rounded: 'full',
               sizes: 'sm',
-              disabled: pageNum === totalPages.length,
+              disabled: currentPageNum === totalPages.length,
             })}
+            scroll={currentPageNum === totalPages.length ? false : true}
           >
             Next
           </Link>
