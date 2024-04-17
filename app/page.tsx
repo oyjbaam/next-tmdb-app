@@ -1,5 +1,5 @@
 import MainImage from './components/main/mainImage'
-import WhatsPopularPage from './whatsPopular/page'
+import WhatsPopularPage from './@whatspopular/page'
 const Home = () => {
   return (
     <>

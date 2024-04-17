@@ -15,13 +15,13 @@ const Card = ({ data }: CardProps) => {
       <div className="h-72 w-full p-2 relative">
         <Image
           src={isPosterPath}
-          alt={data.title || data.original_name || '포스터 이미지'}
+          alt={title || '포스터 이미지'}
           fill
           loading="lazy"
           className="object-cover"
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mOcWAMAAaQBDwT95dwAAAAASUVORK5CYII="
-          title={data.title || data.original_name || '포스터 이미지'}
+          title={title || '포스터 이미지'}
         />
       </div>
       <div className="p-2">
@@ -29,7 +29,7 @@ const Card = ({ data }: CardProps) => {
           <p>{data.release_date || data.first_air_date}</p>
           <p>{Math.floor(data.vote_average || 0)}</p>
         </div>
-        <span className="font-bold">{(title?.length ?? 0) > 18 ? title?.slice(0, 18) + '...' : title}</span>
+        <span className="font-bold truncate block">{title}</span>
       </div>
     </div>
   )

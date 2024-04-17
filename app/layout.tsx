@@ -15,14 +15,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body className="px-8 inner text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+      <body className="text-slate-700 dark:bg-slate-800 dark:text-slate-300">
         <Providers>
-          <MainHeader />
-          <div className="grid grid-cols-8 gap-2">
-            <SideNavigation />
-            <main className="col-span-7 w-full mx-auto">{children}</main>
+          <div className="inner">
+            <MainHeader />
+            <div className="grid grid-cols-8 gap-2">
+              <SideNavigation />
+              <main className="col-span-7 w-full mx-auto">{children}</main>
+            </div>
           </div>
-          <footer className="flex items-center justify-center h-40 text-center">
+          <footer className="flex items-center justify-center h-32 text-center border-t border-slate-300 dark:border-slate-600">
             <span>OJ</span>
           </footer>
         </Providers>

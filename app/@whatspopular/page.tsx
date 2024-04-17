@@ -1,6 +1,6 @@
 import React from 'react'
 import Tabs from '../components/main/tabs'
-import { fetcher } from '@/util/fetcher'
+import { fetcher } from '@/lib/actions'
 import { MovieType } from '@/types/movieType'
 import Card from '../ui/card'
 

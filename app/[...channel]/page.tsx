@@ -35,8 +35,10 @@ const SlugPage = async ({ params, searchParams }: SlugPageProps) => {
   if (!(path in PATH_NAME) || !path) notFound()
   const fetchUrl = combineChannelAndPath(channel, path, query)
   const fetchResult: MovieType = await fetcher(`${fetchUrl}${page}`, 'get')
-
-  const totalPages = fetchResult.total_pages > 40 ? [...Array(40)] : [...Array(fetchResult.total_pages)]
+  const totalPages =
+    fetchResult.total_pages > 40
+      ? Array.from({ length: 40 }, (_, index) => index + 1)
+      : Array.from({ length: fetchResult.total_pages }, (_, index) => index + 1)
 
   return (
     <>

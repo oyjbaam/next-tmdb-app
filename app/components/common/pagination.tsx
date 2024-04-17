@@ -3,7 +3,7 @@ import { buttonStyles } from '@/app/ui/button'
 
 interface PaginationProps {
   page: string | string[]
-  totalPages: (number | string)[]
+  totalPages: number[]
   param: string
 }
 const Pagination = ({ page, totalPages, param }: PaginationProps) => {

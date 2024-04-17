@@ -8,7 +8,7 @@ const WhatsPopularLayout = ({ children }: WhatsPopularLayoutProps) => {
     <>
       <div>adsfasf</div>
       {/* <Tabs tabPannel={['영화', 'Tv']} /> */}
-      {children}
+      {/* {children} */}
     </>
   )
 }
