@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Providers from './providers'
-import MainHeader from './components/header/mainHeader'
-import SideNavigation from './components/header/sideNav'
+import MainHeader from '../components/header/mainHeader'
+import SideNavigation from '../components/header/sideNav'
 export const metadata: Metadata = {
   title: 'TMDB Movie',
   description: 'Search Movie and TV Programs',

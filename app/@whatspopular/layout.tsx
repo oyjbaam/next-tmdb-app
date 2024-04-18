@@ -1,5 +1,5 @@
 import React from 'react'
-import Tabs from '../components/main/tabs'
+import Tabs from '../../components/main/tabs'
 interface WhatsPopularLayoutProps {
   children: React.ReactNode
 }

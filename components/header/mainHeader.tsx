@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { buttonStyles } from '@/app/ui/button'
+import { buttonStyles } from '@/components/ui/button'
 import ToggleTheme from './toggleTheme'
 import SearchInput from './searchInput'
 

@@ -1,5 +1,5 @@
-import CardSkeleton from '@/app/components/common/cardSkeleton'
-import Grid from '@/app/components/common/grid'
+import CardSkeleton from '@/components/common/cardSkeleton'
+import Grid from '@/components/common/grid'
 
 const loading = () => {
   return (

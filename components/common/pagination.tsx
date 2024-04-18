@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { buttonStyles } from '@/app/ui/button'
+import { buttonStyles } from '@/components/ui/button'
 import { generatePagination } from '@/util/generatePagination'
 interface PaginationProps {
   page: string | string[]
