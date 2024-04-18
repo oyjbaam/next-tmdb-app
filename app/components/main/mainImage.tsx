@@ -1,10 +1,11 @@
 import { BackDropImage } from '@/types/backDrop'
 import Image from 'next/image'
 import { fetcher } from '@/lib/actions'
-
+import { getRandomNumber } from '@/util/getRandomNumber'
 const MainImage = async () => {
-  const backDrop: BackDropImage = await fetcher('/discover/movie?with_network=123&language=en-US', 'get')
-  const imgUrl = `https://image.tmdb.org/t/p/w780${backDrop.results[0].backdrop_path}`
+  const backDrop: BackDropImage = await fetcher('/discover/movie?with_network=123&language=ko-kr', 'get')
+  const randomNum = getRandomNumber(0, backDrop.results.length - 1)
+  const imgUrl = `https://image.tmdb.org/t/p/w780${backDrop.results[randomNum].backdrop_path}`
 
   return (
     <div className="relative rounded-xl w-full h-80 overflow-hidden">

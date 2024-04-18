@@ -1,13 +1,21 @@
 'use client'
-import type { MovieResultType } from '@/types/movieType'
+import type { Movie } from '@/types/movieType'
+import type { TvShow } from '@/types/tvType'
 import Image from 'next/image'
 import defaultPosterImage from '@/app/assets/images/defaultImage.png'
 interface CardProps {
-  data: MovieResultType
+  data: Movie | TvShow
+}
+const movieAndTvShowTypeGuard = (object: unknown): object is Movie => {
+  if (object !== null && typeof object === 'object') {
+    return 'title' in object
+  }
+  return false
 }
 
 const Card = ({ data }: CardProps) => {
-  const title = data.title || data.name
+  const title = movieAndTvShowTypeGuard(data) ? data.title : data.name
+  const date = movieAndTvShowTypeGuard(data) ? data.release_date : data.first_air_date
   const isPosterPath = data.poster_path ? `https://image.tmdb.org/t/p/w300${data.poster_path}` : defaultPosterImage
 
   return (
@@ -26,7 +34,7 @@ const Card = ({ data }: CardProps) => {
       </div>
       <div className="p-2">
         <div className="flex justify-between py-1 text-xs font-medium">
-          <p>{data.release_date || data.first_air_date}</p>
+          <p>{date}</p>
           <p>{Math.floor(data.vote_average || 0)}</p>
         </div>
         <span className="font-bold truncate block">{title}</span>

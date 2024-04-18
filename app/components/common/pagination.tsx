@@ -12,6 +12,7 @@ const Pagination = ({ page, totalPages, param }: PaginationProps) => {
   const prevClass = currentPageNum === 1 ? '' : 'hover:bg-gray-200'
   const nextClass = currentPageNum < totalPages.length ? 'hover:bg-gray-200' : ''
   const pageNumDefaultClass = 'rounded-full inline-flex justify-center overflow-hidden'
+
   return (
     <nav className="w-full text-center my-8" aria-label="Page navigation">
       <ul className="inline-flex items-center gap-4 text-sm">
