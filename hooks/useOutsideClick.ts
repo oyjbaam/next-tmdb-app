@@ -3,6 +3,7 @@ import { useEffect, useRef, useCallback } from 'react'
 /**
  * @doc ref로 참조하는 값 이외의 영역을 클릭시 handler 실행
  */
+
 const useOutsideClick = <T extends HTMLElement>(handler: (e: MouseEvent | TouchEvent) => void) => {
   const savedHandler = useRef(handler)
   const ref = useRef<T>(null)
@@ -29,6 +30,7 @@ const useOutsideClick = <T extends HTMLElement>(handler: (e: MouseEvent | TouchE
       document.removeEventListener('touchmove', memoizedCallback, true)
     }
   }, [ref, handler, memoizedCallback])
+
   return ref
 }
 
