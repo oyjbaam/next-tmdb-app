@@ -20,11 +20,12 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+/*
 @media (max-width: 1199px) {
   .inner {
-    padding: 0 10px;
+    margin: 0 auto;
   }
-}
+} */
 @layer utilities {
   .text-balance {
     text-wrap: balance;

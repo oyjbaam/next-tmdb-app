@@ -1,9 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { test, expect } from 'vitest'
-import Home from '../app/page'
-
+import MainHeader from '@/components/header/mainHeader'
 test('Pages Router', () => {
-  render(<Home />)
+  render(<MainHeader />)
   const whatsPopular = screen.getByText(/WhatsPopular/i)
 
   expect(whatsPopular).toBeDefined()
