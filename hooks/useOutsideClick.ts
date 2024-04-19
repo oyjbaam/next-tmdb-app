@@ -3,14 +3,15 @@ import { useEffect, useRef, useCallback } from 'react'
 /**
  * @doc ref로 참조하는 값 이외의 영역을 클릭시 handler 실행
  */
-const useOutsideClick = <T extends HTMLElement>(handler: () => void, when = true) => {
+const useOutsideClick = <T extends HTMLElement>(handler: (e: MouseEvent | TouchEvent) => void) => {
   const savedHandler = useRef(handler)
   const ref = useRef<T>(null)
 
   const memoizedCallback = useCallback(
     (event: MouseEvent | TouchEvent) => {
-      if (ref.current && !ref.current.contains(event.target as HTMLElement)) {
-        savedHandler.current()
+      event.stopPropagation()
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        savedHandler.current(event)
       }
     },
     [ref]
@@ -21,16 +22,13 @@ const useOutsideClick = <T extends HTMLElement>(handler: () => void, when = true
   }, [handler])
 
   useEffect(() => {
-    if (when) {
-      document.addEventListener('click', memoizedCallback, true)
-      document.addEventListener('touchstart', memoizedCallback, true)
-
-      return () => {
-        document.removeEventListener('click', memoizedCallback, true)
-        document.removeEventListener('touchstart', memoizedCallback, true)
-      }
+    document.addEventListener('mousedown', memoizedCallback, true)
+    document.addEventListener('touchmove', memoizedCallback, true)
+    return () => {
+      document.removeEventListener('mousedown', memoizedCallback, true)
+      document.removeEventListener('touchmove', memoizedCallback, true)
     }
-  }, [ref, handler, when, memoizedCallback])
+  }, [ref, handler, memoizedCallback])
   return ref
 }
 
