@@ -14,16 +14,16 @@ const ActiveLink = ({ children, href, label }: ActiveLinkProps) => {
   const path = usePathname()
 
   const isActiveClass = (name: string) => {
-    if (name === '/') return null
-    if (href.startsWith(name) && searchParams.has('page')) return 'bg-blue-600 text-white'
-    return null
+    if (href.startsWith(name) && searchParams.has('page'))
+      return 'text-sky-500 border-sky-400 font-semibold dark:text-sky-400 '
+    return 'hover:border-slate-400 dark:hover:border-slate-200 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300'
   }
 
   return (
     <Link
       href={href}
       aria-label={`${label} 페이지로 이동`}
-      className={`block w-full h-full px-1 py-2 rounded-r-full ${isActiveClass(path)}`}
+      className={`block border-l pl-4 -ml-px border-transparent ${isActiveClass(path)}`}
     >
       {children}
     </Link>

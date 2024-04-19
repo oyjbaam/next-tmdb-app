@@ -36,10 +36,20 @@ const config: Config = {
             scale: '100%%',
           },
         },
+        changeDisplayBlock: {
+          '0%': {
+            opacity: '80%',
+          },
+          '100%': {
+            opacity: '100%',
+            display: 'block',
+          },
+        },
       },
       animation: {
         motionInLeft: 'motionInLeft .25s cubic-bezier(0.33, 1, 0.68, 1) 0s 1 normal none running',
-        motionFromTop: 'motionFromTop .65s cubic-bezier(0.33, 1, 0.68, 1) 0s 1 normal none running',
+        motionFromTop: 'motionFromTop .45s cubic-bezier(0.33, 1, 0.68, 1) 0s 1 normal none running',
+        changeDisplayBlock: 'changeDisplayBlock .25s cubic-bezier(0.33, 1, 0.68, 1) 0s 1 normal none running',
       },
     },
   },

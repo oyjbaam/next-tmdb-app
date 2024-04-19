@@ -11,7 +11,7 @@ const ToggleMenuButton = () => {
   }
 
   return (
-    <div className="border border-slate-400 rounded-md">
+    <div className="border border-slate-400 rounded-md hover:border-blue-500 transition duration-200">
       <IconButton icon={Bars3Icon} intent="text" onClick={handleToggleMenu} />
     </div>
   )

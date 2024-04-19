@@ -1,92 +1,106 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import ActiveLink from './activeLink'
-import { FilmIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 import { PATH_NAME } from '@/app/constants'
 import { useSidebarToggle } from '@/context/toggleContext'
 import useOutsideClick from '@/hooks/useOutsideClick'
-
-const moviePath = [
-  { text: '인기 영화', path: `/movie/${PATH_NAME.popular}?page=1` },
-  { text: '현재 상영중', path: `/movie/${PATH_NAME.now_playing}?page=1` },
-  { text: '개봉 예정', path: `/movie/${PATH_NAME.upcoming}?page=1` },
-  { text: '높은 평점', path: `/movie/${PATH_NAME.top_rated}?page=1` },
-]
-const tvPath = [
-  { text: '인기 TV', path: `/tv/${PATH_NAME.popular}?page=1` },
-  { text: '오늘 방영', path: `/tv/${PATH_NAME.airing_today}?page=1` },
-  { text: 'TV 방영중', path: `/tv/${PATH_NAME.on_the_air}?page=1` },
-  { text: '높은 평점', path: `/tv/${PATH_NAME.top_rated}?page=1` },
-]
+import Logo from '../common/logo'
+import Link from 'next/link'
+import IconButton from '../ui/iconButton'
 
 const SideNavigation = () => {
   const { toggleMenu, setToggleMenu } = useSidebarToggle()
   const toggleMenuRef = useOutsideClick(() => setToggleMenu(false))
-  if (toggleMenu) {
-    document.body.style.overflow = 'hidden'
-  } else {
-    document.body.style.overflow = 'auto'
+  const shouldShowNav = toggleMenu ? 'animate-changeDisplayBlock' : 'hidden'
+  const handleToggleMenu = () => {
+    setToggleMenu(false)
   }
+  useEffect(() => {
+    if (toggleMenu) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.paddingRight = '15px'
+    } else {
+      document.body.style.overflow = 'auto'
+      document.body.style.paddingRight = '0'
+    }
+  }, [toggleMenu])
+  const currentYear = new Date()
 
-  const shouldShowNav = toggleMenu ? 'block' : 'hidden'
   return (
-    <div className={`fixed right-0 top-0 left-0 bottom-0 z-20 w-full bg-black/50 ${shouldShowNav}`}>
-      <aside
-        ref={toggleMenuRef}
-        className={`absolute flex flex-col left-0 w-80 rounded-r-lg h-screen dark:bg-slate-800 bg-white p-5 animate-motionInLeft`}
-      >
-        <div className="text-lg font-semibold pb-2 flex items-center gap-1">
-          <FilmIcon className="h-4 w-4" />
-          <span>Movie</span>
-        </div>
-        <ul className="flex gap-2 flex-col ">
-          {moviePath.map(path => {
-            return (
-              <li
-                key={path.path}
-                className="text-sm hover:bg-blue-600 hover:text-white transition duration-200 rounded-r-full cursor-pointer "
-              >
-                <ActiveLink href={path.path} label={path.text}>
-                  {path.text}
-                </ActiveLink>
-              </li>
-            )
-          })}
-        </ul>
-        <div className="block h-px w-full my-4 bg-gray-600"></div>
-        <div className="text-lg font-semibold pb-2 flex items-center gap-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-4 h-4"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125Z"
-            />
-          </svg>
-
-          <span>Tv 프로그램</span>
-        </div>
-        <ul className="flex gap-2 flex-col">
-          {tvPath.map(path => (
-            <li
-              key={path.path}
-              className="text-sm hover:bg-blue-600 hover:text-white transition duration-200 rounded-r-full cursor-pointer"
+    <div className={`fixed z-50 inset-0 overflow-y-auto ${shouldShowNav}`}>
+      <div className="fixed inset-0 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80">
+        <nav
+          ref={toggleMenuRef}
+          className={`absolute flex flex-col left-0 w-52 rounded-r-xl h-screen dark:bg-slate-800 bg-white p-5 animate-motionInLeft`}
+        >
+          <div className="flex justify-between items-center">
+            <Link href="/" aria-label="로고이미지 (메인페이지로 이동)">
+              <Logo />
+            </Link>
+            <div
+              className="border border-slate-400 rounded-md hover:border-blue-500 transition duration-200"
+              onClick={handleToggleMenu}
             >
-              <ActiveLink href={path.path} label={path.text}>
-                {path.text}
-              </ActiveLink>
-            </li>
-          ))}
-        </ul>
-      </aside>
+              <IconButton icon={XMarkIcon} intent="text" />
+            </div>
+          </div>
+          <ul className="text-sm">
+            {pathGroup.map(group => (
+              <li key={group.groupName} className="mt-12 lg:mt-8">
+                <h5 className="mb-6 lg:mb-5 font-semibold text-slate-900 dark:text-slate-200">{group.groupName}</h5>
+                <ul className="space-y-6 lg:space-y-4 border-l border-slate-300 dark:border-slate-600">
+                  {group.paths.map(path => (
+                    <li key={path.text}>
+                      <ActiveLink href={path.path} label={path.text}>
+                        {path.text}
+                      </ActiveLink>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+          <footer className="flex items-end flex-grow w-full mb-10">
+            <div className="flex items-center gap-4 justify-center border-t w-full py-4 border-slate-300 dark:border-slate-600">
+              <h6 className="block">{currentYear.getFullYear()} OJ</h6>
+              <Link
+                href="https://github.com/oyjbaam"
+                target="_blank"
+                className="h-5 w-5 block text-slate-400 hover:text-slate-500 dark:hover:text-slate-300"
+              >
+                <span className="sr-only">GitHub</span>
+                <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+              </Link>
+            </div>
+          </footer>
+        </nav>
+      </div>
     </div>
   )
 }
 
 export default SideNavigation
+
+const pathGroup = [
+  {
+    groupName: 'Movies',
+    paths: [
+      { text: '인기 영화', path: `/movie/${PATH_NAME.popular}?page=1` },
+      { text: '현재 상영중', path: `/movie/${PATH_NAME.now_playing}?page=1` },
+      { text: '개봉 예정', path: `/movie/${PATH_NAME.upcoming}?page=1` },
+      { text: '높은 평점', path: `/movie/${PATH_NAME.top_rated}?page=1` },
+    ],
+  },
+  {
+    groupName: 'TV 프로그램',
+    paths: [
+      { text: '인기 TV', path: `/tv/${PATH_NAME.popular}?page=1` },
+      { text: '오늘 방영', path: `/tv/${PATH_NAME.airing_today}?page=1` },
+      { text: 'TV 방영중', path: `/tv/${PATH_NAME.on_the_air}?page=1` },
+      { text: '높은 평점', path: `/tv/${PATH_NAME.top_rated}?page=1` },
+    ],
+  },
+]

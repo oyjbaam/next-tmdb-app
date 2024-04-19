@@ -23,9 +23,6 @@ export default function RootLayout({
             <SideNavigation />
             <main className="inner w-full mx-auto">{children}</main>
           </SidebarProvider>
-          <footer className="flex items-center justify-center h-32 text-center border-t border-slate-300 dark:border-slate-600">
-            <span>OJ</span>
-          </footer>
         </Providers>
       </body>
     </html>

@@ -37,19 +37,25 @@ const ToggleTheme = () => {
           aria-labelledby="menu-button"
         >
           <ul className="flex flex-col gap-4">
-            {IconList.map(icon => (
-              <li key={icon.name} className="flex items-center cursor-pointer dark:hover:bg-slate-500">
-                <Button
-                  aria-label={`${icon.name} 테마 적용하기`}
-                  id={icon.id}
-                  leadingIcon={icon.icon}
-                  intent="text"
-                  onClick={handleSetTheme}
+            {IconList.map(icon => {
+              const activeClass = icon.id === theme ? 'text-sky-500 dark:bg-slate-500' : ''
+              return (
+                <li
+                  key={icon.name}
+                  className={`flex items-center cursor-pointer dark:hover:bg-slate-500 ${activeClass}`}
                 >
-                  {icon.name}
-                </Button>
-              </li>
-            ))}
+                  <Button
+                    aria-label={`${icon.name} 테마 적용하기`}
+                    id={icon.id}
+                    leadingIcon={icon.icon}
+                    intent="text"
+                    onClick={handleSetTheme}
+                  >
+                    {icon.name}
+                  </Button>
+                </li>
+              )
+            })}
           </ul>
         </div>
       )}
