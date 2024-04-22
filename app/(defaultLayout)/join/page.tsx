@@ -1,6 +1,6 @@
 import React from 'react'
-import IconInput from '../../components/ui/iconInput'
-import { Button } from '../../components/ui/button'
+import IconInput from '@/components/ui/input/iconInput'
+import { Button } from '@/components/ui/button/button'
 import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 

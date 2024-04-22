@@ -30,6 +30,7 @@ const Card = ({ data }: CardProps) => {
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mOcWAMAAaQBDwT95dwAAAAASUVORK5CYII="
           title={title || '포스터 이미지'}
+          sizes="auto"
         />
       </div>
       <div className="p-2">

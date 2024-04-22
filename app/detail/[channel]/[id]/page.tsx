@@ -15,14 +15,14 @@ const DetailPage = async ({ params }: DetailPageProps) => {
   const data = await fetcher<ResponseValue>(fetchUrl, 'get')
   const imgPath = `https://image.tmdb.org/t/p/w500${data.poster_path}` ?? defaultPosterImage
   return (
-    <div>
+    <div className="bg-white">
       <div className="grid grid-cols-2">
         <div className="relative h-[750px] w-[500px] rounded-md overflow-hidden">
           <Image
             src={imgPath}
             alt={data.name || data.title || '포스터 이미지'}
             fill
-            sizes="(max-width: 768px) 300px, (max-width: 1200px) 50vw, 33vw"
+            sizes="auto"
             className="object-cover"
             title={data.name || data.title || '포스터 이미지'}
           />

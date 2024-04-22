@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Card from '@/components/ui/card'
 import Pagination from '@/components/common/pagination'
 import { notFound } from 'next/navigation'
-import { PATH_NAME } from '../constants'
+import { PATH_NAME } from '../../constants'
 import React from 'react'
 import { combineChannelAndPath } from '@/util/combineChannelAndPath'
 

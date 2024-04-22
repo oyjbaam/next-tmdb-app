@@ -1,5 +1,5 @@
 'use client'
-import IconInput from '@/components/ui/iconInput'
+import IconInput from '@/components/ui/input/iconInput'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { useFormState } from 'react-dom'
 import { navigateSearchPage } from '@/lib/actions'
