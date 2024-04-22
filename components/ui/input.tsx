@@ -11,7 +11,7 @@ const inputStyles = cva(
         md: 'rounded-md text-xs',
         lg: 'rounded-md text-sm',
       },
-      validate: {
+      validation: {
         true: 'ring-1 ring-red-500 ring-offset-2',
         false: 'ring-0 focus:ring-1 focus:ring-offset-2',
       },
@@ -36,7 +36,7 @@ const inputStyles = cva(
     ],
     defaultVariants: {
       sizes: 'md',
-      validate: false,
+      validation: false,
       fullwidth: false,
     },
   }
@@ -44,8 +44,8 @@ const inputStyles = cva(
 export type InputProps = InputHTMLAttributes<HTMLInputElement> & VariantProps<typeof inputStyles>
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ validate, sizes, fullwidth, className, ...props }: InputProps, ref) => {
-    return <input className={cn(inputStyles({ validate, sizes, fullwidth, className }))} ref={ref} {...props} />
+  ({ validation, sizes, fullwidth, className, ...props }: InputProps, ref) => {
+    return <input className={cn(inputStyles({ validation, sizes, fullwidth, className }))} ref={ref} {...props} />
   }
 )
 Input.displayName = 'Input'
