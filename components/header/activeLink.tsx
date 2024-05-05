@@ -1,8 +1,7 @@
 'use client'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import React from 'react'
-import { useSearchParams } from 'next/navigation'
 interface ActiveLinkProps {
   children: React.ReactNode | undefined
   href: string

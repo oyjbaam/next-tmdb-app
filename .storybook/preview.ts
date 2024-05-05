@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react'
-import '../app/globals.css'
+// import '../app/globals.css'
 import withAppRouterContext from '../context/withAppRouterContext'
 
 const preview: Preview = {

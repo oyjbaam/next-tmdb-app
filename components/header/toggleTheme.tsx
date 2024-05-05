@@ -30,7 +30,9 @@ const ToggleTheme = () => {
         <IconButton icon={theme === 'light' ? SunIcon : MoonIcon} intent="text" onClick={handleToggleMenu} />
         {openToggleMenu && (
           <div
-            className={`absolute py-2 right-0 z-20 mt-2 origin-top-right animate-motionFromTop rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-slate-600 `}
+            className={
+              'absolute py-2 right-0 z-20 mt-2 origin-top-right animate-motionFromTop rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-slate-600 '
+            }
             role="menu"
             aria-labelledby="menu-button"
           >
