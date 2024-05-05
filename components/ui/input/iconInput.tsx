@@ -16,6 +16,7 @@ const IconInput = forwardRef<HTMLInputElement, IconInputProps>(
           <Icon className="h-4 w-4 stroke-slate-400 dark:stroke-slate-300" aria-hidden="true" />
         </span>
         <input
+          aria-label={ariaLabel}
           className={`${cn(inputStyles({ validation, sizes, fullwidth, className }))} pl-8`}
           ref={ref}
           {...props}

@@ -18,7 +18,7 @@ const LoginPage = () => {
             icon={EnvelopeIcon}
             type="email"
             id="email_address"
-            placeholder="email-ID@example.com"
+            placeholder="email@example.com"
             sizes="lg"
             required
             fullwidth
