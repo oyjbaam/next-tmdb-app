@@ -1,8 +1,7 @@
 'use client'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import React from 'react'
-import { useSearchParams } from 'next/navigation'
 interface ActiveLinkProps {
   children: React.ReactNode | undefined
   href: string
@@ -15,7 +14,7 @@ const ActiveLink = ({ children, href, label }: ActiveLinkProps) => {
 
   const isActiveClass = (name: string) => {
     if (href.startsWith(name) && searchParams.has('page'))
-      return 'text-sky-500 border-sky-400 font-semibold dark:text-sky-400 '
+      return 'text-sky-500 border-sky-400 font-semibold dark:text-sky-400 dark:border-sky-400'
     return 'hover:border-slate-400 dark:hover:border-slate-200 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300'
   }
 

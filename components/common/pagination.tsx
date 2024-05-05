@@ -31,7 +31,7 @@ const Pagination = ({ page, totalPages, param }: PaginationProps) => {
           const movePage = typeof page === 'number' ? page : currentPageNum
 
           return (
-            <li className={`${pageNumDefaultClass} w-8 hover:bg-gray-200`} key={index}>
+            <li className={`${pageNumDefaultClass} w-8 hover:bg-gray-200`} key={page}>
               <Link
                 href={`${param}${movePage}`}
                 className={buttonStyles({ intent: 'text', rounded: 'full', sizes: 'sm', className: isActivePageClass })}

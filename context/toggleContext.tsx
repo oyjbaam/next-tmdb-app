@@ -13,4 +13,6 @@ const SidebarProvider = ({ children }: { children: React.ReactNode }) => {
 }
 export default SidebarProvider
 
-export const useSidebarToggle = () => useContext(SidebarContext)
+export const useSidebarToggle = () => {
+  return useContext(SidebarContext)
+}
