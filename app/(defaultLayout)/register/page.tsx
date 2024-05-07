@@ -1,5 +1,5 @@
 import React from 'react'
-import RegisterForm from './_components/registerForm'
+import RegisterForm from './_components/RegisterForm'
 import Link from 'next/link'
 
 const JoinPage = () => {
