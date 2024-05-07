@@ -9,6 +9,7 @@ const NotFound = () => {
       <div className="w-[480px] relative h-[204px]">
         <Image src="/images/not-found.gif" alt="not-found 페이지" fill sizes="auto" priority />
       </div>
+
       <Link href="/" className={buttonStyles({ intent: 'filled' })}>
         메인으로 이동
       </Link>
