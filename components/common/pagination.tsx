@@ -26,12 +26,12 @@ const Pagination = ({ page, totalPages, param }: PaginationProps) => {
           </Link>
         </li>
 
-        {arrNum.map((page, index) => {
+        {arrNum.map(page => {
           const isActivePageClass = page === currentPageNum ? 'bg-blue-500 text-white' : ''
           const movePage = typeof page === 'number' ? page : currentPageNum
 
           return (
-            <li className={`${pageNumDefaultClass} w-8 hover:bg-gray-200`} key={index}>
+            <li className={`${pageNumDefaultClass} w-8 hover:bg-gray-200`} key={page}>
               <Link
                 href={`${param}${movePage}`}
                 className={buttonStyles({ intent: 'text', rounded: 'full', sizes: 'sm', className: isActivePageClass })}

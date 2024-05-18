@@ -12,11 +12,11 @@ const Tabs = ({ tabPannel }: TabsProps) => {
         data-tabs-toggle="#default-tab-content"
         role="tablist"
       >
-        {tabPannel.map(tab => (
+        {/* {tabPannel.map(tab => (
           <li key={tab} className="me-2 inline-block p-4 border-b-2 rounded-t-lg cursor-pointer">
             {tab}
           </li>
-        ))}
+        ))} */}
       </ul>
     </div>
   )

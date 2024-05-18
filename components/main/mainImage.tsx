@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { fetcher } from '@/lib/actions'
 import { getRandomNumber } from '@/util/getRandomNumber'
 const MainImage = async () => {
-  const backDrop: BackDropImage = await fetcher('/discover/movie?with_network=123&language=ko-kr', 'get')
+  const backDrop: BackDropImage = await fetcher('/discover/movie?with_network=123')
   const randomNum = getRandomNumber(0, backDrop.results.length - 1)
   const imgUrl = `https://image.tmdb.org/t/p/w780${backDrop.results[randomNum].backdrop_path}`
 

@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react'
-import { test, expect } from 'vitest'
 import MainHeader from '@/components/header/mainHeader'
+import LoginForm from '@/app/(defaultLayout)/login/_components/LoginForm'
 test('Pages Router', () => {
-  render(<MainHeader />)
-  const whatsPopular = screen.getByText(/WhatsPopular/i)
+  render(<LoginForm />)
+  const whatsPopular = screen.getByText(/이메일 주소 */i)
 
   expect(whatsPopular).toBeDefined()
 })

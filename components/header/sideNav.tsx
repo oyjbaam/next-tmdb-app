@@ -7,8 +7,7 @@ import { useSidebarToggle } from '@/context/toggleContext'
 import useOutsideClick from '@/hooks/useOutsideClick'
 import Logo from '../common/logo'
 import Link from 'next/link'
-import IconButton from '../ui/iconButton'
-
+import IconButton from '../ui/button/iconButton'
 const SideNavigation = () => {
   const { toggleMenu, setToggleMenu } = useSidebarToggle()
   const handleToggleMenu = () => {
@@ -32,7 +31,9 @@ const SideNavigation = () => {
       <div className="fixed inset-0 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80" aria-hidden="true"></div>
       <nav
         ref={ref}
-        className={`relative flex flex-col left-0 w-52 rounded-r-xl h-screen dark:bg-slate-800 bg-white p-5 animate-motionInLeft`}
+        className={
+          'relative flex flex-col left-0 w-52 rounded-r-xl h-screen dark:bg-slate-800 bg-white p-5 animate-motionInLeft'
+        }
       >
         <div className="flex justify-between items-center">
           <Link href="/" aria-label="로고이미지 (메인페이지로 이동)">
@@ -46,20 +47,24 @@ const SideNavigation = () => {
           </div>
         </div>
         <ul className="text-sm">
-          {pathGroup.map(group => (
-            <li key={group.groupName} className="mt-12 lg:mt-8">
-              <h5 className="mb-6 lg:mb-5 font-semibold text-slate-900 dark:text-slate-200">{group.groupName}</h5>
-              <ul className="space-y-6 lg:space-y-4 border-l border-slate-300 dark:border-slate-600">
-                {group.paths.map(path => (
-                  <li key={path.text}>
-                    <ActiveLink href={path.path} label={path.text}>
-                      {path.text}
-                    </ActiveLink>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
+          {pathGroup.map(group => {
+            return (
+              <li key={group.groupName} className="mt-12 lg:mt-8">
+                <h5 className="mb-6 lg:mb-5 font-semibold text-slate-900 dark:text-slate-200">{group.groupName}</h5>
+                <ul className="space-y-6 lg:space-y-4 border-l border-slate-300 dark:border-slate-600">
+                  {group.paths.map(path => {
+                    return (
+                      <li key={path.text}>
+                        <ActiveLink href={path.path} label={path.text}>
+                          {path.text}
+                        </ActiveLink>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </li>
+            )
+          })}
         </ul>
         <footer className="flex items-end flex-grow w-full mb-10">
           <div className="flex items-center gap-4 justify-center border-t w-full py-4 border-slate-300 dark:border-slate-600">
@@ -87,19 +92,19 @@ const pathGroup = [
   {
     groupName: 'Movies',
     paths: [
-      { text: '인기 영화', path: `/movie/${PATH_NAME.popular}?page=1` },
-      { text: '현재 상영중', path: `/movie/${PATH_NAME.now_playing}?page=1` },
-      { text: '개봉 예정', path: `/movie/${PATH_NAME.upcoming}?page=1` },
-      { text: '높은 평점', path: `/movie/${PATH_NAME.top_rated}?page=1` },
+      { text: '인기 영화', path: `/movie/${PATH_NAME.popular}` },
+      { text: '현재 상영중', path: `/movie/${PATH_NAME.now_playing}` },
+      { text: '개봉 예정', path: `/movie/${PATH_NAME.upcoming}` },
+      { text: '높은 평점', path: `/movie/${PATH_NAME.top_rated}` },
     ],
   },
   {
     groupName: 'TV 프로그램',
     paths: [
-      { text: '인기 TV', path: `/tv/${PATH_NAME.popular}?page=1` },
-      { text: '오늘 방영', path: `/tv/${PATH_NAME.airing_today}?page=1` },
-      { text: 'TV 방영중', path: `/tv/${PATH_NAME.on_the_air}?page=1` },
-      { text: '높은 평점', path: `/tv/${PATH_NAME.top_rated}?page=1` },
+      { text: '인기 TV', path: `/tv/${PATH_NAME.popular}` },
+      { text: '오늘 방영', path: `/tv/${PATH_NAME.airing_today}` },
+      { text: 'TV 방영중', path: `/tv/${PATH_NAME.on_the_air}` },
+      { text: '높은 평점', path: `/tv/${PATH_NAME.top_rated}` },
     ],
   },
 ]

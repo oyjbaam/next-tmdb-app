@@ -5,10 +5,12 @@ export interface TvShowResults {
   total_results: number
 }
 export interface TvShow {
+  adult: boolean
   backdrop_path: string | null
   first_air_date: string
   genre_ids: number[]
   id: number
+  media_type: string
   name: string
   origin_country: string[]
   original_language: string
