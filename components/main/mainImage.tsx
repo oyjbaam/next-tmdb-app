@@ -10,7 +10,7 @@ const MainImage = async () => {
   return (
     <div className="relative rounded-xl w-full h-80 overflow-hidden">
       <div className="absolute w-full h-full z-10 flex flex-col justify-center px-10 text-white">
-        <h2 className="text-5xl font-extrabold">Welcome. TMDB DB</h2>
+        <h2 className="text-5xl font-extrabold">Test deploy</h2>
         <h3 className="text-2xl font-extrabold">Millions of Movies, Tv Shows and People to discover.</h3>
       </div>
       <div className="absolute w-full h-full bg-gradient-to-r from-cyan-500 to-blue-500">

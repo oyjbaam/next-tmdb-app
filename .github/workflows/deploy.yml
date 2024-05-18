@@ -26,7 +26,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install
 
       # 프로젝트 빌드
       - name: Build next app
@@ -34,7 +34,7 @@ jobs:
           TMDB_API: ${{secrets.TMDB_API}}
           NEXT_PUBLIC_BASEURL: ${{secrets.NEXT_PUBLIC_BASEURL}}
           NEXTAUTH_SECRET: ${{secrets.NEXTAUTH_SECRET}}
-        run: npm run build
+        run: yarn build
 
       # 디렉토리 목록 조회
       - name: List files
