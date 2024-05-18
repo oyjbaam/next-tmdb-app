@@ -36,9 +36,13 @@ jobs:
           NEXTAUTH_SECRET: ${{secrets.NEXTAUTH_SECRET}}
         run: npm run build
 
+      # 디렉토리 목록 조회
+      - name: List files
+        run: ls -la
+
       # 프로젝트 압축
       - name: Make zip file
-        run: zip -qq -r ./nexttest.zip -x "node_modules/*"
+        run: zip -qq -r ./nexttest.zip . -x "node_modules/**\*"
         # -qq: quit 모드로 실행 (에러나 경고메시지만 출력하도록 함)
         # -r: 지정된 디렉토리를 재귀적으로 압축 (하위 디렉토리와 파일들 모두 압축)
         # -x "node_modules/*": node 폴더 제외
