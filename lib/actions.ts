@@ -1,13 +1,10 @@
 'use server'
 import { fetchOption, Method } from '@/util/fetchOption'
-
-import next from 'next'
 import { redirect } from 'next/navigation'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASEURL
 
 /**
- *
  * @param path (required) url-path, string
  * @param method (optional) 'get' | 'post' | 'delete' | 'put' | 'patch'
  * @param query (optional) query parameter | string

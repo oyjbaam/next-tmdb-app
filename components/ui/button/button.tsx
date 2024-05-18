@@ -1,8 +1,7 @@
 import { cva, VariantProps } from 'class-variance-authority'
 import { cn } from '@/util/twMerge'
 import React, { ButtonHTMLAttributes, forwardRef } from 'react'
-
-const buttonStyles = cva('font-semibold transition duration-200 ease-in-out', {
+const buttonStyles = cva('font-semibold transition duration-200 ease-in-out inline-flex items-center justify-center', {
   variants: {
     intent: {
       filled:
@@ -70,7 +69,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
         trailingIcon?: never
         leadingIcon?: SVGComponent
       }
-  )
+  ) & { asChild?: boolean }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (

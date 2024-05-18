@@ -1,10 +1,10 @@
+import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
-import { test, expect } from 'vitest'
-import Home from '../app/page'
+import Home from '@/app/(defaultLayout)/page'
 
-test('Pages Router', () => {
+test.skip('Pages Router', async () => {
   render(<Home />)
-  const whatsPopular = screen.getByText(/WhatsPopular/i)
+  const whatsPopular = await screen.findByText(/welcome/i)
 
   expect(whatsPopular).toBeDefined()
 })

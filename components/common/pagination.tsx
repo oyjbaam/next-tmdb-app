@@ -26,7 +26,7 @@ const Pagination = ({ page, totalPages, param }: PaginationProps) => {
           </Link>
         </li>
 
-        {arrNum.map((page, index) => {
+        {arrNum.map(page => {
           const isActivePageClass = page === currentPageNum ? 'bg-blue-500 text-white' : ''
           const movePage = typeof page === 'number' ? page : currentPageNum
 

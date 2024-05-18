@@ -8,7 +8,6 @@ import useOutsideClick from '@/hooks/useOutsideClick'
 import Logo from '../common/logo'
 import Link from 'next/link'
 import IconButton from '../ui/button/iconButton'
-
 const SideNavigation = () => {
   const { toggleMenu, setToggleMenu } = useSidebarToggle()
 
@@ -94,19 +93,19 @@ const pathGroup = [
   {
     groupName: 'Movies',
     paths: [
-      { text: '인기 영화', path: `/movie/${PATH_NAME.popular}?page=1` },
-      { text: '현재 상영중', path: `/movie/${PATH_NAME.now_playing}?page=1` },
-      { text: '개봉 예정', path: `/movie/${PATH_NAME.upcoming}?page=1` },
-      { text: '높은 평점', path: `/movie/${PATH_NAME.top_rated}?page=1` },
+      { text: '인기 영화', path: `/movie/${PATH_NAME.popular}` },
+      { text: '현재 상영중', path: `/movie/${PATH_NAME.now_playing}` },
+      { text: '개봉 예정', path: `/movie/${PATH_NAME.upcoming}` },
+      { text: '높은 평점', path: `/movie/${PATH_NAME.top_rated}` },
     ],
   },
   {
     groupName: 'TV 프로그램',
     paths: [
-      { text: '인기 TV', path: `/tv/${PATH_NAME.popular}?page=1` },
-      { text: '오늘 방영', path: `/tv/${PATH_NAME.airing_today}?page=1` },
-      { text: 'TV 방영중', path: `/tv/${PATH_NAME.on_the_air}?page=1` },
-      { text: '높은 평점', path: `/tv/${PATH_NAME.top_rated}?page=1` },
+      { text: '인기 TV', path: `/tv/${PATH_NAME.popular}` },
+      { text: '오늘 방영', path: `/tv/${PATH_NAME.airing_today}` },
+      { text: 'TV 방영중', path: `/tv/${PATH_NAME.on_the_air}` },
+      { text: '높은 평점', path: `/tv/${PATH_NAME.top_rated}` },
     ],
   },
 ]
