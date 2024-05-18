@@ -30,6 +30,10 @@ jobs:
 
       # 프로젝트 빌드
       - name: Build next app
+        env:
+          TMDB_API: ${{secrets.TMDB_API}}
+          NEXT_PUBLIC_BASEURL: ${{secrets.NEXT_PUBLIC_BASEURL}}
+          NEXTAUTH_SECRET: ${{secrets.NEXTAUTH_SECRET}}
         run: npm run build
 
       # 프로젝트 압축
