@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import { ButtonProps, buttonStyles, SVGComponent } from './button'
-
+import { cn } from '@/util/twMerge'
 type IconButtonProps = Omit<ButtonProps, 'rounded' | 'leadingIcon' | 'trailingIcon' | 'children'> & {
   icon: SVGComponent
 }
@@ -8,14 +8,17 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   ({ icon: Icon, intent, sizes, disabled, className, ...props }: IconButtonProps, ref) => {
     return (
       <button
-        className={buttonStyles({
-          intent,
-          className: 'w-fit',
-          sizes,
-          disabled,
-          _content: 'icon',
-          rounded: 'full',
-        })}
+        className={cn(
+          buttonStyles({
+            intent,
+            className: 'w-fit',
+            sizes,
+            disabled,
+            _content: 'icon',
+            rounded: 'full',
+          }),
+          className
+        )}
         {...props}
         ref={ref}
       >

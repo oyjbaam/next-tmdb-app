@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation'
 import { PATH_NAME } from '../../constants'
 import React from 'react'
 import { combineChannelAndPath } from '@/util/combineChannelAndPath'
+import PageTitle from './_components/PageTitle'
 
 interface ChannelPageProps {
   params: Record<string, string[]>
@@ -32,6 +33,7 @@ const ChannelPage = async ({ params, searchParams }: ChannelPageProps) => {
 
   return (
     <>
+      <PageTitle path={path} channel={channel} />
       <Grid>
         {fetchResult.results.map(data => {
           const mediaType = data.media_type ? data.media_type : channel

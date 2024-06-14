@@ -20,6 +20,8 @@ const MainImage = async () => {
           fill
           className="object-cover object-top opacity-40 saturate-50"
           priority
+          decoding="async"
+          fetchPriority="high"
         />
       </div>
     </div>
