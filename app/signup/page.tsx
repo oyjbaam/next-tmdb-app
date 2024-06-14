@@ -1,5 +1,5 @@
 import React from 'react'
-import RegisterForm from './_components/RegisterForm'
+import SignupForm from './_components/SignupForm'
 import Link from 'next/link'
 
 const JoinPage = () => {
@@ -8,7 +8,7 @@ const JoinPage = () => {
       <div className="h-20 flex items-center justify-center">
         <h2 className="font-bold text-3xl text-center">회원가입</h2>
       </div>
-      <RegisterForm />
+      <SignupForm />
       <p className="text-right my-4">
         이미 회원이신가요? <Link href="/login">로그인 페이지로 이동</Link>
       </p>

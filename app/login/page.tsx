@@ -10,7 +10,7 @@ const LoginPage = () => {
       </div>
       <LoginForm />
       <p className="text-right my-4">
-        <Link href="/register">회원가입 페이지로 이동</Link>
+        <Link href="/signup">회원가입 페이지로 이동</Link>
       </p>
     </div>
   )
