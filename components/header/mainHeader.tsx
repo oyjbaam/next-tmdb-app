@@ -4,6 +4,7 @@ import ToggleTheme from './toggleTheme'
 import SearchInput from './searchInput'
 import ToggleMenuButton from './toggleMenuButton'
 import Logo from '../common/logo'
+
 const MainHeader = () => {
   return (
     <header className="w-full py-3 px-3 flex items-center justify-between">

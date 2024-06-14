@@ -7,7 +7,8 @@ import { useSidebarToggle } from '@/shared/context/toggleContext'
 import useOutsideClick from '@/shared/hooks/useOutsideClick'
 import Logo from '../common/logo'
 import Link from 'next/link'
-import IconButton from '../ui/button/iconButton'
+import { IconButton } from '../ui/button'
+
 const SideNavigation = () => {
   const { toggleMenu, setToggleMenu } = useSidebarToggle()
 

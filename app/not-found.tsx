@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { buttonStyles } from '@/components/ui/button/button'
+import { buttonStyles } from '@/components/ui/button'
 const NotFound = () => {
   return (
     <div className="pt-40 flex flex-col justify-center items-center gap-y-4 overflow-hidden">

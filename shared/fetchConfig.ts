@@ -1,5 +1,6 @@
 const BASE_URL = process.env.NEXT_PUBLIC_TMDB_BASEURL
 const API_KEY = process.env.TMDB_API_KEY
+
 const createOptions = (): RequestInit => {
   const headers: HeadersInit = {
     Accept: 'application/json',
@@ -12,9 +13,13 @@ const createOptions = (): RequestInit => {
 
 export const requestFetch = async <T>(endPoint: string, config: RequestInit = {}): Promise<T> => {
   const options = createOptions()
+  const url = BASE_URL + endPoint
+  const fetchURL = new URL(url)
+  fetchURL.searchParams.set('language', 'ko-kr')
+  const urlString = fetchURL.toString()
 
   try {
-    const res = await fetch(BASE_URL + endPoint, {
+    const res = await fetch(urlString, {
       ...config,
       headers: {
         ...options.headers,

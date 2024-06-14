@@ -1,11 +1,11 @@
-export interface BackDropImage {
+export type BackDropImage = {
   page: number
   results: Result[]
   total_pages: number
   total_results: number
 }
 
-export interface Result {
+export type Result = {
   adult: boolean
   backdrop_path: string
   genre_ids: number[]

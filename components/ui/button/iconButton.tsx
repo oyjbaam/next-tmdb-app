@@ -4,7 +4,7 @@ import { cn } from '@/shared/util/twMerge'
 type IconButtonProps = Omit<ButtonProps, 'rounded' | 'leadingIcon' | 'trailingIcon' | 'children'> & {
   icon: SVGComponent
 }
-const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   ({ icon: Icon, intent, sizes, disabled, className, ...props }: IconButtonProps, ref) => {
     return (
       <button
@@ -28,4 +28,3 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   }
 )
 IconButton.displayName = 'IconButton'
-export default IconButton

@@ -1,16 +1,16 @@
-export interface MovieResults {
+export type MovieResults = {
   dates: Dates
   page: number
   results: Movie[]
   total_pages: number
   total_results: number
 }
-interface Dates {
+type Dates = {
   maximum: string
   minimum: string
 }
 
-export interface Movie {
+export type Movie = {
   adult: boolean
   backdrop_path: string | null
   genre_ids: number[]

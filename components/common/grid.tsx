@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface GridProps {
+type GridProps = {
   children?: React.ReactNode
 }
 const Grid = ({ children }: GridProps) => {

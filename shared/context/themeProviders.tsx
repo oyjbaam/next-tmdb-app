@@ -1,6 +1,7 @@
 'use client'
 import { ThemeProvider } from 'next-themes'
 import { useEffect, useState } from 'react'
+
 const Providers = ({ children }: { children: React.ReactNode }) => {
   const [isMount, setMount] = useState(false)
 

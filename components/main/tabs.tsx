@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface TabsProps {
+type TabsProps = {
   tabPannel: string[]
 }
 const Tabs = ({ tabPannel }: TabsProps) => {

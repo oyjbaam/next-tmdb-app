@@ -1,10 +1,10 @@
-export interface TvShowResults {
+export type TvShowResults = {
   page: number
   results: TvShow[]
   total_pages: number
   total_results: number
 }
-export interface TvShow {
+export type TvShow = {
   adult: boolean
   backdrop_path: string | null
   first_air_date: string

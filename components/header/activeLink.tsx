@@ -2,7 +2,8 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
-interface ActiveLinkProps {
+
+type ActiveLinkProps = {
   children: React.ReactNode | undefined
   href: string
   label: string

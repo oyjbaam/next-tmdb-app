@@ -1,11 +1,10 @@
 import React from 'react'
 import Tabs from '@/components/main/tabs'
-import { fetcher } from '@/shared/actions/actions'
 import { MovieResults } from '@/shared/types/movieType'
 import Card from '@/components/ui/card'
 
 const WhatsPopularPage = async () => {
-  const movieData: MovieResults = await fetcher('/movie/popular')
+  // const movieData: MovieResults = await fetcher('/movie/popular')
   return (
     <div className="w-full">
       <h3 className="text-xl font-bold mt-10 mb-2">Whats Popular</h3>

@@ -1,4 +1,5 @@
-export interface ICommonDetail {
+export type ResponseDetailValue = ICommonDetail & ITvDetail & IMovieDetail
+export type ICommonDetail = {
   adult: boolean
   backdrop_path: string | null
   id: number
@@ -16,7 +17,7 @@ export interface ICommonDetail {
   vote_average: number
   vote_count: number
 }
-export interface IMovieDetail {
+export type IMovieDetail = {
   adult: boolean
   belongs_to_collection: string | null
   budget: number
@@ -28,7 +29,7 @@ export interface IMovieDetail {
   title: string
   video: boolean
 }
-export interface ITvDetail {
+export type ITvDetail = {
   created_by: CreatedBy[]
   episode_run_time: number[]
   first_air_date: string
@@ -46,7 +47,7 @@ export interface ITvDetail {
   seasons: Seasons[]
   type: string
 }
-interface CreatedBy {
+type CreatedBy = {
   id: number
   credit_id: string
   name: string
@@ -54,7 +55,7 @@ interface CreatedBy {
   profile_path: string | null
 }
 
-interface LastEpisodeToAir {
+type LastEpisodeToAir = {
   id: number
   name: string
   overview: string
@@ -65,14 +66,14 @@ interface LastEpisodeToAir {
   still_path: string | null
 }
 
-interface Networks {
+type Networks = {
   id: number
   logo_path: string | null
   name: string
   origin_country: string
 }
 
-interface Seasons {
+type Seasons = {
   air_date: string
   episode_count: number
   id: number
@@ -83,24 +84,24 @@ interface Seasons {
   vote_average: number
 }
 
-interface Genre {
+type Genre = {
   id: number
   name: string
 }
 
-interface ProductionCompany {
+type ProductionCompany = {
   id: number
   logo_path: string | null
   name: string
   origin_country: string
 }
 
-interface ProductionCountry {
+type ProductionCountry = {
   iso_3166_1: string
   name: string
 }
 
-interface SpokenLanguage {
+type SpokenLanguage = {
   english_name: string
   iso_639_1: string
   name: string

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { getRandomNumber } from '@/shared/util/getRandomNumber'
 import { getMainBannerImg } from '@/shared/api/tmdbAPI'
+
 const MainImage = async () => {
   const backDrop = await getMainBannerImg()
   const randomNum = getRandomNumber(0, backDrop.results.length - 1)

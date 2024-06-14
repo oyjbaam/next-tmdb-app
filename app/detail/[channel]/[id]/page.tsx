@@ -1,18 +1,16 @@
 import React from 'react'
-import { fetcher } from '@/shared/actions'
-import type { ICommonDetail, ITvDetail, IMovieDetail } from '@/shared/types/detailType'
+import { getDetail } from '@/shared/api/tmdbAPI'
 import Image from 'next/image'
-interface DetailPageProps {
+
+type DetailPageProps = {
   params: Record<string, string>
 }
-type ResponseValue = ICommonDetail & ITvDetail & IMovieDetail
 
 const DetailPage = async ({ params }: DetailPageProps) => {
   const { channel, id } = params
-  const fetchUrl = `/${channel}/${id}?language=ko-kr`
+  const fetchUrl = `/${channel}/${id}`
+  const data = await getDetail(fetchUrl)
 
-  const data = await fetcher<ResponseValue>(fetchUrl)
-  // console.log(data)
   const imgPath = `https://image.tmdb.org/t/p/w500${data.poster_path}` ?? '/images/defaultPosterImage.png'
   // console.log(imgPath)
   return (
