@@ -1,6 +1,6 @@
 import { type NextAuthConfig } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
-import { loginSchema } from '@/app/(defaultLayout)/login/schemas/loginSchema'
+import { loginSchema } from '@/app/login/schemas/loginSchema'
 // import { login } from '@/service/api/auth'
 
 export default {

@@ -15,3 +15,7 @@ export const getMainBannerImg = async (): Promise<BackDropImage> => {
 export const getDetail = async (url: string): Promise<ResponseDetailValue> => {
   return requestFetch(url)
 }
+
+export const getPopular = async (url: string): Promise<MovieResults | TvShowResults> => {
+  return requestFetch(url)
+}

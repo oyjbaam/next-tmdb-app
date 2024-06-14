@@ -4,6 +4,7 @@ import type { TvShow } from '@/shared/types/tvType'
 import Image from 'next/image'
 interface CardProps {
   data: Movie | TvShow
+  isMain?: boolean
 }
 const movieAndTvShowTypeGuard = (object: unknown): object is Movie => {
   if (object !== null && typeof object === 'object') {
@@ -12,15 +13,23 @@ const movieAndTvShowTypeGuard = (object: unknown): object is Movie => {
   return false
 }
 
-const Card = ({ data }: CardProps) => {
+const Card = ({ data, isMain = false }: CardProps) => {
   const title = movieAndTvShowTypeGuard(data) ? data.title : data.name
   const date = movieAndTvShowTypeGuard(data) ? data.release_date : data.first_air_date
   const isPosterPath = data.poster_path
     ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
     : '/images/defaultImage.png'
+
+  const widthClass = isMain ? 'w-56' : 'w-96 sm:w-80 md:w-64 lg:w-56'
+  const imgHeightClass = isMain
+    ? 'h-[20.8125rem]'
+    : ' h-[35.8125rem] lg:h-[20.8125rem] md:h-[23.8125rem] sm:h-[29.8125rem]'
+
   return (
-    <div className="w-96 sm:w-80 md:w-64 lg:w-56 justify-between rounded-md flex flex-col overflow-hidden bg-white transi duration-200 cursor-pointer border border-slate-200 hover:border-yellow-300 hover:text-yellow-400 dark:bg-slate-700 dark:border-slate-600 shadow-md">
-      <div className="relative h-[35.8125rem] lg:h-[20.8125rem] md:h-[23.8125rem] sm:h-[29.8125rem] bg-yellow-400/30 backdrop-blur-md">
+    <div
+      className={`${widthClass} shrink-0 justify-between rounded-md flex flex-col overflow-hidden bg-white transition duration-200 cursor-pointer border border-slate-200 lg:hover:border-yellow-300 lg:hover:text-yellow-400 dark:bg-slate-700 dark:border-slate-600 shadow-md"`}
+    >
+      <div className={`relative ${imgHeightClass} backdrop-blur-md`}>
         <Image
           src={isPosterPath}
           alt={title || '포스터 이미지'}

@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
-import Home from '@/app/(defaultLayout)/page'
+import Home from '@/app/(home)/page'
 
 test.skip('Pages Router', async () => {
   render(<Home />)
