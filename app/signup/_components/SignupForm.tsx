@@ -1,6 +1,5 @@
 'use client'
-import * as z from 'zod'
-import React from 'react'
+import React, { useState, useTransition } from 'react'
 import IconInput from '@/components/ui/input/iconInput'
 import { Button } from '@/components/ui/button/button'
 import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
@@ -8,8 +7,14 @@ import { useForm } from 'react-hook-form'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { SignupSchema, defaultValues, SignupInputsValues } from '../schema/signupSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { signup } from '@/shared/actions/signup'
+import FormErrorMessage from '@/components/FormErrorMessage'
+import FormSuccessMessage from '@/components/FormSuccessMessage'
 
 const SignupForm = () => {
+  const [error, setError] = useState<string | undefined>('')
+  const [success, setSuccess] = useState<string | undefined>('')
+  const [isPending, startTransition] = useTransition()
   const form = useForm<SignupInputsValues>({
     defaultValues,
     resolver: zodResolver(SignupSchema),
@@ -17,10 +22,21 @@ const SignupForm = () => {
 
   const {
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = form
 
-  const onSubmit = (values: SignupInputsValues) => {}
+  const onSubmit = (values: SignupInputsValues) => {
+    setError('')
+    setSuccess('')
+    startTransition(() => {
+      signup(values).then(data => {
+        if (data) {
+          setError(data.error)
+          setSuccess(data.success)
+        }
+      })
+    })
+  }
 
   return (
     <Form {...form}>
@@ -110,9 +126,11 @@ const SignupForm = () => {
               )
             }}
           />
-          <Button intent="filled" className="w-full" type="submit" disabled={isSubmitting}>
-            {isSubmitting ? '가입중' : '회원가입'}
+          <Button intent="filled" className="w-full" type="submit" disabled={isPending}>
+            {isPending ? '가입중' : '회원가입'}
           </Button>
+          <FormErrorMessage message={error} />
+          <FormSuccessMessage message={success} />
         </div>
       </form>
     </Form>
