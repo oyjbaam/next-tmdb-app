@@ -1,8 +1,9 @@
 'use client'
 import React from 'react'
-import IconButton from '../ui/button/iconButton'
+import { IconButton } from '../ui/button'
 import { Bars3Icon } from '@heroicons/react/20/solid'
-import { useSidebarToggle } from '@/context/toggleContext'
+import { useSidebarToggle } from '@/shared/context/toggleContext'
+
 const ToggleMenuButton = () => {
   const { setToggleMenu } = useSidebarToggle()
 

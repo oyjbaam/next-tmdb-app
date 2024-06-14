@@ -1,9 +1,9 @@
-import { BackDropImage } from '@/types/backDrop'
 import Image from 'next/image'
-import { fetcher } from '@/lib/actions'
-import { getRandomNumber } from '@/util/getRandomNumber'
+import { getRandomNumber } from '@/shared/util/getRandomNumber'
+import { getMainBannerImg } from '@/shared/api/tmdbAPI'
+
 const MainImage = async () => {
-  const backDrop: BackDropImage = await fetcher('/discover/movie?with_network=123')
+  const backDrop = await getMainBannerImg()
   const randomNum = getRandomNumber(0, backDrop.results.length - 1)
   const imgUrl = `https://image.tmdb.org/t/p/w780${backDrop.results[randomNum].backdrop_path}`
 
@@ -20,6 +20,8 @@ const MainImage = async () => {
           fill
           className="object-cover object-top opacity-40 saturate-50"
           priority
+          decoding="async"
+          fetchPriority="high"
         />
       </div>
     </div>

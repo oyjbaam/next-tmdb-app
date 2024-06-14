@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import { InputProps, inputStyles } from './input'
-import { cn } from '@/util/twMerge'
+import { cn } from '@/shared/util/twMerge'
 import { SVGComponent } from '../button/button'
 
 type IconInputProps = InputProps & {

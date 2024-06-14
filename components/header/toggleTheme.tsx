@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { MoonIcon } from '@heroicons/react/20/solid'
 import { SunIcon } from '@heroicons/react/24/outline'
-import useOutsideClick from '@/hooks/useOutsideClick'
+import useOutsideClick from '@/shared/hooks/useOutsideClick'
 import { useTheme } from 'next-themes'
 import { Button, IconButton } from '../ui/button'
 

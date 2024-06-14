@@ -4,6 +4,7 @@ import ToggleTheme from './toggleTheme'
 import SearchInput from './searchInput'
 import ToggleMenuButton from './toggleMenuButton'
 import Logo from '../common/logo'
+
 const MainHeader = () => {
   return (
     <header className="w-full py-3 px-3 flex items-center justify-between">
@@ -31,10 +32,10 @@ const MainHeader = () => {
           <li className="hidden md:flex">
             <Link
               className={buttonStyles({ intent: 'filled', sizes: 'sm' })}
-              href="/register"
+              href="/signup"
               aria-label="회원가입 페이지로 이동"
             >
-              Join
+              Signup
             </Link>
           </li>
         </ul>

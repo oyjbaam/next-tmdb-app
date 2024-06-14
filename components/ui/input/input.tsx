@@ -1,6 +1,6 @@
 import { cva, VariantProps } from 'class-variance-authority'
 import React, { forwardRef, InputHTMLAttributes } from 'react'
-import { cn } from '@/util/twMerge'
+import { cn } from '@/shared/util/twMerge'
 
 const inputStyles = cva(
   'placeholder:italic placeholder:text-slate-400 bg-white border border-slate-400 focus:outline-none ring-inset dark:bg-slate-600 dark:placeholder:text-slate-400',

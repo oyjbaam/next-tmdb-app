@@ -3,11 +3,12 @@ import React, { useEffect } from 'react'
 import ActiveLink from './activeLink'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { PATH_NAME } from '@/app/constants'
-import { useSidebarToggle } from '@/context/toggleContext'
-import useOutsideClick from '@/hooks/useOutsideClick'
+import { useSidebarToggle } from '@/shared/context/toggleContext'
+import useOutsideClick from '@/shared/hooks/useOutsideClick'
 import Logo from '../common/logo'
 import Link from 'next/link'
-import IconButton from '../ui/button/iconButton'
+import { IconButton } from '../ui/button'
+
 const SideNavigation = () => {
   const { toggleMenu, setToggleMenu } = useSidebarToggle()
   const handleToggleMenu = () => {
