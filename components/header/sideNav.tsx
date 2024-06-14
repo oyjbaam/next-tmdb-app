@@ -11,7 +11,6 @@ import { IconButton } from '../ui/button'
 
 const SideNavigation = () => {
   const { toggleMenu, setToggleMenu } = useSidebarToggle()
-
   const handleToggleMenu = () => {
     setToggleMenu(false)
   }
