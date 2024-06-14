@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { buttonStyles } from '@/components/ui/button'
-import { generatePagination } from '@/util/generatePagination'
+import { generatePagination } from '@/shared/util/generatePagination'
 interface PaginationProps {
   page: string | string[]
   totalPages: number[]

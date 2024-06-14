@@ -5,6 +5,7 @@ import IconInput from '@/components/ui/input/iconInput'
 import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import SocialLoginGroup from '@/components/Social'
+import { signIn } from '@/auth'
 type LoginFormFields = {
   email: string
   password: string
@@ -18,7 +19,11 @@ const LoginForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<LoginFormFields>()
 
-  const onSubmit: SubmitHandler<LoginFormFields> = async data => {}
+  const onSubmit: SubmitHandler<LoginFormFields> = async data => {
+    // await signIn('credentials',{
+    //   e
+    // })
+  }
 
   return (
     <>

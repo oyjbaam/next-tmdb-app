@@ -1,5 +1,5 @@
 import { cva, VariantProps } from 'class-variance-authority'
-import { cn } from '@/util/twMerge'
+import { cn } from '@/shared/util/twMerge'
 import React, { ButtonHTMLAttributes, forwardRef } from 'react'
 const buttonStyles = cva('font-semibold transition duration-200 ease-in-out inline-flex items-center justify-center', {
   variants: {

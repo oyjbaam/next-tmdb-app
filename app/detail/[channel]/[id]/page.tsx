@@ -1,6 +1,6 @@
 import React from 'react'
-import { fetcher } from '@/lib/actions'
-import type { ICommonDetail, ITvDetail, IMovieDetail } from '@/types/detailType'
+import { fetcher } from '@/shared/actions'
+import type { ICommonDetail, ITvDetail, IMovieDetail } from '@/shared/types/detailType'
 import Image from 'next/image'
 interface DetailPageProps {
   params: Record<string, string>

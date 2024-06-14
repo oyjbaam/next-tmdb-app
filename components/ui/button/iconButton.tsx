@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import { ButtonProps, buttonStyles, SVGComponent } from './button'
-import { cn } from '@/util/twMerge'
+import { cn } from '@/shared/util/twMerge'
 type IconButtonProps = Omit<ButtonProps, 'rounded' | 'leadingIcon' | 'trailingIcon' | 'children'> & {
   icon: SVGComponent
 }

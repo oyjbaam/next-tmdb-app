@@ -1,5 +1,5 @@
 'use server'
-import { fetchOption, Method } from '@/util/fetchOption'
+import { fetchOption, Method } from '@/shared/util/fetchOption'
 import { redirect } from 'next/navigation'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASEURL

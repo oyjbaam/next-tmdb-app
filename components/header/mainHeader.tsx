@@ -31,10 +31,10 @@ const MainHeader = () => {
           <li className="hidden md:flex">
             <Link
               className={buttonStyles({ intent: 'filled', sizes: 'sm' })}
-              href="/register"
+              href="/signup"
               aria-label="회원가입 페이지로 이동"
             >
-              Join
+              Signup
             </Link>
           </li>
         </ul>

@@ -1,4 +1,4 @@
-const API_KEY = process.env.TMDB_API
+const API_KEY = process.env.TMDB_API_KEY
 
 export type Method = 'get' | 'post' | 'delete' | 'put' | 'patch'
 

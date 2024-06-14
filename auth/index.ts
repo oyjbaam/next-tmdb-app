@@ -1,34 +1,55 @@
-import Credentials from 'next-auth/providers/credentials'
-import NextAuth, { NextAuthConfig } from 'next-auth'
+import NextAuth from 'next-auth'
+import authConfig from './authConfig'
 
-const authOptions: NextAuthConfig = {
-  providers: [
-    Credentials({
-      name: 'Credentials',
-      credentials: {
-        email: { label: 'Email', type: 'email', placeholder: 'jsmith' },
-        password: { label: 'Password', type: 'password' },
-      },
-      async authorize(credentials) {
-        const { email, password } = credentials
-        const users = [{ email: 'test@test.com', password: 'google1234' }]
-        const user = users.find(user => user.email === email)
-        return user ? { id: '1', email: user.email } : null
-      },
-    }),
-  ],
+export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
-    async jwt({ token, user }) {
-      console.log('jwt token', token)
+    signIn: async () => true,
+    jwt: async ({ token, user, trigger, session }) => {
+      if (user) {
+        token.accessToken = user.accessToken
+        token.userId = user.id || ''
+      }
+      if (trigger === 'update' && session) {
+        token = { ...token, ...session.user }
+      }
       return token
     },
-    async session({ token, session }) {
-      console.log('session', session)
+    session: async ({ session, token }) => {
+      if (token?.accessToken) {
+        session.accessToken = token.accessToken
+        session.user.id = token.userId
+      }
       return session
     },
+    redirect: async ({ url, baseUrl }) => {
+      console.log('baseUrl', baseUrl)
+      if (url.startsWith('/')) return `${baseUrl}${url}`
+      if (url) {
+        const { search, origin } = new URL(url)
+        console.log('urldddd', url)
+        const callbackUrl = new URLSearchParams(search).get('callbackUrl')
+        console.log('callbackUrl', callbackUrl)
+        console.log('origin', origin)
+      }
+      // if (url.startsWith(baseUrl)) {
+      //   console.log('urldddddd', url);
+      //   const callbackUrl = new URL(url).searchParams.get('callbackUrl');
+      //   console.log('callbackUrl', callbackUrl);
+      //   if (callbackUrl) {
+      //     const decodedCallbackUrl = decodeURIComponent(callbackUrl);
+      //     console.log('`${baseUrl}${decodedCallbackUrl}`', `${baseUrl}${decodedCallbackUrl}`);
+      //     return `${baseUrl}${decodedCallbackUrl}`;
+      //   }
+      //   return url;
+      // }
+
+      return baseUrl
+    },
   },
-
-  secret: process.env.NEXTAUTH_SECRET,
-}
-
-export const { handlers, auth, signIn, signOut } = NextAuth(authOptions)
+  secret: process.env.AUTH_SECRET,
+  session: {
+    strategy: 'jwt',
+    maxAge: 60 * 60 * 24,
+  },
+  ...authConfig,
+})

@@ -2,7 +2,7 @@
 import IconInput from '@/components/ui/input/iconInput'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { useFormState } from 'react-dom'
-import { navigateSearchPage } from '@/lib/actions'
+import { navigateSearchPage } from '@/shared/actions/actions'
 
 const SearchInput = () => {
   const [state, formAction] = useFormState(navigateSearchPage, null)

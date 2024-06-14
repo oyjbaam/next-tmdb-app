@@ -1,8 +1,8 @@
 import React from 'react'
-import Tabs from '../../components/main/tabs'
-import { fetcher } from '@/lib/actions'
-import { MovieResults } from '@/types/movieType'
-import Card from '../../components/ui/card'
+import Tabs from '@/components/main/tabs'
+import { fetcher } from '@/shared/actions/actions'
+import { MovieResults } from '@/shared/types/movieType'
+import Card from '@/components/ui/card'
 
 const WhatsPopularPage = async () => {
   const movieData: MovieResults = await fetcher('/movie/popular')

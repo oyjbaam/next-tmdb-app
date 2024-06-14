@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import ThemeProviders from '@/context/themeProviders'
-import MainHeader from '../components/header/mainHeader'
-import SideNavigation from '../components/header/sideNav'
-import SidebarProvider from '@/context/toggleContext'
+import ThemeProviders from '@/shared/context/themeProviders'
+import MainHeader from '@/components/header/mainHeader'
+import SideNavigation from '@/components/header/sideNav'
+import SidebarProvider from '@/shared/context/toggleContext'
+
 export const metadata: Metadata = {
   title: 'TMDB Movie',
   description: 'Search Movie and TV Programs',
