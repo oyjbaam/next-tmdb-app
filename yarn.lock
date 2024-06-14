@@ -33,6 +33,26 @@
     preact "10.11.3"
     preact-render-to-string "5.2.3"
 
+"@auth/core@0.32.0":
+  version "0.32.0"
+  resolved "https://registry.yarnpkg.com/@auth/core/-/core-0.32.0.tgz#2bc9ba7c52fba798ed46706bbd30d4d5c7021d75"
+  integrity sha512-3+ssTScBd+1fd0/fscAyQN1tSygXzuhysuVVzB942ggU4mdfiTbv36P0ccVnExKWYJKvu3E2r3/zxXCCAmTOrg==
+  dependencies:
+    "@panva/hkdf" "^1.1.1"
+    "@types/cookie" "0.6.0"
+    cookie "0.6.0"
+    jose "^5.1.3"
+    oauth4webapi "^2.9.0"
+    preact "10.11.3"
+    preact-render-to-string "5.2.3"
+
+"@auth/prisma-adapter@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@auth/prisma-adapter/-/prisma-adapter-2.2.0.tgz#78552ddd06ee1b19b2fc9c6c01a3f91c0ebdf4d8"
+  integrity sha512-DiXgyJfqBb/6TPhNJ5IcRw3klxcFD+qaa7qvOYopV6rYinSUvsQkJ30m+so2SRlEsuDA6PqMu+Mf5Sd+zr3g+Q==
+  dependencies:
+    "@auth/core" "0.32.0"
+
 "@aw-web-design/x-default-browser@1.4.126":
   version "1.4.126"
   resolved "https://registry.yarnpkg.com/@aw-web-design/x-default-browser/-/x-default-browser-1.4.126.tgz#43e4bd8f0314ed907a8718d7e862a203af79bc16"
@@ -1657,6 +1677,47 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
+"@prisma/client@^5.15.0":
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-5.15.0.tgz#a9443ace9b8a8d57aff70647168e95f2f55c5dc9"
+  integrity sha512-wPTeTjbd2Q0abOeffN7zCDCbkp9C9cF+e9HPiI64lmpehyq2TepgXE+sY7FXr7Rhbb21prLMnhXX27/E11V09w==
+
+"@prisma/debug@5.15.0":
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/@prisma/debug/-/debug-5.15.0.tgz#a4c1d8dbca9cf29aab1c82a56a65224ed3e05f13"
+  integrity sha512-QpEAOjieLPc/4sMny/WrWqtpIAmBYsgqwWlWwIctqZO0AbhQ9QcT6x2Ut3ojbDo/pFRCCA1Z1+xm2MUy7fAkZA==
+
+"@prisma/engines-version@5.15.0-29.12e25d8d06f6ea5a0252864dd9a03b1bb51f3022":
+  version "5.15.0-29.12e25d8d06f6ea5a0252864dd9a03b1bb51f3022"
+  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-5.15.0-29.12e25d8d06f6ea5a0252864dd9a03b1bb51f3022.tgz#4469a372b74088db05c0fc8cff65f229b804fa51"
+  integrity sha512-3BEgZ41Qb4oWHz9kZNofToRvNeS4LZYaT9pienR1gWkjhky6t6K1NyeWNBkqSj2llgraUNbgMOCQPY4f7Qp5wA==
+
+"@prisma/engines@5.15.0":
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-5.15.0.tgz#bddf1973b5b0d2ebed473ed445b1a7c8dd23300b"
+  integrity sha512-hXL5Sn9hh/ZpRKWiyPA5GbvF3laqBHKt6Vo70hYqqOhh5e0ZXDzHcdmxNvOefEFeqxra2DMz2hNbFoPvqrVe1w==
+  dependencies:
+    "@prisma/debug" "5.15.0"
+    "@prisma/engines-version" "5.15.0-29.12e25d8d06f6ea5a0252864dd9a03b1bb51f3022"
+    "@prisma/fetch-engine" "5.15.0"
+    "@prisma/get-platform" "5.15.0"
+
+"@prisma/fetch-engine@5.15.0":
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/@prisma/fetch-engine/-/fetch-engine-5.15.0.tgz#f5bafd6aed3f58c41b5d0d6f832d652aa5d4cde7"
+  integrity sha512-z6AY5yyXxc20Klj7wwnfGP0iIUkVKzybqapT02zLYR/nf9ynaeN8bq73WRmi1TkLYn+DJ5Qy+JGu7hBf1pE78A==
+  dependencies:
+    "@prisma/debug" "5.15.0"
+    "@prisma/engines-version" "5.15.0-29.12e25d8d06f6ea5a0252864dd9a03b1bb51f3022"
+    "@prisma/get-platform" "5.15.0"
+
+"@prisma/get-platform@5.15.0":
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/@prisma/get-platform/-/get-platform-5.15.0.tgz#d39fbe8458432f76afeb6c9199bffae73db4f5cc"
+  integrity sha512-1GULDkW4+/VQb73vihxCBSc4Chc2x88MA+O40tcZFjmBzG4/fF44PaXFxUqKSFltxU9L9GIMLhh0Gfkk/pUbtg==
+  dependencies:
+    "@prisma/debug" "5.15.0"
+
 "@radix-ui/primitive@1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@radix-ui/primitive/-/primitive-1.0.1.tgz#e46f9958b35d10e9f6dc71c497305c22e3e55dbd"
@@ -1753,6 +1814,14 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-use-layout-effect" "1.0.1"
+
+"@radix-ui/react-label@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-label/-/react-label-2.0.2.tgz#9c72f1d334aac996fdc27b48a8bdddd82108fb6d"
+  integrity sha512-N5ehvlM7qoTLx7nWPodsPYPgMzA5WM8zZChQg8nyFJKnDO5WHdba1vv5/H6IO5LtJMfD2Q3wh1qHFGNtK0w3bQ==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/react-primitive" "1.0.3"
 
 "@radix-ui/react-portal@1.0.4":
   version "1.0.4"
@@ -2780,6 +2849,11 @@
   integrity sha512-WXCyOcRtH37HAUkpXhUduaxdm82b4GSlyTqajXviN4EfiuPgNYR109xMCKvpl6zPIpua0DGlMEDCq+g8EdoheQ==
   dependencies:
     "@babel/types" "^7.20.7"
+
+"@types/bcryptjs@^2.4.6":
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/@types/bcryptjs/-/bcryptjs-2.4.6.tgz#2b92e3c2121c66eba3901e64faf8bb922ec291fa"
+  integrity sha512-9xlo6R2qDs5uixm0bcIqCeMCE6HiQsIyel9KQySStiyqNl2tnj2mP3DX1Nf56MD6KMenNNlBBsy3LJ7gUEQPXQ==
 
 "@types/body-parser@*":
   version "1.19.5"
@@ -3896,6 +3970,11 @@ base64-js@^1.3.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
+
+bcryptjs@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/bcryptjs/-/bcryptjs-2.4.3.tgz#9ab5627b93e60621ff7cdac5da9733027df1d0cb"
+  integrity sha512-V/Hy/X9Vt7f3BbPJEi8BdVFMByHi+jNXrYkW3huaybV/kQ0KJg0Y6PkEMbn+zeT+i+SiKZ/HMqJGIIt4LZDqNQ==
 
 better-opn@^3.0.2:
   version "3.0.2"
@@ -7681,7 +7760,7 @@ nypm@^0.3.8:
     pathe "^1.1.2"
     ufo "^1.4.0"
 
-oauth4webapi@^2.4.0:
+oauth4webapi@^2.4.0, oauth4webapi@^2.9.0:
   version "2.10.4"
   resolved "https://registry.yarnpkg.com/oauth4webapi/-/oauth4webapi-2.10.4.tgz#4194b784e0ff995edd64bd90177fd7f25b7fbb17"
   integrity sha512-DSoj8QoChzOCQlJkRmYxAJCIpnXFW32R0Uq7avyghIeB6iJq0XAblOD7pcq3mx4WEBDwMuKr0Y1qveCBleG2Xw==
@@ -8338,6 +8417,13 @@ pretty-hrtime@^1.0.3:
   resolved "https://registry.yarnpkg.com/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz#b7e3ea42435a4c9b2759d99e0f201eb195802ee1"
   integrity sha512-66hKPCr+72mlfiSjlEB1+45IjXSqvVAIy6mocupoww4tBFE9R9IhwwUGoI4G++Tc9Aq+2rxOt0RFU6gPcrte0A==
 
+prisma@^5.15.0:
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/prisma/-/prisma-5.15.0.tgz#887c295caa1b81b8849d94a2751cc0e0994f86d1"
+  integrity sha512-JA81ACQSCi3a7NUOgonOIkdx8PAVkO+HbUOxmd00Yb8DgIIEpr2V9+Qe/j6MLxIgWtE/OtVQ54rVjfYRbZsCfw==
+  dependencies:
+    "@prisma/engines" "5.15.0"
+
 process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
@@ -8546,10 +8632,10 @@ react-element-to-jsx-string@^15.0.0:
     is-plain-object "5.0.0"
     react-is "18.1.0"
 
-react-hook-form@^7.51.4:
-  version "7.51.4"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.51.4.tgz#c3a47aeb22b699c45de9fc12b58763606cb52f0c"
-  integrity sha512-V14i8SEkh+V1gs6YtD0hdHYnoL4tp/HX/A45wWQN15CYr9bFRmmRdYStSO5L65lCCZRF+kYiSKhm9alqbcdiVA==
+react-hook-form@^7.51.5:
+  version "7.51.5"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.51.5.tgz#4afbfb819312db9fea23e8237a3a0d097e128b43"
+  integrity sha512-J2ILT5gWx1XUIJRETiA7M19iXHlG74+6O3KApzvqB/w8S5NQR7AbU8HVZrMALdmDgWpRPYiZJl0zx8Z4L2mP6Q==
 
 react-icons@^5.2.0:
   version "5.2.1"
