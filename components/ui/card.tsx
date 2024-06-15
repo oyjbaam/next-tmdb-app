@@ -1,12 +1,11 @@
 'use client'
-import type { Movie } from '@/shared/types/movieType'
-import type { TvShow } from '@/shared/types/tvType'
+import type { MovieResult, TvShowResult } from '@/shared/types'
 import Image from 'next/image'
 interface CardProps {
-  data: Movie | TvShow
+  data: MovieResult | TvShowResult
   isMain?: boolean
 }
-const movieAndTvShowTypeGuard = (object: unknown): object is Movie => {
+const movieAndTvShowTypeGuard = (object: unknown): object is MovieResult => {
   if (object !== null && typeof object === 'object') {
     return 'title' in object
   }
@@ -27,7 +26,7 @@ const Card = ({ data, isMain = false }: CardProps) => {
 
   return (
     <div
-      className={`${widthClass} shrink-0 justify-between rounded-md flex flex-col overflow-hidden bg-white transition duration-200 cursor-pointer border border-slate-200 lg:hover:border-yellow-300 lg:hover:text-yellow-400 dark:bg-slate-700 dark:border-slate-600 shadow-md"`}
+      className={`${widthClass} shrink-0 justify-between rounded-md flex flex-col overflow-hidden bg-white transition duration-200 cursor-pointer border border-slate-200 lg:hover:border-amber-300 lg:hover:text-amber-400 dark:bg-slate-700 dark:border-slate-600 shadow-md"`}
     >
       <div className={`relative ${imgHeightClass} backdrop-blur-md`}>
         <Image

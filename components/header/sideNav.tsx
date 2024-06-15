@@ -41,10 +41,12 @@ const SideNavigation = () => {
             <Logo />
           </Link>
           <div
-            className="border border-slate-400 rounded-md hover:border-blue-500 transition duration-200"
+            role="button"
+            aria-label="사이드바 닫기"
+            className="border border-slate-400 rounded-md lg:hover:border-violet-500 transition duration-200"
             onClick={handleToggleMenu}
           >
-            <IconButton icon={XMarkIcon} intent="text" />
+            <IconButton icon={XMarkIcon} intent="text" aria-hidden />
           </div>
         </div>
         <ul className="text-sm">
@@ -73,7 +75,7 @@ const SideNavigation = () => {
             <Link
               href="https://github.com/oyjbaam/next-firebase-app"
               target="_blank"
-              className="h-5 w-5 block text-slate-400 hover:text-slate-500 dark:hover:text-slate-300"
+              className="h-5 w-5 block text-slate-400 lg:hover:text-slate-500 lg:dark:hover:text-slate-300"
             >
               <span className="sr-only">GitHub</span>
               <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">

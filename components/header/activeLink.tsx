@@ -14,8 +14,8 @@ const ActiveLink = ({ children, href, label }: ActiveLinkProps) => {
 
   const isActiveClass = (name: string) => {
     if (href.startsWith(name) && name !== '/')
-      return 'text-sky-500 border-sky-400 font-semibold dark:text-sky-400 dark:border-sky-400'
-    return 'hover:border-slate-400 dark:hover:border-slate-200 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300'
+      return 'text-violet-500 border-violet-400 font-semibold dark:text-violet-400 dark:border-violet-400'
+    return 'lg:hover:border-violet-400 lg:dark:hover:border-violet-400 text-slate-700 lg:hover:text-violet-800 dark:text-slate-400 lg:dark:hover:text-violet-400'
   }
 
   return (

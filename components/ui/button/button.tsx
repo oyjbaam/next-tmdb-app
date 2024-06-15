@@ -1,6 +1,7 @@
 import { cva, VariantProps } from 'class-variance-authority'
 import { cn } from '@/shared/util/twMerge'
 import React, { ButtonHTMLAttributes, forwardRef } from 'react'
+import { Slot } from '@radix-ui/react-slot'
 
 export const buttonStyles = cva(
   'font-semibold transition duration-200 ease-in-out inline-flex items-center justify-center',
@@ -8,9 +9,9 @@ export const buttonStyles = cva(
     variants: {
       intent: {
         filled:
-          'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700',
-        outlined: 'border border-blue-700 hover:bg-blue-600 hover:text-white active:bg-blue-600',
-        text: 'hover:text-blue-600 active:text-blue-200 dark:hover:text-blue-500',
+          'bg-purple-600 text-white lg:hover:bg-purple-700 active:bg-purple-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-700',
+        outlined: 'border border-purple-700 lg:hover:bg-purple-600 lg:hover:text-white active:bg-purple-600',
+        text: 'lg:hover:text-purple-600 active:text-purple-200 dark:lg:hover:text-purple-500',
       },
       sizes: {
         sm: 'text-xs',
@@ -32,14 +33,22 @@ export const buttonStyles = cva(
       },
     },
     compoundVariants: [
-      { intent: 'filled', disabled: true, className: 'bg-gray-200 text-gray-400 hover:bg-gray-200 active:bg-gray-200' },
+      {
+        intent: 'filled',
+        disabled: true,
+        className: 'bg-gray-200 text-gray-400 lg:hover:bg-gray-200 active:bg-gray-200',
+      },
       {
         intent: 'outlined',
         disabled: true,
         className:
-          'bg-gray-50 border border-1 border-gray-400 text-gray-400 hover:bg-gray-50 hover:text-gray-400 active:bg-gray-50 active:text-gray-400',
+          'bg-gray-50 border border-1 border-gray-400 text-gray-400 lg:hover:bg-gray-50 lg:hover:text-gray-400 active:bg-gray-50 active:text-gray-400',
       },
-      { intent: 'text', disabled: true, className: 'text-gray-400 hover:text-gray-400 active:text-gray-400' },
+      {
+        intent: 'text',
+        disabled: true,
+        className: 'text-gray-400 lg:hover:text-gray-300 active:text-gray-400 dark:lg:hover:text-gray-400',
+      },
       { sizes: 'sm', rounded: 'normal', className: 'rounded' },
       { sizes: ['md', 'lg'], rounded: 'normal', className: 'rounded-md' },
       { sizes: 'sm', _content: ['text', 'textAndIcon'], className: 'gap-x-1.5 py-2 px-4' },
@@ -86,12 +95,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       disabled,
       children,
+      asChild,
       ...props
     }: ButtonProps,
     ref
   ) => {
+    const Comp = asChild ? Slot : 'button'
+
     return (
-      <button
+      <Comp
         disabled={disabled}
         className={cn(
           buttonStyles({
@@ -106,10 +118,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        {LeadingIcon ? <LeadingIcon className="-ml-0.5 h-5 w-5" aria-hidden={true} /> : null}
-        {children}
-        {TrailingIcon ? <TrailingIcon className="-mr-0.5 h-5 w-5" aria-hidden={true} /> : null}
-      </button>
+        <>
+          {LeadingIcon ? <LeadingIcon className="-ml-0.5 h-5 w-5" aria-hidden={true} /> : null}
+          {children}
+          {TrailingIcon ? <TrailingIcon className="-mr-0.5 h-5 w-5" aria-hidden={true} /> : null}
+        </>
+      </Comp>
     )
   }
 )

@@ -9,9 +9,10 @@ const LoginPage = () => {
         <h2 className="font-bold text-3xl text-center">로그인</h2>
       </div>
       <LoginForm />
-      <p className="text-right my-4">
-        <Link href="/signup">회원가입 페이지로 이동</Link>
-      </p>
+
+      <Link href="/signup" className="text-right mt-4 lg:hover:text-violet-300">
+        회원가입 페이지로 이동
+      </Link>
     </div>
   )
 }

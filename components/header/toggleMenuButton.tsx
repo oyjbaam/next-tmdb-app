@@ -12,8 +12,13 @@ const ToggleMenuButton = () => {
   }
 
   return (
-    <div className="border border-slate-400 rounded-md hover:border-blue-500 transition duration-200">
-      <IconButton icon={Bars3Icon} intent="text" onClick={handleToggleMenu} />
+    <div
+      role="button"
+      aria-label="사이드 메뉴바 열기"
+      className="border border-slate-400 rounded-md lg:hover:border-violet-500 lg:hover:text-violet-500 transition duration-200"
+      onClick={handleToggleMenu}
+    >
+      <IconButton icon={Bars3Icon} intent="text" aria-hidden />
     </div>
   )
 }

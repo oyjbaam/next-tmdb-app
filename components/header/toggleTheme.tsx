@@ -38,11 +38,11 @@ const ToggleTheme = () => {
           >
             <ul className="flex flex-col gap-4">
               {IconList.map(icon => {
-                const activeClass = icon.id === theme ? 'text-sky-500 dark:bg-slate-500' : ''
+                const activeClass = icon.id === theme ? 'text-violet-600 dark:bg-violet-300' : ''
                 return (
                   <li
                     key={icon.name}
-                    className={`flex items-center cursor-pointer dark:hover:bg-slate-500 ${activeClass}`}
+                    className={`flex items-center cursor-pointer lg:dark:hover:bg-slate-500 ${activeClass}`}
                   >
                     <Button
                       aria-label={`${icon.name} 테마 적용하기`}

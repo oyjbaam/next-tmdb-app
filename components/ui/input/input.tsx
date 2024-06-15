@@ -13,7 +13,7 @@ const inputStyles = cva(
       },
       validation: {
         true: 'ring-1 ring-red-500 border-red-500',
-        false: 'ring-0 focus:ring-1 focus:ring-sky-300 dark:focus:ring-sky-100 ',
+        false: 'ring-0 focus:ring-1 focus:ring-violet-300 dark:focus:ring-violet-500 ',
       },
       fullwidth: {
         false: '',

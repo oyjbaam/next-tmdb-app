@@ -19,15 +19,15 @@ const TrendingPage = async ({ searchParams }: TrendingPageProps) => {
       <TabsWrapper tabKeys={['Today', 'Weeks']} defaultValue={tabValue} paramKey="trending">
         <TabsContent value="today" className="w-full">
           <div className="overflow-x-scroll flex gap-4 py-4">
-            {trendingData.results.map(movie => (
-              <Card key={movie.id} data={movie} isMain />
+            {trendingData.results.map(data => (
+              <Card key={data.id} data={data} isMain />
             ))}
           </div>
         </TabsContent>
         <TabsContent value="weeks">
           <div className="overflow-x-scroll flex gap-4 py-4">
-            {trendingData.results.map(movie => (
-              <Card key={movie.id} data={movie} isMain />
+            {trendingData.results.map(data => (
+              <Card key={data.id} data={data} isMain />
             ))}
           </div>
         </TabsContent>
