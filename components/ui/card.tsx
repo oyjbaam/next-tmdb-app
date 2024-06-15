@@ -26,7 +26,7 @@ const Card = ({ data, isMain = false }: CardProps) => {
 
   return (
     <div
-      className={`${widthClass} shrink-0 justify-between rounded-md flex flex-col overflow-hidden bg-white transition duration-200 cursor-pointer border border-slate-200 lg:hover:border-amber-300 lg:hover:text-amber-400 dark:bg-slate-700 dark:border-slate-600 shadow-md"`}
+      className={`${widthClass} shrink-0 justify-between rounded-md flex flex-col overflow-hidden bg-white transition duration-200 cursor-pointer border border-slate-200 lg:hover:border-blue-300 lg:hover:text-blue-400 dark:bg-slate-700 dark:border-slate-600 shadow-md"`}
     >
       <div className={`relative ${imgHeightClass} backdrop-blur-md`}>
         <Image
