@@ -54,6 +54,33 @@ const config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
+        motionInLeft: {
+          '0%': {
+            left: '-100%',
+          },
+          '100%': {
+            left: '0',
+          },
+        },
+        motionFromTop: {
+          '0%': {
+            opacity: '30%',
+            scale: '90%%',
+          },
+          '100%': {
+            opacity: '100%',
+            scale: '100%%',
+          },
+        },
+        changeDisplayBlock: {
+          '0%': {
+            opacity: '80%',
+          },
+          '100%': {
+            opacity: '100%',
+            display: 'block',
+          },
+        },
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -64,6 +91,9 @@ const config = {
         },
       },
       animation: {
+        motionInLeft: 'motionInLeft .25s cubic-bezier(0.33, 1, 0.68, 1) 0s 1 normal none running',
+        motionFromTop: 'motionFromTop .45s cubic-bezier(0.33, 1, 0.68, 1) 0s 1 normal none running',
+        changeDisplayBlock: 'changeDisplayBlock .25s cubic-bezier(0.33, 1, 0.68, 1) 0s 1 normal none running',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },

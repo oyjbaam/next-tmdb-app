@@ -5,7 +5,7 @@ import * as React from 'react'
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { cn } from '@/shared/util/twMerge'
-import { IconButton } from './button'
+import { IconButton } from '@/components/ui/button'
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -177,7 +177,7 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
         intent={intent}
         sizes={sizes}
         className={cn(
-          'absolute  h-8 w-8 rounded-full',
+          'absolute h-8 w-8 rounded-full',
           orientation === 'horizontal'
             ? '-left-12 top-1/2 -translate-y-1/2'
             : '-top-12 left-1/2 -translate-x-1/2 rotate-90',

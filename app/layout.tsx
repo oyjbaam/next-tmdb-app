@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: 'TMDB Movie',
   description: 'Search Movie and TV Programs',
 }
+
 const RootLayout = ({
   children,
 }: Readonly<{
@@ -21,7 +22,8 @@ const RootLayout = ({
           <SidebarProvider>
             <MainHeader />
             <SideNavigation />
-            <main className="w-full mx-auto">{children}</main>
+
+            <main className="w-full mx-auto mt-10">{children}</main>
           </SidebarProvider>
         </ThemeProviders>
       </body>

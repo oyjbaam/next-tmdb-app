@@ -78,6 +78,7 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
 /* width */
 ::-webkit-scrollbar {
   width: 8px;
