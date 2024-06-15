@@ -1,4 +1,5 @@
-export type DetailValueResponse = CommonDetail & TvDetail & MovieDetail
+export type DetailValueResponseType = CommonDetail & TvDetail & MovieDetail
+
 export type CommonDetail = {
   adult: boolean
   backdrop_path: string | null

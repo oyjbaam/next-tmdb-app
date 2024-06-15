@@ -1,4 +1,4 @@
-export type BackDropImageResponse = {
+export type BackDropImageResponseType = {
   page: number
   results: BackDropImageResult[]
   total_pages: number

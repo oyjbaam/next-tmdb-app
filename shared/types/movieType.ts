@@ -1,10 +1,7 @@
-export type MovieResponseType = {
-  dates: Dates
-  page: number
-  results: MovieResult[]
-  total_pages: number
-  total_results: number
-}
+import { CommonResponseType } from './CommonResponse'
+
+export type MovieResponseType = CommonResponseType<MovieResult> & { dates: Dates }
+
 type Dates = {
   maximum: string
   minimum: string
@@ -17,13 +14,13 @@ export type MovieResult = {
   id: number
   media_type: string
   original_language: string
-  original_title: string
   overview: string
   popularity: number
   poster_path: string | null
-  release_date: string
-  title: string
-  video: boolean
   vote_average: number
   vote_count: number
+  release_date: string
+  video: boolean
+  title: string
+  original_title: string
 }
