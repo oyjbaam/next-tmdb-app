@@ -1,19 +1,36 @@
 import React from 'react'
 import { getPopular } from '@/shared/api/tmdbAPI'
-import PoularTabs from './_components/PoularTabs'
+import TabsWrapper from '@/components/common/TabsWrapper'
+import { TabsContent } from '@/components/ui/tabs'
+import Card from '@/components/ui/card'
 
 type WhatsPopularPageProps = {
   searchParams: Record<string, string | undefined>
 }
 
 const WhatsPopularPage = async ({ searchParams }: WhatsPopularPageProps) => {
-  const tabText = searchParams.popular ?? 'movie'
-  const popularData = await getPopular(`/${tabText}/popular`)
+  const tabValue = searchParams.popular ?? 'movie'
+  const popularData = await getPopular(tabValue)
 
   return (
     <div className="w-full">
       <h3 className="text-xl font-bold mt-10 mb-2">Whats Popular</h3>
-      <PoularTabs tabText={tabText} popularData={popularData} />
+      <TabsWrapper tabKeys={['Movie', 'Tv']} defaultValue={tabValue} paramKey="popular">
+        <TabsContent value="movie" className="w-full">
+          <div className="overflow-x-scroll flex gap-4 py-4">
+            {popularData.results.map(movie => (
+              <Card key={movie.id} data={movie} isMain />
+            ))}
+          </div>
+        </TabsContent>
+        <TabsContent value="tv">
+          <div className="overflow-x-scroll flex gap-4 py-4">
+            {popularData.results.map(movie => (
+              <Card key={movie.id} data={movie} isMain />
+            ))}
+          </div>
+        </TabsContent>
+      </TabsWrapper>
     </div>
   )
 }

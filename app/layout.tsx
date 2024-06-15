@@ -22,7 +22,6 @@ const RootLayout = ({
           <SidebarProvider>
             <MainHeader />
             <SideNavigation />
-
             <main className="w-full mx-auto mt-10">{children}</main>
           </SidebarProvider>
         </ThemeProviders>
