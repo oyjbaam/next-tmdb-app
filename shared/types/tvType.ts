@@ -1,10 +1,10 @@
-export type TvShowResults = {
+export type TvShowResponse = {
   page: number
-  results: TvShow[]
+  results: TvShowResult[]
   total_pages: number
   total_results: number
 }
-export type TvShow = {
+export type TvShowResult = {
   adult: boolean
   backdrop_path: string | null
   first_air_date: string

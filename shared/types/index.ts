@@ -1,0 +1,5 @@
+export * from './backDropType'
+export * from './detailType'
+export * from './movieType'
+export * from './trendingType'
+export * from './tvType'

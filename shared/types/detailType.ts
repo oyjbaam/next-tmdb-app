@@ -1,5 +1,5 @@
-export type ResponseDetailValue = ICommonDetail & ITvDetail & IMovieDetail
-export type ICommonDetail = {
+export type DetailValueResponse = CommonDetail & TvDetail & MovieDetail
+export type CommonDetail = {
   adult: boolean
   backdrop_path: string | null
   id: number
@@ -17,7 +17,7 @@ export type ICommonDetail = {
   vote_average: number
   vote_count: number
 }
-export type IMovieDetail = {
+export type MovieDetail = {
   adult: boolean
   belongs_to_collection: string | null
   budget: number
@@ -29,7 +29,7 @@ export type IMovieDetail = {
   title: string
   video: boolean
 }
-export type ITvDetail = {
+export type TvDetail = {
   created_by: CreatedBy[]
   episode_run_time: number[]
   first_air_date: string

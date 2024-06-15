@@ -1,7 +1,7 @@
-export type MovieResults = {
+export type MovieResponseType = {
   dates: Dates
   page: number
-  results: Movie[]
+  results: MovieResult[]
   total_pages: number
   total_results: number
 }
@@ -10,7 +10,7 @@ type Dates = {
   minimum: string
 }
 
-export type Movie = {
+export type MovieResult = {
   adult: boolean
   backdrop_path: string | null
   genre_ids: number[]

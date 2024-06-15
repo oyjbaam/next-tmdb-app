@@ -1,11 +1,11 @@
-export type BackDropImage = {
+export type BackDropImageResponse = {
   page: number
-  results: Result[]
+  results: BackDropImageResult[]
   total_pages: number
   total_results: number
 }
 
-export type Result = {
+export type BackDropImageResult = {
   adult: boolean
   backdrop_path: string
   genre_ids: number[]
