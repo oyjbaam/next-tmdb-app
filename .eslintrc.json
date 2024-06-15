@@ -5,6 +5,7 @@
   },
   "extends": [
     "prettier",
+    "prettier-eslin",
     "eslint-config-prettier",
     "next/core-web-vitals",
     "eslint:recommended",
@@ -22,7 +23,6 @@
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "prettier/prettier": "error",
-    // "arrow-body-style": ["error", "as-needed"],
     "no-implicit-coercion": ["error", { "boolean": false }],
     "no-warning-comments": [
       "warn",

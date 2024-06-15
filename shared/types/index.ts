@@ -1,5 +1,5 @@
 export * from './backDropType'
 export * from './detailType'
 export * from './movieType'
-export * from './CommonResponse'
+export * from './commonResponse'
 export * from './tvType'

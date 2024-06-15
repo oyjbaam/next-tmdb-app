@@ -1,4 +1,4 @@
-import { CommonResponseType } from './CommonResponse'
+import { CommonResponseType } from './commonResponse'
 
 export type MovieResponseType = CommonResponseType<MovieResult> & { dates: Dates }
 
