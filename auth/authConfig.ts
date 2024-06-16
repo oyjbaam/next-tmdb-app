@@ -1,13 +1,13 @@
 import { type NextAuthConfig } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
-import { loginSchema } from '@/app/login/schema/loginSchema'
+import { LoginSchema } from '@/app/auth/login/schema/loginSchema'
 // import { login } from '@/service/api/auth'
 
 export default {
   providers: [
     Credentials({
       authorize: async credentials => {
-        const validatedFields = loginSchema.safeParse(credentials)
+        const validatedFields = LoginSchema.safeParse(credentials)
 
         if (validatedFields.success) {
           const { email, password } = validatedFields.data

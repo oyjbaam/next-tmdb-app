@@ -24,7 +24,7 @@ const MainHeader = () => {
           <li className="hidden md:flex">
             <Link
               className={buttonStyles({ intent: 'filled', sizes: 'sm' })}
-              href="/login"
+              href="/auth/login"
               aria-label="로그인 페이지로 이동"
             >
               Login
@@ -33,7 +33,7 @@ const MainHeader = () => {
           <li className="hidden md:flex">
             <Link
               className={buttonStyles({ intent: 'filled', sizes: 'sm' })}
-              href="/signup"
+              href="/auth/signup"
               aria-label="회원가입 페이지로 이동"
             >
               Signup

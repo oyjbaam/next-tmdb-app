@@ -7,7 +7,7 @@ import React from 'react'
 import { combineChannelAndPath } from '@/shared/util/combineChannelAndPath'
 import PageTitle from './_components/PageTitle'
 import { getMovieTvList } from '@/shared/api/tmdbAPI'
-import { PATH_NAME } from '../constants'
+import { PATH_NAME } from '../../constants'
 
 type ChannelPageProps = {
   params: Record<string, string[]>
