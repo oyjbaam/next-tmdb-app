@@ -11,8 +11,8 @@ type TrendingPageProps = {
 
 const TrendingPage = async ({ searchParams }: TrendingPageProps) => {
   const tabValue = searchParams.trending ?? 'today'
-  const url = tabValue === 'today' ? 'day' : 'week'
-  const trendingData = await getTrending(url)
+  const fetchPath = tabValue === 'today' ? 'day' : 'week'
+  const trendingData = await getTrending(fetchPath)
 
   return (
     <div className="w-full">

@@ -27,7 +27,12 @@ const ToggleTheme = () => {
   return (
     <>
       <div className="relative z-40 inline-block text-left" ref={toggleMenuRef}>
-        <IconButton icon={theme === 'light' ? SunIcon : MoonIcon} intent="text" onClick={handleToggleMenu} />
+        <IconButton
+          aria-label="테마 아이콘"
+          icon={theme === 'light' ? SunIcon : MoonIcon}
+          intent="text"
+          onClick={handleToggleMenu}
+        />
         {openToggleMenu && (
           <div
             className={

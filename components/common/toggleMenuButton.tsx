@@ -18,7 +18,7 @@ const ToggleMenuButton = () => {
       className="border border-slate-400 rounded-md lg:hover:border-violet-500 lg:hover:text-violet-500 transition duration-200"
       onClick={handleToggleMenu}
     >
-      <IconButton icon={Bars3Icon} intent="text" aria-hidden />
+      <IconButton icon={Bars3Icon} intent="text" aria-hidden="true" />
     </div>
   )
 }

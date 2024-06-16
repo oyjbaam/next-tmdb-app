@@ -6,7 +6,7 @@ import ToggleMenuButton from '../common/toggleMenuButton'
 import Logo from '../common/logo'
 import FlexBox from '../ui/FlexBox'
 
-const MainHeader = () => {
+const DefaultHeader = () => {
   return (
     <header className="w-full py-3 px-3 flex items-center justify-between">
       <FlexBox alignItems="center" className="gap-2">
@@ -45,4 +45,4 @@ const MainHeader = () => {
   )
 }
 
-export default MainHeader
+export default DefaultHeader

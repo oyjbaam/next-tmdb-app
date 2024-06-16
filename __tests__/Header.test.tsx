@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-import MainHeader from '@/components/header/mainHeader'
 import LoginForm from '@/app/auth/login/_components/LoginForm'
 test('Pages Router', () => {
   render(<LoginForm />)
