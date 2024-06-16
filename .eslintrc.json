@@ -5,7 +5,6 @@
   },
   "extends": [
     "prettier",
-    "prettier-eslin",
     "eslint-config-prettier",
     "next/core-web-vitals",
     "eslint:recommended",

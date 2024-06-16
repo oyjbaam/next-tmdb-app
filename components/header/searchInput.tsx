@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 'use client'
 import IconInput from '@/components/ui/input/iconInput'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
