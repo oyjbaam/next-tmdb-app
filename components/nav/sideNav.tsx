@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import React from 'react'
 import ActiveLink from './activeLink'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { PATH_NAME } from '@/app/constants'
@@ -16,14 +16,6 @@ const SideNavigation = () => {
   }
   const ref = useOutsideClick<HTMLElement>(() => setToggleMenu(false))
   const shouldShowNav = toggleMenu ? 'animate-changeDisplayBlock' : 'hidden'
-
-  useEffect(() => {
-    if (toggleMenu) {
-      document.body.classList.add('md:pr-[15px]', 'md:overflow-hidden')
-    } else {
-      document.body.classList.remove('md:pr-[15px]', 'md:overflow-hidden')
-    }
-  }, [toggleMenu])
 
   const currentYear = new Date().getFullYear()
 

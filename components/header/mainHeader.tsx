@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { buttonStyles } from '@/components/ui/button'
-import ToggleTheme from './toggleTheme'
+import ToggleTheme from '../common/toggleTheme'
 import SearchInput from './searchInput'
-import ToggleMenuButton from './toggleMenuButton'
+import ToggleMenuButton from '../common/toggleMenuButton'
 import Logo from '../common/logo'
 
 const MainHeader = () => {
