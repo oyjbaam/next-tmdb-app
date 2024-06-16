@@ -13,6 +13,9 @@ const config = {
       },
     },
     extend: {
+      aspectRatio: {
+        card: '2 / 3',
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

@@ -2,7 +2,8 @@ import React from 'react'
 import TabsWrapper from '@/components/common/TabsWrapper'
 import { TabsContent } from '@/components/ui/tabs'
 import { getTrending } from '@/shared/api/tmdbAPI'
-import Card from '@/components/ui/card'
+import Card from '@/components/common/Card'
+import Link from 'next/link'
 
 type TrendingPageProps = {
   searchParams: Record<string, string | undefined>
@@ -19,16 +20,24 @@ const TrendingPage = async ({ searchParams }: TrendingPageProps) => {
       <TabsWrapper tabKeys={['Today', 'Weeks']} defaultValue={tabValue} paramKey="trending">
         <TabsContent value="today" className="w-full">
           <div className="overflow-x-scroll flex gap-4 py-4">
-            {trendingData.results.map(data => (
-              <Card key={data.id} data={data} isMain />
-            ))}
+            {trendingData.results.map(data => {
+              return (
+                <Link href={`/detail?mediaType=${data.media_type}&id=${data.id}`} key={data.id}>
+                  <Card data={data} isMain />
+                </Link>
+              )
+            })}
           </div>
         </TabsContent>
         <TabsContent value="weeks">
           <div className="overflow-x-scroll flex gap-4 py-4">
-            {trendingData.results.map(data => (
-              <Card key={data.id} data={data} isMain />
-            ))}
+            {trendingData.results.map(data => {
+              return (
+                <Link href={`/detail?mediaType=${data.media_type}&id=${data.id}`} key={data.id}>
+                  <Card data={data} isMain />
+                </Link>
+              )
+            })}
           </div>
         </TabsContent>
       </TabsWrapper>

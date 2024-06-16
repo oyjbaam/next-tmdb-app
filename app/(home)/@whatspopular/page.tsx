@@ -2,7 +2,8 @@ import React from 'react'
 import { getPopular } from '@/shared/api/tmdbAPI'
 import TabsWrapper from '@/components/common/TabsWrapper'
 import { TabsContent } from '@/components/ui/tabs'
-import Card from '@/components/ui/card'
+import Card from '@/components/common/Card'
+import Link from 'next/link'
 
 type WhatsPopularPageProps = {
   searchParams: Record<string, string | undefined>
@@ -18,16 +19,24 @@ const WhatsPopularPage = async ({ searchParams }: WhatsPopularPageProps) => {
       <TabsWrapper tabKeys={['Movie', 'Tv']} defaultValue={tabValue} paramKey="popular">
         <TabsContent value="movie" className="w-full">
           <div className="overflow-x-scroll flex gap-4 py-4">
-            {popularData.results.map(movie => (
-              <Card key={movie.id} data={movie} isMain />
-            ))}
+            {popularData.results.map(movie => {
+              return (
+                <Link href={`/detail?mediaType=movie&id=${movie.id}`} key={movie.id}>
+                  <Card data={movie} isMain />
+                </Link>
+              )
+            })}
           </div>
         </TabsContent>
         <TabsContent value="tv">
           <div className="overflow-x-scroll flex gap-4 py-4">
-            {popularData.results.map(movie => (
-              <Card key={movie.id} data={movie} isMain />
-            ))}
+            {popularData.results.map(tv => {
+              return (
+                <Link href={`/detail?mediaType=tv&id=${tv.id}`} key={tv.id}>
+                  <Card key={tv.id} data={tv} isMain />
+                </Link>
+              )
+            })}
           </div>
         </TabsContent>
       </TabsWrapper>

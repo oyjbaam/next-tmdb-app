@@ -1,6 +1,6 @@
 import Grid from '@/components/common/grid'
 import Link from 'next/link'
-import Card from '@/components/ui/card'
+import Card from '@/components/common/Card'
 import Pagination from '@/components/common/pagination'
 import { notFound } from 'next/navigation'
 import React from 'react'
@@ -37,7 +37,7 @@ const ChannelPage = async ({ params, searchParams }: ChannelPageProps) => {
         {fetchResult.results.map(data => {
           const mediaType = data.media_type ? data.media_type : channel
           return (
-            <Link href={`/detail/${mediaType}/${data.id}`} key={data.id}>
+            <Link href={`/detail?mediaType=${mediaType}&id=${data.id}`} key={data.id}>
               <Card data={data} />
             </Link>
           )
