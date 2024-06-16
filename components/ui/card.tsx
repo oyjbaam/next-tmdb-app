@@ -1,7 +1,8 @@
 'use client'
 import type { MovieResult, TvShowResult } from '@/shared/types'
 import Image from 'next/image'
-interface CardProps {
+
+type CardProps = {
   data: MovieResult | TvShowResult
   isMain?: boolean
 }

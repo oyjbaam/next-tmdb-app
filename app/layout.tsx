@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import ThemeProviders from '@/shared/context/themeProviders'
 import MainHeader from '@/components/header/mainHeader'
-import SideNavigation from '@/components/nav/sideNav'
+import SideNavigation from '@/components/nav/SideNav'
 import SidebarProvider from '@/shared/context/toggleContext'
 
 export const metadata: Metadata = {
