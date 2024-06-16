@@ -1,4 +1,4 @@
-import MainImage from '@/components/main/mainImage'
+import MainImage from './_components/mainImage'
 
 const Home = () => <MainImage />
 
