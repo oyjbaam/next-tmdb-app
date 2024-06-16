@@ -5,7 +5,7 @@ type GridProps = {
 }
 const Grid = ({ children }: GridProps) => {
   return (
-    <div className="grid grid-cols-1 gap-4 justify-items-center lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4 justify-items-center xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
       {children}
     </div>
   )
