@@ -3,6 +3,7 @@ import { getDetail } from '@/shared/api/tmdbAPI'
 import Image from 'next/image'
 import { isMovieDetailTypeGuard } from '@/shared/util/guard/isMovieDetailTypeGuard'
 import DetailHeader from './_components/DetailHeader'
+import CastList from './_components/CastList'
 
 type DetailPageProps = {
   searchParams: Record<string, string | undefined>
@@ -14,12 +15,14 @@ const DetailPage = async ({ searchParams }: DetailPageProps) => {
   const fetchUrl = `/${mediaType}/${dataId}`
   const detailData = await getDetail<typeof mediaType>(fetchUrl)
 
-  const imgPath = `https://image.tmdb.org/t/p/w500${detailData.poster_path}` ?? '/images/defaultPosterImage.png'
+  const imgPath = detailData.poster_path
+    ? `https://image.tmdb.org/t/p/w500${detailData.poster_path}`
+    : '/images/defaultPosterImage.png'
   const isMovie = isMovieDetailTypeGuard(detailData, 'movie')
 
   return (
     <>
-      <section className="relative h-[750px] w-[500px] rounded-md overflow-hidden">
+      <section className="relative h-[750px] w-[500px] rounded-md overflow-hidden ">
         <Image
           src={imgPath}
           alt={(isMovie ? detailData.title : detailData.name) ?? '포스터 이미지'}
@@ -29,11 +32,18 @@ const DetailPage = async ({ searchParams }: DetailPageProps) => {
           title={(isMovie ? detailData.title : detailData.name) ?? '포스터 이미지'}
         />
       </section>
-      <section>
-        <DetailHeader data={detailData} />
 
-        <div>
-          <h3>The CAST</h3>
+      <section className="space-y-8 px-5 lg:px-0 max-w-[600px] w-full">
+        <DetailHeader data={detailData} />
+        <CastList fetchUrl={fetchUrl} />
+        <div className="space-y-1">
+          <h3 className="text-2xl dark:text-white">SYNOPSIS</h3>
+          <p className="text-base font-sans">{detailData.overview}</p>
+        </div>
+
+        <div className="space-y-1">
+          <h3 className="text-2xl dark:text-white">SYNOPSIS</h3>
+          <p className="text-base font-sans">{detailData.overview}</p>
         </div>
       </section>
     </>

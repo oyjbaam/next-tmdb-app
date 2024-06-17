@@ -5,6 +5,7 @@ import {
   type DetailValueResponseType,
   type TvShowResponse,
   type MovieOrTVResponseType,
+  type CreditsResponseType,
 } from '../types'
 
 /**
@@ -28,6 +29,12 @@ export const getDetail = async <T>(url: string): Promise<DetailValueResponseType
   return await requestFetch(url)
 }
 
+/**
+ * @returns 제작 참여 목록
+ */
+export const getCredits = async (url: string): Promise<CreditsResponseType> => {
+  return await requestFetch(`${url}/credits`)
+}
 /**
  * @returns 영화,TV 인기 목록
  */

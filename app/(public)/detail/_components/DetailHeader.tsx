@@ -13,7 +13,9 @@ const DetailHeader = ({ data }: DetailHeaderProps) => {
   return (
     <header className="space-y-4">
       <div>
-        <h1 className="text-6xl font-bold">{(isMovie ? data.original_title : data.original_name).toUpperCase()}</h1>
+        <h1 className="text-6xl font-bold dark:text-white">
+          {(isMovie ? data.original_title : data.original_name).toUpperCase()}
+        </h1>
         <h2 className="text-3xl mt-1">{(isMovie ? data.title : data.name).toUpperCase()}</h2>
       </div>
 
@@ -22,9 +24,13 @@ const DetailHeader = ({ data }: DetailHeaderProps) => {
           <span>{isMovie ? data.release_date : data.first_air_date}</span>
         </li>
         <li>{isMovie ? <span>{data.runtime} min</span> : <span> {data.number_of_episodes} Episodes</span>}</li>
-        <li>
-          <span>{data.original_language.toUpperCase()}</span>
-        </li>
+        {data.genres.map(item => {
+          return (
+            <li key={item.id}>
+              <span>{item.name}</span>
+            </li>
+          )
+        })}
       </ul>
 
       <FlexBox alignItems="center" className="gap-2 text-yellow-400">
