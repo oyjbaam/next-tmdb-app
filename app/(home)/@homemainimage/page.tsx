@@ -3,7 +3,6 @@ import { getMainBannerImg } from '@/shared/api/tmdbAPI'
 import { CarouselItem } from '@/components/ui/carousel'
 import CarouselWrapper from './_components/CarouselWrapper'
 import React from 'react'
-
 const HomeMainImage = async () => {
   const backDrop = await getMainBannerImg()
 

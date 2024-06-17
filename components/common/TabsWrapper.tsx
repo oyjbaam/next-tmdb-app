@@ -25,13 +25,13 @@ const TabsWrapper = ({ children, tabKeys, defaultValue, paramKey }: TabsWrapperP
 
   return (
     <Tabs defaultValue={defaultValue} className="w-full" onValueChange={handleTabChange}>
-      <TabsList className="grid grid-cols-2 dark:bg-slate-700 w-full md:w-[400px] lg:w-[400px]">
+      <TabsList className="grid grid-cols-2 dark:bg-slate-700 w-full md:w-[400px] bg-slate-200">
         {tabKeys.map((tab, index) => {
           return (
             <TabsTrigger
               key={tab}
               value={tabKeys[index].toLowerCase()}
-              className="data-[state=active]:bg-purple-500 data-[state=active]:text-white"
+              className="data-[state=active]:bg-purple-500 data-[state=active]:text-white dark:lg:hover:bg-slate-600 lg:hover:bg-slate-300 data-[state=active]:lg:hover:bg-purple-500 data-[state=active]:dark:lg:hover:bg-purple-500"
             >
               {tabKeys[index]}
             </TabsTrigger>

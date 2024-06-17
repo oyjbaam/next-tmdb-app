@@ -87,17 +87,30 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #334155;
+  background: #dedfe5;
   border-radius: 5px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #64748b;
+  background: #8293aa;
   border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #6c819c;
+}
+
+/* Dark mode scrollbar styles */
+.dark ::-webkit-scrollbar-track {
+  background: #334155; /* Darker background for dark mode */
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #64748b; /* Darker thumb for dark mode */
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8; /* Darker hover effect for dark mode */
 }

@@ -6,8 +6,9 @@ const CardSkeleton = () => {
       {[...Array(20)].map((_, idx) => {
         return (
           <div
+            role="status"
             key={idx}
-            className="xl:w-[13.875rem] md:w-[15.875rem] sm:w-[19.875rem] w-[23.875rem] max-h-fit flex-shrink-0 rounded-md flex flex-col overflow-hidden border border-slate-200 dark:border-slate-700"
+            className="animate-pulse xl:w-[13.875rem] md:w-[15.875rem] sm:w-[19.875rem] w-[23.875rem] max-h-fit flex-shrink-0 rounded-md flex flex-col overflow-hidden border border-slate-200 dark:border-slate-700"
           >
             <div className="aspect-card h-[35.8125rem] lg:h-[20.8125rem] md:h-[23.8125rem] sm:h-[29.8125rem] bg-slate-200 p-2 relative dark:bg-slate-700"></div>
             <div className="p-2">
@@ -19,6 +20,9 @@ const CardSkeleton = () => {
               </div>
               <div className="h-3 bg-slate-200 rounded-md dark:bg-slate-700"> </div>
             </div>
+            <span role="status" className="sr-only">
+              loading...
+            </span>
           </div>
         )
       })}
