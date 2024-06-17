@@ -1,6 +1,6 @@
 import * as z from 'zod'
 
-const ResultSchema = z.object({
+const VideoResultSchema = z.object({
   iso_639_1: z.string(),
   iso_3166_1: z.string(),
   name: z.string(),
@@ -15,7 +15,9 @@ const ResultSchema = z.object({
 
 export const VideoResponseSchema = z.object({
   id: z.number(),
-  results: z.array(ResultSchema),
+  results: z.array(VideoResultSchema),
 })
 
 export type VideoResponseType = z.infer<typeof VideoResponseSchema>
+
+export type VideoResultType = z.infer<typeof VideoResultSchema>

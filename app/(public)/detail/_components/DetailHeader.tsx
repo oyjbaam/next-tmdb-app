@@ -19,7 +19,7 @@ const DetailHeader = ({ data }: DetailHeaderProps) => {
         <h2 className="text-3xl mt-1">{(isMovie ? data.title : data.name).toUpperCase()}</h2>
       </div>
 
-      <ul className="flex *:relative gap-4 mt-4 text-base *:ml-2 *:before:content-[''] *:before:block *:before:absolute *:before:w-1 *:before:aspect-square *:before:rounded-full *:before:bg-slate-400 *:before:-left-2 *:before:top-[10px]">
+      <ul className="flex flex-wrap *:shrink-0 *:relative gap-4 mt-4 text-base *:ml-2 *:before:content-[''] *:before:block *:before:absolute *:before:w-1 *:before:aspect-square *:before:rounded-full *:before:bg-slate-400 *:before:-left-2 *:before:top-[10px]">
         <li>
           <span>{isMovie ? data.release_date : data.first_air_date}</span>
         </li>

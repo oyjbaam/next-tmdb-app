@@ -3,6 +3,8 @@ import { getVideoOrImage } from '@/shared/api/tmdbDetailApi'
 import React from 'react'
 import { isVideoResponse } from '@/shared/util/guard/isVideoResponseType'
 
+import VideoPopup from './VideoPopup'
+
 type VideoListProps = {
   fetchUrl: string
 }
@@ -15,14 +17,10 @@ const VideoList = async ({ fetchUrl }: VideoListProps) => {
   }
 
   return (
-    <FlexBox className="h-20 gap-4">
-      {videoData.results.slice(0, 3).map(video => {
-        return (
-          <div key={video.id} className=" w-1/3 h-full bg-white">
-            dd
-          </div>
-        )
-      })}
+    <FlexBox className="gap-4">
+      {videoData.results.slice(0, 3).map(video => (
+        <VideoPopup key={video.id} video={video} />
+      ))}
     </FlexBox>
   )
 }

@@ -1,5 +1,5 @@
 import FlexBox from '@/components/ui/FlexBox'
-import { getCredits } from '@/shared/api/tmdbAPI'
+import { getCredits } from '@/shared/api/tmdbDetailApi'
 import React from 'react'
 import Image from 'next/image'
 
@@ -13,7 +13,7 @@ const CastList = async ({ fetchUrl }: CastListProps) => {
   return (
     <div className="space-y-1">
       <h3 className="text-2xl dark:text-white">THE CAST</h3>
-      <div className="grid lg:grid-cols-10 grid-cols-8 gap-4 w-full overflow-hidden">
+      <FlexBox className="flex-wrap gap-4 w-full">
         {creditsData.cast.slice(0, 9).map(item => {
           const imgPath = item.profile_path
             ? `https://image.tmdb.org/t/p/w45${item.profile_path}`
@@ -49,7 +49,7 @@ const CastList = async ({ fetchUrl }: CastListProps) => {
             />
           </FlexBox>
         )}
-      </div>
+      </FlexBox>
     </div>
   )
 }

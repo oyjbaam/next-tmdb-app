@@ -21,13 +21,13 @@ const ChannelPage = async ({ params, searchParams }: ChannelPageProps) => {
   if (!(path in PATH_NAME) || !path) notFound()
   const fetchUrl = combineChannelAndPath(channel, path, query)
   const parameters = query ? `query=${query}&page=${page}` : `page=${page}`
-
   const fetchResult = await getMovieTvList(`${fetchUrl}?${parameters}`)
 
   const totalPages =
     fetchResult.total_pages > 40
       ? Array.from({ length: 40 }, (_, index) => index + 1)
       : Array.from({ length: fetchResult.total_pages }, (_, index) => index + 1)
+
   const paginationParam = query ? `${fetchUrl}?query=${query}&page=` : `${fetchUrl}?page=`
 
   return (
