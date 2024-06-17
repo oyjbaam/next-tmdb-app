@@ -1,42 +1,46 @@
-export type CommonDetailType = {
-  adult: boolean
-  backdrop_path: string
-  id: number
-  genres: Genre[]
-  homepage: string
-  origin_country: string[]
-  original_language: string
-  overview: string
-  popularity: number
-  poster_path: string
-  production_companies: ProductionCompany[]
-  production_countries: ProductionCountry[]
-  vote_average: number
-  vote_count: number
-  spoken_languages: SpokenLanguage[]
-  status: string
-  tagline: string
-}
+import * as z from 'zod'
 
-type Genre = {
-  id: number
-  name: string
-}
+const GenreSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+})
 
-type ProductionCompany = {
-  id: number
-  logo_path: string | null
-  name: string
-  origin_country: string
-}
+const ProductionCompanySchema = z.object({
+  id: z.number(),
+  logo_path: z.string().nullish(),
+  name: z.string(),
+  origin_country: z.string(),
+})
 
-type ProductionCountry = {
-  iso_3166_1: string
-  name: string
-}
+const ProductionCountrySchema = z.object({
+  iso_3166_1: z.string(),
+  name: z.string(),
+})
 
-type SpokenLanguage = {
-  english_name: string
-  iso_639_1: string
-  name: string
-}
+const SpokenLanguageSchema = z.object({
+  english_name: z.string(),
+  iso_639_1: z.string(),
+  name: z.string(),
+})
+
+export const CommonDetailSchema = z.object({
+  adult: z.boolean(),
+  backdrop_path: z.string(),
+  id: z.number(),
+  genres: z.array(GenreSchema),
+  homepage: z.string(),
+  origin_country: z.array(z.string()),
+  original_language: z.string(),
+  overview: z.string(),
+  popularity: z.number(),
+  poster_path: z.string(),
+  production_companies: z.array(ProductionCompanySchema),
+  production_countries: z.array(ProductionCountrySchema),
+  vote_average: z.number(),
+  vote_count: z.number(),
+  spoken_languages: z.array(SpokenLanguageSchema),
+  status: z.string(),
+  tagline: z.string(),
+})
+
+export type CommonDetailType = z.infer<typeof CommonDetailSchema>

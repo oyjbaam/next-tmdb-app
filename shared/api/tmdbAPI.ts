@@ -2,10 +2,8 @@ import { requestFetch } from './fetchConfig'
 import {
   type MovieResponseType,
   type BackDropImageResponseType,
-  type DetailValueResponseType,
   type TvShowResponse,
   type MovieOrTVResponseType,
-  type CreditsResponseType,
 } from '../types'
 
 /**
@@ -22,19 +20,6 @@ export const getMainBannerImg = async (): Promise<BackDropImageResponseType> => 
   return requestFetch('/discover/movie?with_network=123')
 }
 
-/**
- * @returns 영화,Tv 디테일
- */
-export const getDetail = async <T>(url: string): Promise<DetailValueResponseType<T>> => {
-  return await requestFetch(url)
-}
-
-/**
- * @returns 제작 참여 목록
- */
-export const getCredits = async (url: string): Promise<CreditsResponseType> => {
-  return await requestFetch(`${url}/credits`)
-}
 /**
  * @returns 영화,TV 인기 목록
  */

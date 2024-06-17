@@ -1,76 +1,80 @@
-import { CommonDetailType } from './commonDetailType'
+import * as z from 'zod'
+import { CommonDetailSchema } from './commonDetailType'
 
-export type TvDetailType = {
-  created_by: CreatedBy[]
-  episode_run_time: number[]
-  first_air_date: string
-  in_production: boolean
-  languages: string[]
-  last_air_date: string
-  last_episode_to_air: LastEpisodeToAir
-  name: string
-  next_episode_to_air: NextEpisodeToAir
-  networks: Networks[]
-  number_of_episodes: number
-  number_of_seasons: number
-  original_name: string
-  seasons: Seasons[]
-  type: string
-} & CommonDetailType
+const CreatedBySchema = z.object({
+  id: z.number(),
+  credit_id: z.string(),
+  name: z.string(),
+  gender: z.number(),
+  profile_path: z.string().nullish(),
+})
 
-type CreatedBy = {
-  id: number
-  credit_id: string
-  name: string
-  gender: number
-  profile_path: string | null
-}
-type NextEpisodeToAir = {
-  id: number
-  overview: string
-  name: string
-  vote_average: number
-  vote_count: number
-  air_date: string
-  episode_number: number
-  episode_type: string
-  production_code: string
-  runtime: number | null
-  season_number: number
-  show_id: number
-  still_path: string
-}
+const NextEpisodeToAirSchema = z.object({
+  id: z.number(),
+  overview: z.string(),
+  name: z.string(),
+  vote_average: z.number(),
+  vote_count: z.number(),
+  air_date: z.string(),
+  episode_number: z.number(),
+  episode_type: z.string(),
+  production_code: z.string(),
+  runtime: z.number().nullish(),
+  season_number: z.number(),
+  show_id: z.number(),
+  still_path: z.string(),
+})
 
-type LastEpisodeToAir = {
-  id: number
-  overview: string
-  name: string
-  vote_average: number
-  vote_count: number
-  air_date: string
-  episode_number: number
-  episode_type: string
-  production_code: string
-  runtime: number | null
-  season_number: number
-  show_id: number
-  still_path: string
-}
+const LastEpisodeToAirSchema = z.object({
+  id: z.number(),
+  overview: z.string(),
+  name: z.string(),
+  vote_average: z.number(),
+  vote_count: z.number(),
+  air_date: z.string(),
+  episode_number: z.number(),
+  episode_type: z.string(),
+  production_code: z.string(),
+  runtime: z.number().nullish(),
+  season_number: z.number(),
+  show_id: z.number(),
+  still_path: z.string(),
+})
 
-type Networks = {
-  id: number
-  logo_path: string | null
-  name: string
-  origin_country: string
-}
+const NetworksSchema = z.object({
+  id: z.number(),
+  logo_path: z.string().nullish(),
+  name: z.string(),
+  origin_country: z.string(),
+})
 
-type Seasons = {
-  air_date: string
-  episode_count: number
-  id: number
-  name: string
-  overview: string
-  poster_path: string | null
-  season_number: number
-  vote_average: number
-}
+const SeasonsSchema = z.object({
+  air_date: z.string(),
+  episode_count: z.number(),
+  id: z.number(),
+  name: z.string(),
+  overview: z.string(),
+  poster_path: z.string().nullish(),
+  season_number: z.number(),
+  vote_average: z.number(),
+})
+
+const TvDetailSchema = CommonDetailSchema.extend({
+  created_by: z.array(CreatedBySchema),
+  episode_run_time: z.array(z.number()),
+  first_air_date: z.string(),
+  in_production: z.boolean(),
+  languages: z.string(),
+  last_air_date: z.string(),
+  last_episode_to_air: LastEpisodeToAirSchema,
+  name: z.string(),
+  next_episode_to_air: NextEpisodeToAirSchema,
+  networks: z.array(NetworksSchema),
+  number_of_episodes: z.number(),
+  number_of_seasons: z.number(),
+  original_name: z.string(),
+  seasons: z.array(SeasonsSchema),
+  type: z.string(),
+})
+
+export type TvDetailType = z.infer<typeof TvDetailSchema>

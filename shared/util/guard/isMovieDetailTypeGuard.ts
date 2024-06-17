@@ -1,11 +1,5 @@
-import { MovieDetailType } from '@/shared/types'
+import { MovieDetailType, MovieDetailSchema } from '@/shared/types'
 
-export const isMovieDetailTypeGuard = <T extends 'movie' | 'tv'>(
-  object: unknown,
-  mediaType: T
-): object is MovieDetailType => {
-  if (mediaType === 'movie' && typeof object === 'object' && object !== null) {
-    return 'title' in object
-  }
-  return false
+export const isMovieDetailTypeGuard = (data: unknown): data is MovieDetailType => {
+  return MovieDetailSchema.safeParse(data).success
 }
