@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import { getMainBannerImg } from '@/shared/api/tmdbAPI'
 import { CarouselItem } from '@/components/ui/carousel'
-import CarouselWrapper from './CarouselWrapper'
+import CarouselWrapper from './_components/CarouselWrapper'
 import React from 'react'
 
-const MainImage = async () => {
+const HomeMainImage = async () => {
   const backDrop = await getMainBannerImg()
 
   return (
@@ -31,4 +31,4 @@ const MainImage = async () => {
   )
 }
 
-export default MainImage
+export default HomeMainImage

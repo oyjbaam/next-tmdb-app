@@ -1,5 +1,3 @@
-import MainImage from './_components/mainImage'
-
-const Home = () => <MainImage />
+const Home = () => null
 
 export default Home

@@ -14,7 +14,7 @@ const WhatsPopularPage = async ({ searchParams }: WhatsPopularPageProps) => {
   const popularData = await getPopular(tabValue)
 
   return (
-    <div className="w-full">
+    <section className="w-full">
       <h3 className="text-xl font-bold mt-10 mb-2">Whats Popular</h3>
       <TabsWrapper tabKeys={['Movie', 'Tv']} defaultValue={tabValue} paramKey="popular">
         <TabsContent value="movie" className="w-full">
@@ -40,7 +40,7 @@ const WhatsPopularPage = async ({ searchParams }: WhatsPopularPageProps) => {
           </div>
         </TabsContent>
       </TabsWrapper>
-    </div>
+    </section>
   )
 }
 

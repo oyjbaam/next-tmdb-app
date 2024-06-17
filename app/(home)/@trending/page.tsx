@@ -15,7 +15,7 @@ const TrendingPage = async ({ searchParams }: TrendingPageProps) => {
   const trendingData = await getTrending(fetchPath)
 
   return (
-    <div className="w-full">
+    <section className="w-full">
       <h3 className="text-xl font-bold mt-10 mb-2">Trending</h3>
       <TabsWrapper tabKeys={['Today', 'Weeks']} defaultValue={tabValue} paramKey="trending">
         <TabsContent value="today" className="w-full">
@@ -41,7 +41,7 @@ const TrendingPage = async ({ searchParams }: TrendingPageProps) => {
           </div>
         </TabsContent>
       </TabsWrapper>
-    </div>
+    </section>
   )
 }
 
