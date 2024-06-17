@@ -1,13 +1,9 @@
-import { CommonResponseType } from './commonResponse'
-
-export type MovieResponseType = CommonResponseType<MovieResult> & { dates: Dates }
-
-type Dates = {
+export type Dates = {
   maximum: string
   minimum: string
 }
 
-export type MovieResult = {
+export type MovieListResultType = {
   adult: boolean
   backdrop_path: string | null
   genre_ids: number[]

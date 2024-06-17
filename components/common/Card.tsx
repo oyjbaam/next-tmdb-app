@@ -1,20 +1,15 @@
-import type { MovieResult, TvShowResult } from '@/shared/types'
+import type { MovieListResultType, TvShowListResultType } from '@/shared/types'
+import { isMovieListTypeGuard } from '@/shared/util/guard/isMovieListTypeGuard'
 import Image from 'next/image'
 
 type CardProps = {
-  data: MovieResult | TvShowResult
+  data: MovieListResultType | TvShowListResultType
   isMain?: boolean
-}
-const movieAndTvShowTypeGuard = (object: unknown): object is MovieResult => {
-  if (object !== null && typeof object === 'object') {
-    return 'title' in object
-  }
-  return false
 }
 
 const Card = ({ data, isMain = false }: CardProps) => {
-  const title = movieAndTvShowTypeGuard(data) ? data.title : data.name
-  const date = movieAndTvShowTypeGuard(data) ? data.release_date : data.first_air_date
+  const title = isMovieListTypeGuard(data) ? data.title : data.name
+  const date = isMovieListTypeGuard(data) ? data.release_date : data.first_air_date
   const isPosterPath = data.poster_path
     ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
     : '/images/defaultImage.png'

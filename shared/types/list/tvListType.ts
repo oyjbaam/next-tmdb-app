@@ -1,8 +1,4 @@
-import { CommonResponseType } from './commonResponse'
-
-export type TvShowResponse = CommonResponseType<TvShowResult>
-
-export type TvShowResult = {
+export type TvShowListResultType = {
   adult: boolean
   backdrop_path: string | null
   genre_ids: number[]

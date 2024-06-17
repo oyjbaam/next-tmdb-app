@@ -1,10 +1,10 @@
 import { requestFetch } from './fetchConfig'
-import type {
-  MovieResponseType,
-  BackDropImageResponseType,
-  DetailValueResponseType,
-  TvShowResponse,
-  MovieOrTVResponseType,
+import {
+  type MovieResponseType,
+  type BackDropImageResponseType,
+  type DetailValueResponseType,
+  type TvShowResponse,
+  type MovieOrTVResponseType,
 } from '../types'
 
 /**
@@ -24,8 +24,8 @@ export const getMainBannerImg = async (): Promise<BackDropImageResponseType> => 
 /**
  * @returns 영화,Tv 디테일
  */
-export const getDetail = async (url: string): Promise<DetailValueResponseType> => {
-  return requestFetch(url)
+export const getDetail = async <T>(url: string): Promise<DetailValueResponseType<T>> => {
+  return await requestFetch(url)
 }
 
 /**
