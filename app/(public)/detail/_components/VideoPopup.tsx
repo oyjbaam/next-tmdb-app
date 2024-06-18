@@ -36,7 +36,15 @@ const VideoPopup = ({ video }: VideoPopupProps) => {
         >
           <FaCirclePlay className="absolute z-20 w-8 h-8 text-white" aria-label="플레이 버튼 아이콘" />
           <div className="bg-black/50 w-full h-full z-10" aria-hidden></div>
-          <Image src={thumbnailUrl} alt={video.name} fill sizes="auto" className="object-cover" />
+          <Image
+            src={thumbnailUrl}
+            alt={video.name}
+            fill
+            sizes="auto"
+            className="object-cover"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAALklEQVR42u3NIQEAAAgDMJ4cQXEyIHBbgWW63kUikUgkEolEIpFIJBKJRCKR3CzSYTKXNXu9UQAAAABJRU5ErkJggg=="
+            placeholder="blur"
+          />
         </FlexBox>
       </DialogTrigger>
 

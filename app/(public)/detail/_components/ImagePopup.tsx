@@ -1,5 +1,4 @@
 'use client'
-import { useState, useEffect } from 'react'
 import FlexBox from '@/components/ui/FlexBox'
 import Image from 'next/image'
 import type { ImageBackdropType } from '@/shared/types'
@@ -12,6 +11,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
+import useImagePopup from '../hooks/useImagePopup'
 
 type ImagePopupProps = {
   imgData: ImageBackdropType[]
@@ -20,25 +20,9 @@ type ImagePopupProps = {
 }
 
 const ImagePopup = ({ imgData, initialIndex, defaultImageSrc }: ImagePopupProps) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [currentIndex, setCurrentIndex] = useState(initialIndex)
+  const { currentImgSrc, nextImgSrc, handleNext, handlePrev, setIsOpen, isOpen, totalLength, currentIndex } =
+    useImagePopup(imgData, initialIndex)
 
-  const totalLength = imgData.length
-  const getImgSrc = (index: number) => `https://image.tmdb.org/t/p/w780/${imgData[index].file_path}`
-  const currentImgSrc = getImgSrc(currentIndex)
-  const nextImgSrc = getImgSrc((currentIndex + 1) % totalLength)
-  const handleNext = () => {
-    setCurrentIndex(prevIndex => (prevIndex + 1) % totalLength)
-  }
-  const handlePrev = () => {
-    setCurrentIndex(prevIndex => (prevIndex - 1 + totalLength) % totalLength)
-  }
-
-  useEffect(() => {
-    if (isOpen) {
-      setCurrentIndex(initialIndex)
-    }
-  }, [isOpen, initialIndex])
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       {/* 이미지 썸네일 */}
@@ -51,7 +35,14 @@ const ImagePopup = ({ imgData, initialIndex, defaultImageSrc }: ImagePopupProps)
           key={defaultImageSrc}
           className="relative w-1/4 aspect-video"
         >
-          <Image src={defaultImageSrc} alt="포스터 이미지" fill sizes="auto" />
+          <Image
+            src={defaultImageSrc}
+            alt="포스터 이미지"
+            fill
+            sizes="auto"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAALklEQVR42u3NIQEAAAgDMJ4cQXEyIHBbgWW63kUikUgkEolEIpFIJBKJRCKR3CzSYTKXNXu9UQAAAABJRU5ErkJggg=="
+            placeholder="blur"
+          />
         </FlexBox>
       </DialogTrigger>
 

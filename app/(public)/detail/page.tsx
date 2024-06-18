@@ -5,7 +5,7 @@ import { isMovieDetailTypeGuard } from '@/shared/util/guard/isMovieDetailTypeGua
 import DetailHeader from './_components/DetailHeader'
 import CastList from './_components/CastList'
 import VideoAndPicture from './_components/VideoAndPicture'
-
+import Synopsis from './_components/Synopsis'
 type DetailPageProps = {
   searchParams: Record<string, string | undefined>
 }
@@ -18,7 +18,7 @@ const DetailPage = async ({ searchParams }: DetailPageProps) => {
 
   const imgPath = detailData.poster_path
     ? `https://image.tmdb.org/t/p/w500${detailData.poster_path}`
-    : '/images/defaultPosterImage.png'
+    : '/images/defaultImage.png'
 
   const isMovie = isMovieDetailTypeGuard(detailData)
 
@@ -38,12 +38,7 @@ const DetailPage = async ({ searchParams }: DetailPageProps) => {
       <section className="space-y-8 px-5 lg:px-0 max-w-[600px] w-full">
         <DetailHeader data={detailData} />
         <CastList fetchUrl={fetchUrl} />
-
-        <div className="space-y-1">
-          <h3 className="text-2xl dark:text-white">SYNOPSIS</h3>
-          <p className="text-base font-sans">{detailData.overview}</p>
-        </div>
-
+        <Synopsis overview={detailData.overview} />
         <VideoAndPicture fetchUrl={fetchUrl} />
       </section>
     </>
