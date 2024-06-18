@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import VideoList from './VideoList'
 import ImageList from './ImageList'
 
@@ -10,8 +10,14 @@ const VideoAndPicture = ({ fetchUrl }: VideoAndPictureProps) => {
   return (
     <div className="space-y-1 w-full">
       <h3 className="text-2xl dark:text-white">VIDEO / PICTURE</h3>
-      <VideoList fetchUrl={fetchUrl} />
-      <ImageList fetchUrl={fetchUrl} />
+      <div className="space-y-2">
+        <Suspense fallback={<>loading..</>}>
+          <VideoList fetchUrl={fetchUrl} />
+        </Suspense>
+        <Suspense fallback={<>loading..</>}>
+          <ImageList fetchUrl={fetchUrl} />
+        </Suspense>
+      </div>
     </div>
   )
 }
