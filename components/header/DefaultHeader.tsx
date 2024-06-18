@@ -2,7 +2,7 @@ import AuthButtonGroup from './AuthButtonGroup'
 import ToggleTheme from './ToggleTheme'
 import SearchInput from './searchInput'
 import ToggleMenuButton from './ToggleMenuButton'
-import Logo from './Logo'
+import Logo from '../common/Logo'
 import FlexBox from '../ui/FlexBox'
 import { auth } from '@/auth'
 
