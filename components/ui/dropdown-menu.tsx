@@ -88,7 +88,7 @@ const DropdownMenuItem = React.forwardRef<
     <DropdownMenuPrimitive.Item
       ref={ref}
       className={cn(
-        'relative text-slate-600 dark:text-slate-400 flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+        'relative text-slate-600 dark:text-slate-400 lg:hover:dark:bg-slate-600 lg:hover:dark:text-purple-500 flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         inset && 'pl-8',
         className
       )}
@@ -167,7 +167,13 @@ const DropdownMenuSeparator = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
 >(({ className, ...props }, ref) => {
-  return <DropdownMenuPrimitive.Separator ref={ref} className={cn('-mx-1 my-1 h-px bg-muted', className)} {...props} />
+  return (
+    <DropdownMenuPrimitive.Separator
+      ref={ref}
+      className={cn('-mx-1 my-1 h-px bg-muted dark:bg-slate-700', className)}
+      {...props}
+    />
+  )
 })
 DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName
 
