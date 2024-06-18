@@ -5,7 +5,7 @@ import { LuSunDim } from 'react-icons/lu'
 import ThemeDropdownMenu from './ThemeDropdownMenu'
 import { useTheme } from 'next-themes'
 import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { IconButton } from '../ui/button'
+import { IconButton } from '@/components/ui/button'
 
 const ToggleTheme = () => {
   const [open, setOpen] = useState(false)

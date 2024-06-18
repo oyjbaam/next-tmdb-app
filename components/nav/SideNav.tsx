@@ -1,19 +1,19 @@
 'use client'
 import React from 'react'
-import { useSidebarToggle } from '@/shared/context/toggleContext'
 import useOutsideClick from '@/shared/hooks/useOutsideClick'
 import SideNavHeader from './SideNavHeader'
 import SideNavFooter from './SideNavFooter'
 import SideNavLinkList from './SideNavLinkList'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useSidebarToggle } from '@/shared/hooks/useSidebarToggle'
 
 const SideNavigation = () => {
-  const { toggleMenu, setToggleMenu } = useSidebarToggle()
-  const ref = useOutsideClick<HTMLElement>(() => setToggleMenu(false))
+  const { toggleSidebar, setToggleSidebar } = useSidebarToggle()
+  const ref = useOutsideClick<HTMLElement>(() => setToggleSidebar(false))
 
   return (
     <AnimatePresence>
-      {toggleMenu && (
+      {toggleSidebar && (
         <motion.div
           initial={{ opacity: 0, left: -100, display: 'none' }}
           animate={{ opacity: 1, left: 0, display: 'block' }}

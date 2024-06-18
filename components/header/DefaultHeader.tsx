@@ -1,11 +1,11 @@
-import AuthButtonGroup from './AuthButtonGroup'
-import ToggleTheme from './ToggleTheme'
+import AuthButtonGroup from './authGroup/AuthButtonGroup'
+import IsLoginButton from './authGroup/IsLoginButton'
+import ToggleTheme from './themeGroup/ToggleTheme'
 import SearchInput from './searchInput'
-import ToggleMenuButton from './ToggleMenuButton'
+import ToggleSideBarButton from './ToggleSideBarButton'
 import Logo from '../common/Logo'
 import FlexBox from '../ui/FlexBox'
 import { auth } from '@/auth'
-import IsLoginButton from './IsLoginButton'
 
 const DefaultHeader = async () => {
   const session = await auth()
@@ -13,7 +13,7 @@ const DefaultHeader = async () => {
   return (
     <header className="w-full py-3 px-4 flex items-center justify-between">
       <FlexBox alignItems="center" className="gap-2">
-        <ToggleMenuButton />
+        <ToggleSideBarButton />
         <Logo />
         <SearchInput />
       </FlexBox>

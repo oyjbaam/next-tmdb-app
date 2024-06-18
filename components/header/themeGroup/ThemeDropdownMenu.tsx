@@ -1,5 +1,5 @@
 import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/components/ui/dropdown-menu'
-import { Button } from '../ui/button'
+import { Button } from '@/components/ui/button'
 import { IoMoon } from 'react-icons/io5'
 import { LuSunDim } from 'react-icons/lu'
 import { useTheme } from 'next-themes'
@@ -18,7 +18,7 @@ const ThemeDropdownMenu = () => {
   }
 
   return (
-    <DropdownMenuContent className="w-16" align="end">
+    <DropdownMenuContent className="w-16 dark:bg-slate-800" align="end">
       <DropdownMenuGroup>
         {IconList.map(icon => {
           const activeClass = icon.id === theme ? 'dark:text-white text-slate-800 dark:bg-slate-600 bg-slate-200' : ''
