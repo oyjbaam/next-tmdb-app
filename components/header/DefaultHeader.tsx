@@ -1,6 +1,6 @@
 import AuthButtonGroup from './authGroup/AuthButtonGroup'
 import IsLoginButton from './authGroup/IsLoginButton'
-import ToggleTheme from './themeGroup/ToggleTheme'
+import ToggleThemeButton from './themeGroup/ToggleThemeButton'
 import SearchInput from './searchInput'
 import ToggleSideBarButton from './ToggleSideBarButton'
 import Logo from '../common/Logo'
@@ -20,7 +20,7 @@ const DefaultHeader = async () => {
       <FlexBox justifyContent="between" alignItems="center">
         <ul className="flex items-center gap-4 relative">
           <li>
-            <ToggleTheme />
+            <ToggleThemeButton />
           </li>
           {session ? <IsLoginButton session={session} /> : <AuthButtonGroup />}
         </ul>

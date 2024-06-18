@@ -6,8 +6,9 @@ import ThemeDropdownMenu from './ThemeDropdownMenu'
 import { useTheme } from 'next-themes'
 import { DropdownMenu, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { IconButton } from '@/components/ui/button'
+import IsOpenBackdrop from '@/components/IsOpenBackdrop'
 
-const ToggleTheme = () => {
+const ToggleThemeButton = () => {
   const [open, setOpen] = useState(false)
   const { theme } = useTheme()
 
@@ -19,11 +20,9 @@ const ToggleTheme = () => {
         </DropdownMenuTrigger>
         <ThemeDropdownMenu />
       </DropdownMenu>
-      {open && (
-        <div className="fixed inset-0 z-10 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80" aria-hidden="true" />
-      )}
+      <IsOpenBackdrop open={open} />
     </>
   )
 }
 
-export default ToggleTheme
+export default ToggleThemeButton
