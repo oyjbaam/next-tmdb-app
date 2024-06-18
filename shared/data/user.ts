@@ -1,5 +1,9 @@
 import { db } from '../db'
 
+/**
+ *
+ * @returns db에서 email 조회
+ */
 export const getUserByEmail = async (email: string) => {
   try {
     const user = await db.user.findUnique({ where: { email } })
@@ -9,6 +13,10 @@ export const getUserByEmail = async (email: string) => {
   }
 }
 
+/**
+ *
+ * @returns db에서 id 조회
+ */
 export const getUserById = async (id: string) => {
   try {
     const user = await db.user.findUnique({ where: { id } })

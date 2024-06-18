@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Button } from './button'
-import { TvIcon, AcademicCapIcon } from '@heroicons/react/20/solid'
+
+import { PiTelevisionSimpleBold } from 'react-icons/pi'
+import { HiAcademicCap } from 'react-icons/hi2'
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const ICONS = {
-  TvIcon,
-  AcademicCapIcon,
+  PiTelevisionSimpleBold,
+  HiAcademicCap,
 }
 const meta = {
   title: 'Ui/Button',
@@ -87,11 +89,11 @@ export const Text: Story = {
 
 export const LeadingIcon: Story = {
   args: {
-    leadingIcon: TvIcon,
+    leadingIcon: PiTelevisionSimpleBold,
   },
 }
 export const TrailingIcon: Story = {
   args: {
-    trailingIcon: TvIcon,
+    trailingIcon: PiTelevisionSimpleBold,
   },
 }

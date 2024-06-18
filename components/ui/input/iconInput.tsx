@@ -8,7 +8,19 @@ type IconInputProps = InputProps & {
 }
 
 const IconInput = forwardRef<HTMLInputElement, IconInputProps>(
-  ({ icon: Icon, validation, sizes, fullwidth, className, 'aria-label': ariaLabel, ...props }: IconInputProps, ref) => {
+  (
+    {
+      icon: Icon,
+      disabled,
+      validation,
+      sizes,
+      fullwidth,
+      className,
+      'aria-label': ariaLabel,
+      ...props
+    }: IconInputProps,
+    ref
+  ) => {
     return (
       <div className="relative">
         <span className="sr-only">{ariaLabel}</span>
@@ -16,8 +28,9 @@ const IconInput = forwardRef<HTMLInputElement, IconInputProps>(
           <Icon className="h-4 w-4 stroke-slate-400 dark:stroke-slate-300" aria-hidden="true" />
         </span>
         <input
+          disabled={disabled}
           aria-label={ariaLabel}
-          className={`${cn(inputStyles({ validation, sizes, fullwidth, className }))} pl-8`}
+          className={`${cn(inputStyles({ disabled, validation, sizes, fullwidth, className }))} pl-8`}
           ref={ref}
           {...props}
         />

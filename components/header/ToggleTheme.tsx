@@ -1,14 +1,15 @@
 'use client'
 import React, { useState } from 'react'
-import { MoonIcon } from '@heroicons/react/20/solid'
-import { SunIcon } from '@heroicons/react/24/outline'
+import { IoMoon } from 'react-icons/io5'
+import { LuSunDim } from 'react-icons/lu'
+
 import useOutsideClick from '@/shared/hooks/useOutsideClick'
 import { useTheme } from 'next-themes'
 import { Button, IconButton } from '../ui/button'
 
 const IconList = [
-  { id: 'light', name: 'Light', icon: SunIcon },
-  { id: 'dark', name: 'Dark', icon: MoonIcon },
+  { id: 'light', name: 'Light', icon: LuSunDim },
+  { id: 'dark', name: 'Dark', icon: IoMoon },
 ]
 
 const ToggleTheme = () => {
@@ -24,12 +25,13 @@ const ToggleTheme = () => {
   }
   const toggleMenuRef = useOutsideClick<HTMLDivElement>(() => setOpenToggleMenu(false))
   const shouldShowNav = openToggleMenu ? 'block' : 'hidden'
+
   return (
     <>
       <div className="relative z-40 inline-block text-left" ref={toggleMenuRef}>
         <IconButton
           aria-label="테마 아이콘"
-          icon={theme === 'light' ? SunIcon : MoonIcon}
+          icon={theme === 'light' ? LuSunDim : IoMoon}
           intent="text"
           onClick={handleToggleMenu}
         />
@@ -68,7 +70,7 @@ const ToggleTheme = () => {
       <div
         className={`fixed inset-0 z-30 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80 ${shouldShowNav}`}
         aria-hidden="true"
-      ></div>
+      />
     </>
   )
 }

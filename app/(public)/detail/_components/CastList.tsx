@@ -10,6 +10,10 @@ type CastListProps = {
 const CastList = async ({ fetchUrl }: CastListProps) => {
   const creditsData = await getCredits(fetchUrl)
 
+  if (creditsData.cast.length < 1) {
+    return null
+  }
+
   return (
     <div className="space-y-1">
       <h3 className="text-2xl dark:text-white">THE CAST</h3>

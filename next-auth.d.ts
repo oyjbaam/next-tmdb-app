@@ -1,11 +1,13 @@
+export type ExtendedUser = DefaultSession['user'] & {
+  isTwoFactorEnabled: boolean
+  isOAuth: boolean
+}
 export declare module 'next-auth' {
-  interface User {
-    accessToken: string
-  }
   interface Session {
-    accessToken: string
+    user: ExtendedUser
   }
 }
+
 export declare module '@auth/core/jwt' {
   interface JWT {
     userId: string

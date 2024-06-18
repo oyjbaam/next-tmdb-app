@@ -2,7 +2,7 @@
 import React, { useState, useTransition } from 'react'
 import { Button } from '@/components/ui/button'
 import IconInput from '@/components/ui/input/iconInput'
-import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
+import { FaRegEnvelope, FaLock } from 'react-icons/fa6'
 import { useForm } from 'react-hook-form'
 import SocialLoginGroup from '@/components/Social'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
@@ -11,6 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import FormErrorMessage from '@/components/FormErrorMessage'
 import FormSuccessMessage from '@/components/FormSuccessMessage'
 import { login } from '@/shared/actions/login'
+import Spinner from '@/components/common/Spinner'
 
 const LoginForm = () => {
   const [error, setError] = useState<string | undefined>('')
@@ -25,8 +26,23 @@ const LoginForm = () => {
   const onSubmit = (values: LoginInputsValues) => {
     setError('')
     setSuccess('')
-    startTransition(() => {
-      login(values)
+    startTransition(async () => {
+      try {
+        const res = await login(values)
+        if (res.error) {
+          form.reset()
+          setError(res.error)
+        }
+        if (res.success) {
+          form.reset()
+          setSuccess(res.success)
+        }
+        // if (data?.twoFactor) {
+        //   setShowTwoFactor(true)
+        // }
+      } catch (e) {
+        setError('Something went wrong!')
+      }
     })
     // await signIn('credentials',{
     //   e
@@ -51,12 +67,16 @@ const LoginForm = () => {
                 <FormControl>
                   <IconInput
                     {...field}
-                    icon={EnvelopeIcon}
+                    required
+                    inputMode="email"
+                    title="이메일 형식의 아이디를 입력해 주세요"
+                    icon={FaRegEnvelope}
                     type="text"
                     placeholder="email@example.com"
                     sizes="lg"
                     fullwidth
                     validation={Boolean(errors.email?.message)}
+                    disabled={isPending}
                   />
                 </FormControl>
               </FormItem>
@@ -78,13 +98,15 @@ const LoginForm = () => {
                 <FormControl>
                   <IconInput
                     {...field}
-                    icon={LockClosedIcon}
+                    title="비밀번호를 입력해 주세요"
+                    icon={FaLock}
                     type="password"
                     placeholder="*****"
                     sizes="lg"
                     fullwidth
                     autoComplete="off"
                     validation={Boolean(errors.password?.message)}
+                    disabled={isPending}
                   />
                 </FormControl>
               </FormItem>
@@ -93,7 +115,7 @@ const LoginForm = () => {
         />
 
         <Button intent="filled" type="submit" disabled={isSubmitting}>
-          {isSubmitting ? '로그인중..' : '로그인'}
+          {isSubmitting ? <Spinner /> : '로그인'}
         </Button>
         <FormErrorMessage message={error} />
         <FormSuccessMessage message={success} />

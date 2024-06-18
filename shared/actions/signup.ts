@@ -11,7 +11,7 @@ export const signup = async (values: z.infer<typeof SignupSchema>) => {
   if (!validatedFields.success) {
     return { error: '정보를 입력해주세요' }
   }
-  const { email, password } = validatedFields.data
+  const { name, email, password } = validatedFields.data
   const hashedPassword = await bcrypt.hash(password, 10)
   const existingUser = await getUserByEmail(email)
 
@@ -21,6 +21,7 @@ export const signup = async (values: z.infer<typeof SignupSchema>) => {
 
   await db.user.create({
     data: {
+      name,
       email,
       password: hashedPassword,
     },
