@@ -10,7 +10,6 @@ const useOutsideClick = <T extends HTMLElement>(handler: (e: MouseEvent | TouchE
 
   const memoizedCallback = useCallback(
     (event: MouseEvent | TouchEvent) => {
-      event.stopPropagation()
       if (ref.current && !ref.current.contains(event.target as Node)) {
         savedHandler.current(event)
       }

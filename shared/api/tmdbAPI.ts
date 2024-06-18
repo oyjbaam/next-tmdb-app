@@ -1,21 +1,35 @@
-import { requestFetch } from '../fetchConfig'
-import { BackDropImage } from '@/shared/types/backDrop'
-import { TvShowResults } from '../types/tvType'
-import { MovieResults } from '../types/movieType'
-import { ResponseDetailValue } from '../types/detailType'
+import { requestFetch } from './fetchConfig'
+import {
+  type MovieResponseType,
+  type BackDropImageResponseType,
+  type TvShowResponse,
+  type MovieOrTVResponseType,
+} from '../types'
 
-export const getMovieTvList = async (url: string): Promise<MovieResults | TvShowResults> => {
+/**
+ * @returns 영화,TV 리스트
+ */
+export const getMovieTvList = async (url: string): Promise<MovieResponseType | TvShowResponse> => {
   return requestFetch(url)
 }
 
-export const getMainBannerImg = async (): Promise<BackDropImage> => {
+/**
+ * @returns 홈 배너 이미지 목록
+ */
+export const getMainBannerImg = async (): Promise<BackDropImageResponseType> => {
   return requestFetch('/discover/movie?with_network=123')
 }
 
-export const getDetail = async (url: string): Promise<ResponseDetailValue> => {
-  return requestFetch(url)
+/**
+ * @returns 영화,TV 인기 목록
+ */
+export const getPopular = async (path: string): Promise<MovieOrTVResponseType> => {
+  return requestFetch(`/${path}/popular`)
 }
 
-export const getPopular = async (url: string): Promise<MovieResults | TvShowResults> => {
-  return requestFetch(url)
+/**
+ * @returns 영화,TV 트렌딩 목록
+ */
+export const getTrending = async (path: string): Promise<MovieOrTVResponseType> => {
+  return requestFetch(`/trending/all/${path}`)
 }
