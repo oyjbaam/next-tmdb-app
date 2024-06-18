@@ -5,23 +5,24 @@ import ToggleMenuButton from './ToggleMenuButton'
 import Logo from '../common/Logo'
 import FlexBox from '../ui/FlexBox'
 import { auth } from '@/auth'
+import IsLoginButton from './IsLoginButton'
 
 const DefaultHeader = async () => {
   const session = await auth()
 
   return (
-    <header className="w-full py-3 px-3 flex items-center justify-between">
+    <header className="w-full py-3 px-4 flex items-center justify-between">
       <FlexBox alignItems="center" className="gap-2">
         <ToggleMenuButton />
         <Logo />
         <SearchInput />
       </FlexBox>
       <FlexBox justifyContent="between" alignItems="center">
-        <ul className="flex items-center gap-2 relative">
+        <ul className="flex items-center gap-4 relative">
           <li>
             <ToggleTheme />
           </li>
-          {session ? 'dd' : <AuthButtonGroup />}
+          {session ? <IsLoginButton session={session} /> : <AuthButtonGroup />}
         </ul>
       </FlexBox>
     </header>

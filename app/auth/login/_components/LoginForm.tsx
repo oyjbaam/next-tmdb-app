@@ -20,7 +20,7 @@ const LoginForm = () => {
   const form = useForm<LoginInputsValues>({ defaultValues, resolver: zodResolver(LoginSchema) })
 
   const {
-    formState: { isSubmitting, errors },
+    formState: { errors },
   } = form
 
   const onSubmit = (values: LoginInputsValues) => {
@@ -114,8 +114,8 @@ const LoginForm = () => {
           }}
         />
 
-        <Button intent="filled" type="submit" disabled={isSubmitting}>
-          {isSubmitting ? <Spinner /> : '로그인'}
+        <Button intent="filled" type="submit" disabled={isPending}>
+          {isPending ? <Spinner /> : '로그인'}
         </Button>
         <FormErrorMessage message={error} />
         <FormSuccessMessage message={success} />

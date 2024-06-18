@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import Logo from '../common/Logo'
 import { IconButton } from '../ui/button'
 import { RxCross2 } from 'react-icons/rx'
@@ -11,9 +10,7 @@ const SideNavHeader = () => {
 
   return (
     <FlexBox justifyContent="between" alignItems="center">
-      <Link href="/" aria-label="로고이미지 (메인페이지로 이동)">
-        <Logo />
-      </Link>
+      <Logo />
       <div
         role="button"
         aria-label="사이드바 닫기"
