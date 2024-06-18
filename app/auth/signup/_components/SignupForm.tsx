@@ -88,6 +88,7 @@ const SignupForm = () => {
                     {...field}
                     required
                     title="이메일 형식의 아이디를 입력해 주세요"
+                    inputMode="email"
                     disabled={isPending}
                     icon={FaRegEnvelope}
                     type="text"

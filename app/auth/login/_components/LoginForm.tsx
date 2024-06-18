@@ -26,8 +26,23 @@ const LoginForm = () => {
   const onSubmit = (values: LoginInputsValues) => {
     setError('')
     setSuccess('')
-    startTransition(() => {
-      login(values)
+    startTransition(async () => {
+      try {
+        const res = await login(values)
+        if (res.error) {
+          form.reset()
+          setError(res.error)
+        }
+        if (res.success) {
+          form.reset()
+          setSuccess(res.success)
+        }
+        // if (data?.twoFactor) {
+        //   setShowTwoFactor(true)
+        // }
+      } catch (e) {
+        setError('Something went wrong!')
+      }
     })
     // await signIn('credentials',{
     //   e
@@ -52,6 +67,7 @@ const LoginForm = () => {
                 <FormControl>
                   <IconInput
                     {...field}
+                    required
                     inputMode="email"
                     title="이메일 형식의 아이디를 입력해 주세요"
                     icon={FaRegEnvelope}

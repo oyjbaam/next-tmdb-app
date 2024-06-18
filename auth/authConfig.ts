@@ -1,7 +1,8 @@
 import { type NextAuthConfig } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import { LoginSchema } from '@/app/auth/login/schema/loginSchema'
-// import { login } from '@/service/api/auth'
+import { getUserByEmail } from '@/shared/data/user'
+import bcrypt from 'bcryptjs'
 
 export default {
   providers: [
@@ -11,24 +12,11 @@ export default {
 
         if (validatedFields.success) {
           const { email, password } = validatedFields.data
+          const user = await getUserByEmail(email)
+          if (!user || !user.password) return null
+          const passwordsMatch = await bcrypt.compare(password, user.password)
 
-          try {
-            // const user = await login({ email, password })
-            // if (user) {
-            //   return {
-            //     id: user.id.toString(),
-            //     name: user.name,
-            //     image: user.profileImageUrl,
-            //     email: user.email,
-            //     accessToken: user.accessToken,
-            //   }
-            // }
-          } catch (error) {
-            console.error('Authorization error:', error)
-            if (error instanceof Error) {
-              throw new Error(error.message)
-            }
-          }
+          if (passwordsMatch) return user
         }
 
         return null
