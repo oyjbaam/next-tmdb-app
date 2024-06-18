@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import Logo from '../common/logo'
 import { IconButton } from '../ui/button'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import { RxCross2 } from 'react-icons/rx'
+
 import { useSidebarToggle } from '@/shared/context/toggleContext'
 import FlexBox from '../ui/FlexBox'
 
@@ -19,7 +20,7 @@ const SideNavHeader = () => {
         className="border border-slate-400 rounded-md lg:hover:border-violet-500 transition duration-200"
         onClick={() => setToggleMenu(false)}
       >
-        <IconButton icon={XMarkIcon} intent="text" aria-hidden />
+        <IconButton icon={RxCross2} intent="text" aria-hidden />
       </div>
     </FlexBox>
   )

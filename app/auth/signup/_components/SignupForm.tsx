@@ -2,7 +2,7 @@
 import React, { useState, useTransition } from 'react'
 import IconInput from '@/components/ui/input/iconInput'
 import { Button } from '@/components/ui/button/button'
-import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
+import { FaRegEnvelope, FaLock, FaUser } from 'react-icons/fa6'
 import { useForm } from 'react-hook-form'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { SignupSchema, defaultValues, SignupInputsValues } from '../schema/signupSchema'
@@ -43,6 +43,34 @@ const SignupForm = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-4 w-full">
         <FormField
           control={form.control}
+          name="name"
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>
+                  <div className="flex justify-between">
+                    <span>이름 *</span>
+                    <FormMessage />
+                  </div>
+                </FormLabel>
+                <FormControl>
+                  <IconInput
+                    {...field}
+                    // disabled={isPending}
+                    icon={FaUser}
+                    type="text"
+                    placeholder="John Doe"
+                    sizes="lg"
+                    fullwidth
+                    validation={Boolean(errors.name?.message)}
+                  />
+                </FormControl>
+              </FormItem>
+            )
+          }}
+        />
+        <FormField
+          control={form.control}
           name="email"
           render={({ field }) => {
             return (
@@ -57,7 +85,7 @@ const SignupForm = () => {
                   <IconInput
                     {...field}
                     // disabled={isPending}
-                    icon={EnvelopeIcon}
+                    icon={FaRegEnvelope}
                     type="text"
                     placeholder="email@example.com"
                     sizes="lg"
@@ -85,7 +113,7 @@ const SignupForm = () => {
                   <IconInput
                     {...field}
                     // disabled={isPending}
-                    icon={LockClosedIcon}
+                    icon={FaLock}
                     type="password"
                     placeholder="******"
                     sizes="lg"
@@ -113,7 +141,7 @@ const SignupForm = () => {
                   <IconInput
                     {...field}
                     // disabled={isPending}
-                    icon={LockClosedIcon}
+                    icon={FaLock}
                     type="password"
                     placeholder="******"
                     sizes="lg"

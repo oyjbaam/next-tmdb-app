@@ -2,7 +2,8 @@
 /* eslint-disable no-unused-vars */
 'use client'
 import IconInput from '@/components/ui/input/iconInput'
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { CiSearch } from 'react-icons/ci'
+
 import { useFormState } from 'react-dom'
 import { navigateSearchPage } from '@/shared/actions/search'
 
@@ -12,7 +13,7 @@ const SearchInput = () => {
   return (
     <form action={formAction}>
       <IconInput
-        icon={MagnifyingGlassIcon}
+        icon={CiSearch}
         sizes="sm"
         aria-label="영화,TV 제목 검색창"
         placeholder="영화,TV 제목 검색"

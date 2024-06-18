@@ -2,7 +2,7 @@
 import React, { useState, useTransition } from 'react'
 import { Button } from '@/components/ui/button'
 import IconInput from '@/components/ui/input/iconInput'
-import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline'
+import { FaRegEnvelope, FaLock } from 'react-icons/fa6'
 import { useForm } from 'react-hook-form'
 import SocialLoginGroup from '@/components/Social'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
@@ -51,7 +51,7 @@ const LoginForm = () => {
                 <FormControl>
                   <IconInput
                     {...field}
-                    icon={EnvelopeIcon}
+                    icon={FaRegEnvelope}
                     type="text"
                     placeholder="email@example.com"
                     sizes="lg"
@@ -78,7 +78,7 @@ const LoginForm = () => {
                 <FormControl>
                   <IconInput
                     {...field}
-                    icon={LockClosedIcon}
+                    icon={FaLock}
                     type="password"
                     placeholder="*****"
                     sizes="lg"
