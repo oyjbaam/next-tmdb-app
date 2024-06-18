@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Logo from '../common/logo'
+import Logo from '../common/Logo'
 import { IconButton } from '../ui/button'
 import { RxCross2 } from 'react-icons/rx'
 

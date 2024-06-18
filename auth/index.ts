@@ -1,24 +1,38 @@
 import NextAuth from 'next-auth'
 import authConfig from './authConfig'
+import { getUserById } from '@/shared/data/user'
+import { getAccountByUserId } from '@/shared/data/account'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     signIn: async () => true,
-    jwt: async ({ token, user, trigger, session }) => {
-      if (user) {
-        token.accessToken = user.accessToken
-        token.userId = user.id || ''
-      }
-      if (trigger === 'update' && session) {
-        token = { ...token, ...session.user }
-      }
+    jwt: async ({ token }) => {
+      if (!token.sub) return token
+      const existingUser = await getUserById(token.sub)
+      if (!existingUser) return token
+      const existingAccount = await getAccountByUserId(existingUser.id)
+
+      token.isOAuth = !!existingAccount
+      token.name = existingUser.name
+      token.email = existingUser.email
+      token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled
       return token
     },
     session: async ({ session, token }) => {
-      if (token?.accessToken) {
-        session.accessToken = token.accessToken
-        session.user.id = token.userId
+      if (token.sub && session.user) {
+        session.user.id = token.sub
       }
+
+      if (token.role && session.user) {
+        session.user.role = token.role
+      }
+      if (session.user) {
+        session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean
+        session.user.name = token.name
+        session.user.email = token.email as string
+        session.user.isOAuth = token.isOAuth as boolean
+      }
+      // console.log('session', session)
       return session
     },
     redirect: async ({ url, baseUrl }) => {
