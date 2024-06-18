@@ -25,6 +25,7 @@ const ToggleTheme = () => {
   }
   const toggleMenuRef = useOutsideClick<HTMLDivElement>(() => setOpenToggleMenu(false))
   const shouldShowNav = openToggleMenu ? 'block' : 'hidden'
+
   return (
     <>
       <div className="relative z-40 inline-block text-left" ref={toggleMenuRef}>
@@ -69,7 +70,7 @@ const ToggleTheme = () => {
       <div
         className={`fixed inset-0 z-30 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80 ${shouldShowNav}`}
         aria-hidden="true"
-      ></div>
+      />
     </>
   )
 }

@@ -1,19 +1,19 @@
-import Link from 'next/link'
-import { buttonStyles } from '@/components/ui/button'
-import ToggleTheme from '../common/toggleTheme'
+import AuthButtonGroup from './AuthButtonGroup'
+import ToggleTheme from './ToggleTheme'
 import SearchInput from './searchInput'
-import ToggleMenuButton from '../common/toggleMenuButton'
-import Logo from '../common/logo'
+import ToggleMenuButton from './ToggleMenuButton'
+import Logo from './Logo'
 import FlexBox from '../ui/FlexBox'
+import { auth } from '@/auth'
 
-const DefaultHeader = () => {
+const DefaultHeader = async () => {
+  const session = await auth()
+
   return (
     <header className="w-full py-3 px-3 flex items-center justify-between">
       <FlexBox alignItems="center" className="gap-2">
         <ToggleMenuButton />
-        <Link href="/" aria-label="로고이미지 (메인페이지로 이동)">
-          <Logo />
-        </Link>
+        <Logo />
         <SearchInput />
       </FlexBox>
       <FlexBox justifyContent="between" alignItems="center">
@@ -21,24 +21,7 @@ const DefaultHeader = () => {
           <li>
             <ToggleTheme />
           </li>
-          <li className="hidden md:flex">
-            <Link
-              className={buttonStyles({ intent: 'filled', sizes: 'sm' })}
-              href="/auth/login"
-              aria-label="로그인 페이지로 이동"
-            >
-              Login
-            </Link>
-          </li>
-          <li className="hidden md:flex">
-            <Link
-              className={buttonStyles({ intent: 'filled', sizes: 'sm' })}
-              href="/auth/signup"
-              aria-label="회원가입 페이지로 이동"
-            >
-              Signup
-            </Link>
-          </li>
+          {session ? 'dd' : <AuthButtonGroup />}
         </ul>
       </FlexBox>
     </header>

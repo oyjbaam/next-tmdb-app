@@ -37,7 +37,7 @@ const inputStyles = cva(
         sizes: 'lg',
         className: 'py-3 px-4',
       },
-      { disabled: true, className: 'dark:bg-slate-400 bg-slate-200 text-gray-300' },
+      { disabled: true, className: 'dark:bg-slate-500 bg-slate-200 text-gray-300' },
     ],
     defaultVariants: {
       sizes: 'md',
