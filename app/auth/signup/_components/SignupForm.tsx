@@ -10,6 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { signup } from '@/shared/actions/signup'
 import FormErrorMessage from '@/components/FormErrorMessage'
 import FormSuccessMessage from '@/components/FormSuccessMessage'
+import Spinner from '@/components/common/Spinner'
 
 const SignupForm = () => {
   const [error, setError] = useState<string | undefined>('')
@@ -28,13 +29,12 @@ const SignupForm = () => {
   const onSubmit = (values: SignupInputsValues) => {
     setError('')
     setSuccess('')
-    startTransition(() => {
-      signup(values).then(data => {
-        if (data) {
-          setError(data.error)
-          setSuccess(data.success)
-        }
-      })
+    startTransition(async () => {
+      const res = await signup(values)
+      if (res) {
+        setError(res.error)
+        setSuccess(res.success)
+      }
     })
   }
 
@@ -56,7 +56,9 @@ const SignupForm = () => {
                 <FormControl>
                   <IconInput
                     {...field}
-                    // disabled={isPending}
+                    required
+                    title="이름을 입력해 주세요."
+                    disabled={isPending}
                     icon={FaUser}
                     type="text"
                     placeholder="John Doe"
@@ -84,7 +86,9 @@ const SignupForm = () => {
                 <FormControl>
                   <IconInput
                     {...field}
-                    // disabled={isPending}
+                    required
+                    title="이메일 형식의 아이디를 입력해 주세요"
+                    disabled={isPending}
                     icon={FaRegEnvelope}
                     type="text"
                     placeholder="email@example.com"
@@ -112,7 +116,9 @@ const SignupForm = () => {
                 <FormControl>
                   <IconInput
                     {...field}
-                    // disabled={isPending}
+                    required
+                    title="비밀번호는 6~12자 사이로 입력해 주세요."
+                    disabled={isPending}
                     icon={FaLock}
                     type="password"
                     placeholder="******"
@@ -140,7 +146,9 @@ const SignupForm = () => {
                 <FormControl>
                   <IconInput
                     {...field}
-                    // disabled={isPending}
+                    required
+                    title="비밀번호를 한 번 더 입력해 주세요."
+                    disabled={isPending}
                     icon={FaLock}
                     type="password"
                     placeholder="******"
@@ -154,7 +162,7 @@ const SignupForm = () => {
           }}
         />
         <Button intent="filled" className="w-full" type="submit" disabled={isPending}>
-          {isPending ? '가입중' : '회원가입'}
+          {isPending ? <Spinner /> : '회원가입'}
         </Button>
         <FormErrorMessage message={error} />
         <FormSuccessMessage message={success} />

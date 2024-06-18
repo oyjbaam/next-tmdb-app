@@ -36,13 +36,13 @@ export const buttonStyles = cva(
       {
         intent: 'filled',
         disabled: true,
-        className: 'bg-gray-200 text-gray-400 lg:hover:bg-gray-200 active:bg-gray-200',
+        className: 'bg-slate-400 lg:hover:bg-slate-400 active:bg-gray-200',
       },
       {
         intent: 'outlined',
         disabled: true,
         className:
-          'bg-gray-50 border border-1 border-gray-400 text-gray-400 lg:hover:bg-gray-50 lg:hover:text-gray-400 active:bg-gray-50 active:text-gray-400',
+          'bg-slate-300 border border-1 border-gray-400 text-gray-400 lg:hover:bg-gray-50 lg:hover:text-gray-400 active:bg-gray-50 active:text-gray-400',
       },
       {
         intent: 'text',

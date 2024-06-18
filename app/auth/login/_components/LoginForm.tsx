@@ -11,6 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import FormErrorMessage from '@/components/FormErrorMessage'
 import FormSuccessMessage from '@/components/FormSuccessMessage'
 import { login } from '@/shared/actions/login'
+import Spinner from '@/components/common/Spinner'
 
 const LoginForm = () => {
   const [error, setError] = useState<string | undefined>('')
@@ -51,12 +52,15 @@ const LoginForm = () => {
                 <FormControl>
                   <IconInput
                     {...field}
+                    inputMode="email"
+                    title="이메일 형식의 아이디를 입력해 주세요"
                     icon={FaRegEnvelope}
                     type="text"
                     placeholder="email@example.com"
                     sizes="lg"
                     fullwidth
                     validation={Boolean(errors.email?.message)}
+                    disabled={isPending}
                   />
                 </FormControl>
               </FormItem>
@@ -78,6 +82,7 @@ const LoginForm = () => {
                 <FormControl>
                   <IconInput
                     {...field}
+                    title="비밀번호를 입력해 주세요"
                     icon={FaLock}
                     type="password"
                     placeholder="*****"
@@ -85,6 +90,7 @@ const LoginForm = () => {
                     fullwidth
                     autoComplete="off"
                     validation={Boolean(errors.password?.message)}
+                    disabled={isPending}
                   />
                 </FormControl>
               </FormItem>
@@ -93,7 +99,7 @@ const LoginForm = () => {
         />
 
         <Button intent="filled" type="submit" disabled={isSubmitting}>
-          {isSubmitting ? '로그인중..' : '로그인'}
+          {isSubmitting ? <Spinner /> : '로그인'}
         </Button>
         <FormErrorMessage message={error} />
         <FormSuccessMessage message={success} />

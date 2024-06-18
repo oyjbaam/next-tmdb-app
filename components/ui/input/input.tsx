@@ -19,6 +19,10 @@ const inputStyles = cva(
         false: '',
         true: 'w-full',
       },
+      disabled: {
+        false: '',
+        true: 'cursor-not-allowed',
+      },
     },
     compoundVariants: [
       {
@@ -33,19 +37,28 @@ const inputStyles = cva(
         sizes: 'lg',
         className: 'py-3 px-4',
       },
+      { disabled: true, className: 'dark:bg-slate-400 bg-slate-200 text-gray-300' },
     ],
     defaultVariants: {
       sizes: 'md',
       validation: false,
       fullwidth: false,
+      disabled: false,
     },
   }
 )
 export type InputProps = InputHTMLAttributes<HTMLInputElement> & VariantProps<typeof inputStyles>
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ validation, sizes, fullwidth, className, ...props }: InputProps, ref) => {
-    return <input className={cn(inputStyles({ validation, sizes, fullwidth, className }))} ref={ref} {...props} />
+  ({ disabled, validation, sizes, fullwidth, className, ...props }: InputProps, ref) => {
+    return (
+      <input
+        disabled={disabled}
+        className={cn(inputStyles({ validation, sizes, fullwidth, className }))}
+        ref={ref}
+        {...props}
+      />
+    )
   }
 )
 Input.displayName = 'Input'
