@@ -12,11 +12,23 @@ export default {
 
         if (validatedFields.success) {
           const { email, password } = validatedFields.data
-          const user = await getUserByEmail(email)
-          if (!user || !user.password) return null
-          const passwordsMatch = await bcrypt.compare(password, user.password)
 
-          if (passwordsMatch) return user
+          try {
+            const user = await getUserByEmail(email)
+            if (!user || !user.password) return null
+            const passwordsMatch = await bcrypt.compare(password, user.password)
+
+            if (!passwordsMatch) {
+              throw new Error('패스워드가 일치 하지 않습니다.')
+            }
+
+            return user
+          } catch (error) {
+            console.error('Authorization', error)
+            if (error instanceof Error) {
+              throw new Error(error.message)
+            }
+          }
         }
 
         return null
