@@ -8,7 +8,7 @@ type DetailHeaderProps = {
 }
 
 const DetailHeader = ({ data }: DetailHeaderProps) => {
-  const isMovie = isMovieDetailTypeGuard(data, 'movie')
+  const isMovie = isMovieDetailTypeGuard(data)
 
   return (
     <header className="space-y-4">

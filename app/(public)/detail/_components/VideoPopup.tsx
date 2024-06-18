@@ -47,7 +47,7 @@ const VideoPopup = ({ video }: VideoPopupProps) => {
           <DialogDescription>{new Date(video.published_at).toLocaleString()}</DialogDescription>
         </DialogHeader>
         {selectedVideoKey && (
-          <div className="relative w-full h-0" style={{ paddingBottom: '56.25%' }}>
+          <div className="relative w-full aspect-video">
             <iframe
               className="absolute top-0 left-0 w-full h-full"
               src={`https://www.youtube.com/embed/${selectedVideoKey}`}

@@ -10,7 +10,7 @@ const BelongsToCollectionSchema = z.object({
 
 export const MovieDetailSchema = CommonDetailSchema.extend({
   budget: z.number(),
-  belongs_to_collection: BelongsToCollectionSchema,
+  belongs_to_collection: BelongsToCollectionSchema.nullish(),
   imdb_id: z.string().nullish(),
   original_title: z.string(),
   release_date: z.string(),

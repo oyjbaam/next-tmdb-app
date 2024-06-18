@@ -15,7 +15,11 @@ export const requestFetch = async <T>(endPoint: string, config: RequestInit = {}
   const options = createOptions()
   const url = BASE_URL + endPoint
   const fetchURL = new URL(url)
-  fetchURL.searchParams.set('language', 'ko-kr')
+
+  if (!fetchURL.pathname.endsWith('/images')) {
+    fetchURL.searchParams.set('language', 'ko-kr')
+  }
+
   const urlString = fetchURL.toString()
 
   try {
