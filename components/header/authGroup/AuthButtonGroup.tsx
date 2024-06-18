@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { buttonStyles } from '../ui/button'
+import { buttonStyles } from '@/components/ui/button'
 
 const AuthButtonGroup = () => {
   return (

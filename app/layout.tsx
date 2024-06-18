@@ -3,9 +3,10 @@ import './globals.css'
 import ThemeProviders from '@/shared/context/themeProviders'
 import DefaultHeader from '@/components/header/DefaultHeader'
 import SideNavigation from '@/components/nav/SideNav'
-import SidebarProvider from '@/shared/context/toggleContext'
+
 import { SessionProvider } from 'next-auth/react'
 import { auth } from '@/auth'
+import SidebarProvider from '@/shared/context/sidebarToggleContext'
 
 export const metadata: Metadata = {
   title: 'TMDB Movie',

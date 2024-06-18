@@ -27,8 +27,10 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     })
     return { success: 'Login successful!' }
   } catch (error) {
-    // todo
     if (error instanceof AuthError) {
+      if (error.cause?.err instanceof Error) {
+        return { error: error.cause.err.message }
+      }
       switch (error.type) {
         case 'CredentialsSignin':
           return { error: 'Invalid credentials!' }
@@ -37,7 +39,6 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
           return { error: 'Something went wrong!' }
       }
     }
-
     throw error
   }
 }

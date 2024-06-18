@@ -20,6 +20,7 @@ const ActiveLink = ({ children, href, label }: ActiveLinkProps) => {
 
   return (
     <Link
+      title={`${label} 페이지로 이동`}
       href={href}
       aria-label={`${label} 페이지로 이동`}
       className={`block border-l pl-4 -ml-px border-transparent ${isActiveClass(path)}`}

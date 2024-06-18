@@ -1,15 +1,15 @@
 import { PATH_NAME } from '@/app/constants'
 import ActiveLink from './ActiveLink'
-import { useSidebarToggle } from '@/shared/context/toggleContext'
+import { useSidebarToggle } from '@/shared/hooks/useSidebarToggle'
 
 const SideNavLinkList = () => {
-  const { setToggleMenu } = useSidebarToggle()
+  const { setToggleSidebar } = useSidebarToggle()
 
   return (
     <ul className="text-sm">
       {pathGroup.map(group => {
         return (
-          <li key={group.groupName} className="mt-12 lg:mt-8" onClick={() => setToggleMenu(false)}>
+          <li key={group.groupName} className="mt-12 lg:mt-8" onClick={() => setToggleSidebar(false)}>
             <h5 className="mb-6 lg:mb-5 font-semibold text-slate-900 dark:text-slate-200">{group.groupName}</h5>
             <ul className="space-y-6 lg:space-y-4 border-l border-slate-300 dark:border-slate-600">
               {group.paths.map(path => {

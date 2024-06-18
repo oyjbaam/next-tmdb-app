@@ -20,33 +20,27 @@ const LoginForm = () => {
   const form = useForm<LoginInputsValues>({ defaultValues, resolver: zodResolver(LoginSchema) })
 
   const {
-    formState: { isSubmitting, errors },
+    formState: { errors },
   } = form
 
   const onSubmit = (values: LoginInputsValues) => {
     setError('')
     setSuccess('')
     startTransition(async () => {
-      try {
-        const res = await login(values)
-        if (res.error) {
-          form.reset()
-          setError(res.error)
-        }
-        if (res.success) {
-          form.reset()
-          setSuccess(res.success)
-        }
-        // if (data?.twoFactor) {
-        //   setShowTwoFactor(true)
-        // }
-      } catch (e) {
-        setError('Something went wrong!')
+      const res = await login(values)
+      if (res.success) {
+        form.reset()
+        setSuccess(res.success)
+        return
       }
+      if (res.error) {
+        setError(res.error)
+        return
+      }
+      // if (data?.twoFactor) {
+      //   setShowTwoFactor(true)
+      // }
     })
-    // await signIn('credentials',{
-    //   e
-    // })
   }
 
   return (
@@ -114,13 +108,13 @@ const LoginForm = () => {
           }}
         />
 
-        <Button intent="filled" type="submit" disabled={isSubmitting}>
-          {isSubmitting ? <Spinner /> : '로그인'}
+        <Button intent="filled" type="submit" disabled={isPending}>
+          {isPending ? <Spinner /> : '로그인'}
         </Button>
+        <SocialLoginGroup isPending={isPending} />
         <FormErrorMessage message={error} />
         <FormSuccessMessage message={success} />
       </form>
-      <SocialLoginGroup />
     </Form>
   )
 }
