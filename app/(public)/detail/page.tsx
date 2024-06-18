@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { isMovieDetailTypeGuard } from '@/shared/util/guard/isMovieDetailTypeGuard'
 import DetailHeader from './_components/DetailHeader'
 import CastList from './_components/CastList'
-import VideoPicture from './_components/VideoPicture'
+import VideoAndPicture from './_components/VideoAndPicture'
 
 type DetailPageProps = {
   searchParams: Record<string, string | undefined>
@@ -44,7 +44,7 @@ const DetailPage = async ({ searchParams }: DetailPageProps) => {
           <p className="text-base font-sans">{detailData.overview}</p>
         </div>
 
-        <VideoPicture fetchUrl={fetchUrl} />
+        <VideoAndPicture fetchUrl={fetchUrl} />
       </section>
     </>
   )
