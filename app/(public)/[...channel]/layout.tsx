@@ -1,4 +1,19 @@
 import React from 'react'
-const ChannelLayout = ({ children }: { children: React.ReactNode }) => <div className="inner">{children}</div>
+
+type ChannelLayoutProps = {
+  children: React.ReactNode
+  filtersection: React.ReactNode
+  pagetitle: React.ReactNode
+}
+
+const ChannelLayout = ({ children, filtersection, pagetitle }: ChannelLayoutProps) => {
+  return (
+    <div className="inner">
+      {pagetitle}
+      {filtersection}
+      {children}
+    </div>
+  )
+}
 
 export default ChannelLayout

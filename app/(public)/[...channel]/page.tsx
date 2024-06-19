@@ -5,10 +5,8 @@ import Pagination from '@/components/common/pagination'
 import { notFound } from 'next/navigation'
 import React from 'react'
 import { combineChannelAndPath } from '@/shared/util/combineChannelAndPath'
-import PageTitle from './_components/PageTitle'
 import { getMovieTvList } from '@/shared/api/tmdbAPI'
 import { PATH_NAME } from '../../constants'
-import FilterBar from './_components/FilterBar'
 import { ChannelType, PathType } from '@/shared/types/channel'
 
 type ChannelPageProps = {
@@ -34,8 +32,6 @@ const ChannelPage = async ({ params, searchParams }: ChannelPageProps) => {
 
   return (
     <>
-      <PageTitle path={path} channel={channel} />
-      <FilterBar channel={channel} />
       <Grid>
         {fetchResult.results.map(data => {
           const mediaType = data.media_type ? data.media_type : channel

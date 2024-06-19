@@ -14,7 +14,7 @@ const SideNavLinkList = () => {
             <ul className="space-y-6 lg:space-y-4 border-l border-slate-300 dark:border-slate-600">
               {group.paths.map(path => {
                 return (
-                  <li key={path.text}>
+                  <li key={path.path}>
                     <ActiveLink href={path.path} label={path.text}>
                       {path.text}
                     </ActiveLink>

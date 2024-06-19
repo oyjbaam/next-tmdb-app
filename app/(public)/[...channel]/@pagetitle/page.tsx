@@ -1,9 +1,6 @@
+import { ChannelType, PathType } from '@/shared/types'
 import React from 'react'
 
-type PageTitleProps = {
-  path: string
-  channel: string
-}
 const returnTitle = (path: string, channel: string) => {
   if (channel === 'movie') {
     switch (path) {
@@ -32,8 +29,11 @@ const returnTitle = (path: string, channel: string) => {
       return ''
   }
 }
-
-const PageTitle = ({ path, channel }: PageTitleProps) => {
+type PageTitleProps = {
+  params: Record<string, [ChannelType, PathType]>
+}
+const PageTitle = ({ params }: PageTitleProps) => {
+  const [channel, path] = params.channel
   return (
     <section className="pt-8 pb-4">
       <h1 className="text-xl font-semibold">{returnTitle(path, channel)}</h1>

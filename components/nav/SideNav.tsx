@@ -14,26 +14,28 @@ const SideNavigation = () => {
 
   return (
     <AnimatePresence>
-      {toggleSidebar && (
-        <motion.div
-          initial={{ opacity: 0, left: -100, display: 'none' }}
-          animate={{ opacity: 1, left: 0, display: 'block' }}
-          exit={{ opacity: 0, left: -100, display: 'none' }}
-          transition={{ duration: 0.1, ease: 'easeOut' }}
-          className="fixed z-50 inset-0 overflow-y-auto"
-          aria-modal="true"
-        >
-          <nav
-            ref={ref}
-            className="relative flex flex-col left-0 w-52 rounded-r-xl h-screen dark:bg-slate-800 bg-white p-5"
+      <>
+        {toggleSidebar && (
+          <motion.div
+            initial={{ opacity: 0, left: -100, display: 'none' }}
+            animate={{ opacity: 1, left: 0, display: 'block' }}
+            exit={{ opacity: 0, left: -100, display: 'none' }}
+            transition={{ duration: 0.1, ease: 'easeOut' }}
+            className="fixed z-50 inset-0 overflow-y-auto"
+            aria-modal="true"
           >
-            <SideNavHeader />
-            <SideNavLinkList />
-            <SideNavFooter />
-          </nav>
-        </motion.div>
-      )}
-      <IsOpenBackdrop open={toggleSidebar} />
+            <nav
+              ref={ref}
+              className="relative flex flex-col left-0 w-52 rounded-r-xl h-screen dark:bg-slate-800 bg-white p-5"
+            >
+              <SideNavHeader />
+              <SideNavLinkList />
+              <SideNavFooter />
+            </nav>
+          </motion.div>
+        )}
+        <IsOpenBackdrop open={toggleSidebar} />
+      </>
     </AnimatePresence>
   )
 }

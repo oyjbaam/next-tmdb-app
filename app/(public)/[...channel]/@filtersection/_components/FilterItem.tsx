@@ -7,10 +7,14 @@ type FilterItemProps = {
 
 const FilterItem = ({ children, title }: FilterItemProps) => {
   return (
-    <FlexBox alignItems="center" className="gap-4">
-      <span className="shrink-0">{title}</span>
+    <FlexBox alignItems="center" className="gap-4 min-h-fit">
+      <FlexBox className="min-w-16">
+        <span className="shrink-0">{title}</span>
+      </FlexBox>
       <div className="bg-slate-400 h-10 w-[1px] shrink-0" aria-hidden></div>
-      <FlexBox className="flex-wrap gap-1">{children}</FlexBox>
+      <FlexBox alignItems="center" className="flex-wrap gap-1">
+        {children}
+      </FlexBox>
     </FlexBox>
   )
 }
