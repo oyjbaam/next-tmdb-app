@@ -6,7 +6,7 @@ import SideNavigation from '@/components/nav/SideNav'
 
 import { SessionProvider } from 'next-auth/react'
 import { auth } from '@/auth'
-import SidebarProvider from '@/shared/context/sidebarToggleContext'
+import SidebarProvider from '@/shared/context/sidebarToggleProvider'
 
 export const metadata: Metadata = {
   title: 'TMDB Movie',
@@ -27,7 +27,7 @@ const RootLayout = async ({
             <SidebarProvider>
               <DefaultHeader />
               <SideNavigation />
-              <main className="w-full mx-auto mt-10">{children}</main>
+              <main className="w-full mx-auto mt-10 px-4 xl:px-0">{children}</main>
             </SidebarProvider>
           </ThemeProviders>
         </body>

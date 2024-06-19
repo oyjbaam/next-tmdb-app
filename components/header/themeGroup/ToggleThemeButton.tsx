@@ -13,7 +13,7 @@ const ToggleThemeButton = () => {
   const { theme } = useTheme()
 
   return (
-    <>
+    <li>
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <IconButton aria-label="테마 아이콘" icon={theme === 'light' ? LuSunDim : IoMoon} intent="text" />
@@ -21,7 +21,7 @@ const ToggleThemeButton = () => {
         <ThemeDropdownMenu />
       </DropdownMenu>
       <IsOpenBackdrop open={open} />
-    </>
+    </li>
   )
 }
 

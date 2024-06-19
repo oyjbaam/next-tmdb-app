@@ -5,6 +5,7 @@ import SelectDate from './_components/SelectDate'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { ChevronDown } from 'lucide-react'
 import FlexBox from '@/components/ui/FlexBox'
+import CalendarProvider from '@/shared/context/calendarProvider'
 
 type FilterSectionProps = {
   params: Record<string, [ChannelType, PathType]>
@@ -29,7 +30,9 @@ const FilterSection = ({ params }: FilterSectionProps) => {
           </AccordionTrigger>
           <AccordionContent className="p-1 space-y-3">
             <SelectGenre channel={channel} />
-            <SelectDate />
+            <CalendarProvider>
+              <SelectDate />
+            </CalendarProvider>
           </AccordionContent>
         </AccordionItem>
       </Accordion>

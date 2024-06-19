@@ -1,6 +1,10 @@
 import { useContext } from 'react'
-import { SidebarContext } from '../context/sidebarToggleContext'
+import { SidebarContext } from '../context/sidebarToggleProvider'
 
 export const useSidebarToggle = () => {
-  return useContext(SidebarContext)
+  const context = useContext(SidebarContext)
+  if (!context) {
+    throw new Error('useSidebarToggle must be used within SidebarToggleProvider')
+  }
+  return context
 }

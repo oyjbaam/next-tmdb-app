@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { IconButton } from '../ui/button'
-import { FaBars } from 'react-icons/fa'
+import { FaBars } from 'react-icons/fa6'
 import { useSidebarToggle } from '@/shared/hooks/useSidebarToggle'
 
 const ToggleSideBarButton = () => {
@@ -19,7 +19,7 @@ const ToggleSideBarButton = () => {
       className="border border-slate-400 rounded-md lg:hover:border-violet-500 lg:hover:text-violet-500 transition duration-200"
       onClick={handleToggleSideBar}
     >
-      <IconButton icon={FaBars} intent="text" aria-hidden="true" />
+      <IconButton icon={FaBars} intent="text" aria-hidden="true" className="border-0" />
     </div>
   )
 }
