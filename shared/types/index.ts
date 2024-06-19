@@ -1,5 +1,5 @@
 export * from './backDropType'
-
+export * from './channel'
 export * from './detail/commonDetailType'
 export * from './detail/movieDetailType'
 export * from './detail/tvDetailType'
@@ -11,3 +11,5 @@ export * from './list/commonListType'
 export * from './list/movieListType'
 export * from './list/tvListType'
 export * from './list/listResponseType'
+
+export * from './filter/genreType'

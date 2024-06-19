@@ -8,9 +8,11 @@ import { combineChannelAndPath } from '@/shared/util/combineChannelAndPath'
 import PageTitle from './_components/PageTitle'
 import { getMovieTvList } from '@/shared/api/tmdbAPI'
 import { PATH_NAME } from '../../constants'
+import FilterBar from './_components/FilterBar'
+import { ChannelType, PathType } from '@/shared/types/channel'
 
 type ChannelPageProps = {
-  params: Record<string, string[]>
+  params: Record<string, [ChannelType, PathType]>
   searchParams: Record<string, string | string[] | undefined>
 }
 
@@ -33,6 +35,7 @@ const ChannelPage = async ({ params, searchParams }: ChannelPageProps) => {
   return (
     <>
       <PageTitle path={path} channel={channel} />
+      <FilterBar channel={channel} />
       <Grid>
         {fetchResult.results.map(data => {
           const mediaType = data.media_type ? data.media_type : channel

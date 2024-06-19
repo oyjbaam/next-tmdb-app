@@ -35,9 +35,9 @@ const returnTitle = (path: string, channel: string) => {
 
 const PageTitle = ({ path, channel }: PageTitleProps) => {
   return (
-    <div className="py-8 px-3">
+    <section className="pt-8 pb-4">
       <h1 className="text-xl font-semibold">{returnTitle(path, channel)}</h1>
-    </div>
+    </section>
   )
 }
 
