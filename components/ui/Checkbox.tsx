@@ -8,8 +8,9 @@ export const checkboxStyles = cva(
     variants: {
       intent: {
         filled:
-          'bg-purple-600 border border-purple-700  text-white lg:hover:bg-purple-700 active:bg-purple-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-700',
-        outlined: ' border border-purple-700 lg:hover:bg-purple-600 lg:hover:text-white active:bg-purple-600',
+          'bg-purple-600 border border-purple-700  text-white lg:hover:bg-purple-700 active:bg-purple-900 checked:bg-purple-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-700',
+        outlined:
+          'border border-purple-700 dark:border-purple-500 lg:hover:bg-purple-600 lg:hover:text-white active:bg-purple-600 dark:lg:hover:bg-purple-400 checked:bg-purple-600',
       },
       sizes: {
         sm: 'text-xs',
@@ -36,10 +37,10 @@ export const checkboxStyles = cva(
 type CheckboxProps = InputHTMLAttributes<HTMLInputElement> & VariantProps<typeof checkboxStyles>
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ children, id, intent = 'filled', sizes, rounded, className, ...props }: CheckboxProps) => {
+  ({ children, id, intent, sizes, rounded, className, ...props }: CheckboxProps, ref) => {
     return (
       <label htmlFor={id} className={cn(checkboxStyles({ intent, sizes, rounded, className }))}>
-        <input {...props} id={id} type="checkbox" className="hidden" />
+        <input ref={ref} {...props} id={id} type="checkbox" className="hidden" />
         {children}
       </label>
     )
