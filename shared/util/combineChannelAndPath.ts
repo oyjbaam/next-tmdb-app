@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import { ChannelType, PathType } from '../types/channel'
 /**
  *
  * @param channel
@@ -6,7 +7,7 @@ import { notFound } from 'next/navigation'
  * @param query
  * @returns
  */
-export const combineChannelAndPath = (channel: string, path: string, searchQuery: string | undefined) => {
+export const combineChannelAndPath = (channel: ChannelType, path: PathType, searchQuery: string | undefined) => {
   switch (channel) {
     case 'movie':
       return `/${channel}/${path}`
