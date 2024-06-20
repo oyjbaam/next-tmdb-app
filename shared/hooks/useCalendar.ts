@@ -10,6 +10,7 @@ import {
   startOfWeek,
   subMonths,
   subYears,
+  isAfter,
 } from 'date-fns'
 import { useState } from 'react'
 
@@ -44,13 +45,22 @@ const useCalendar = () => {
   const handleNextMonth = () => {
     setCurrentDate(prevDate => addMonths(prevDate, 1))
   }
+
   const handleSelectDate = (date: string) => {
     if (isSelectingStartDate) {
       setStartDate(date)
       setEndDate(null)
       setIsSelectingStartDate(false)
     } else {
-      setEndDate(date)
+      const start = startDate ? new Date(startDate) : null
+      const end = new Date(date)
+
+      if (start && isAfter(start, end)) {
+        setStartDate(date)
+        setEndDate(startDate)
+      } else {
+        setEndDate(date)
+      }
       setIsSelectingStartDate(true)
     }
   }

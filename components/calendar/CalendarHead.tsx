@@ -1,5 +1,5 @@
-import FlexBox from '../FlexBox'
-import { Button } from '../button'
+import FlexBox from '../ui/FlexBox'
+import { Button } from '../ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useCalendarContext } from '@/shared/context/calendarProvider'
 import { format } from 'date-fns'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { cn } from '@/shared/util/twMerge'
-import { Button } from '../button'
+import { Button } from '../ui/button'
 import { parseISO, isWithinInterval, isThisMonth } from 'date-fns'
 import { useCalendarContext } from '@/shared/context/calendarProvider'
 import { isSelectDate } from '@/shared/util/isSelectDate'

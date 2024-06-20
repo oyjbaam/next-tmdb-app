@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { CalendarIcon } from 'lucide-react'
 import { cn } from '@/shared/util/twMerge'
 import { format } from 'date-fns'
-import CalendarWrapper from '@/components/ui/calendar/CalendarWrapper'
+import Calendar from '@/components/calendar/Calendar'
 import { useCalendarContext } from '@/shared/context/calendarProvider'
 
 const SelectDate = () => {
@@ -24,7 +24,7 @@ const SelectDate = () => {
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0 dark:bg-slate-900">
-          <CalendarWrapper />
+          <Calendar />
         </PopoverContent>
       </Popover>
     </FilterItem>

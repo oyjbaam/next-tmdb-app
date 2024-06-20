@@ -3,7 +3,7 @@ import CalendarHead from './CalendarHead'
 import CalendarContent from './CalendarContent'
 import CalendarFooter from './CalendarFooter'
 
-const CalendarWrapper = () => {
+const Calendar = () => {
   return (
     <div className="p-2">
       <CalendarHead />
@@ -13,4 +13,4 @@ const CalendarWrapper = () => {
   )
 }
 
-export default CalendarWrapper
+export default Calendar

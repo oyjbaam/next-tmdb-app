@@ -1,4 +1,4 @@
 export * from './CalendarContent'
 export * from './CalendarHead'
-export * from './CalendarWrapper'
+export * from './Calendar'
 export * from './CalendarFooter'
