@@ -1,40 +1,29 @@
 'use client'
-import { ChangeEvent, useState } from 'react'
 import type { Genre } from '@/shared/types'
 import Checkbox from '@/components/ui/Checkbox'
-
+import { useGenreContext } from '@/shared/context/genreProvider'
 type GenreCheckboxProps = {
-  data: Genre[]
+  genre: Genre
 }
 
-const GenreCheckbox = ({ data }: GenreCheckboxProps) => {
-  const [checkList, setCheckList] = useState<string[]>([])
+const GenreCheckbox = ({ genre }: GenreCheckboxProps) => {
+  const { handleSelectGenre, checkGenreList } = useGenreContext()
 
-  const handleSelectGenre = (e: ChangeEvent<HTMLInputElement>) => {
-    const { checked, id } = e.target
-    setCheckList(prev => (checked ? [...prev, id] : prev.filter(item => item !== id)))
-  }
+  const isChecked = checkGenreList.includes(String(genre.id))
 
   return (
-    <>
-      {data.map(gen => {
-        const isChecked = checkList.includes(String(gen.id))
-        return (
-          <Checkbox
-            onChange={handleSelectGenre}
-            id={String(gen.id)}
-            rounded="full"
-            intent={isChecked ? 'filled' : 'outlined'}
-            sizes="sm"
-            key={gen.id}
-            className=" shrink-0"
-            checked={isChecked}
-          >
-            {gen.name}
-          </Checkbox>
-        )
-      })}
-    </>
+    <Checkbox
+      onChange={handleSelectGenre}
+      id={String(genre.id)}
+      rounded="full"
+      intent={isChecked ? 'filled' : 'outlined'}
+      sizes="sm"
+      key={genre.id}
+      className=" shrink-0"
+      checked={isChecked}
+    >
+      {genre.name}
+    </Checkbox>
   )
 }
 

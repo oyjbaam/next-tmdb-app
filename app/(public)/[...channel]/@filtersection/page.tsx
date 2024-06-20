@@ -6,17 +6,21 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { ChevronDown } from 'lucide-react'
 import FlexBox from '@/components/ui/FlexBox'
 import CalendarProvider from '@/shared/context/calendarProvider'
+import { getGenreList } from '@/shared/api/tmdbFilterListApi'
+import FilterSubmitButton from './_components/FilterSubmitButton'
+import GenreProvider from '@/shared/context/genreProvider'
 
 type FilterSectionProps = {
   params: Record<string, [ChannelType, PathType]>
 }
 
-const FilterSection = ({ params }: FilterSectionProps) => {
+const FilterSection = async ({ params }: FilterSectionProps) => {
   const [channel] = params.channel
 
   if (channel === 'search') {
     return null
   }
+  const res = await getGenreList(channel)
 
   return (
     <section className="space-y-3 mb-6">
@@ -29,9 +33,12 @@ const FilterSection = ({ params }: FilterSectionProps) => {
             </FlexBox>
           </AccordionTrigger>
           <AccordionContent className="p-1 space-y-3">
-            <SelectGenre channel={channel} />
             <CalendarProvider>
-              <SelectDate />
+              <GenreProvider>
+                <SelectGenre data={res.genres} />
+                <SelectDate />
+                <FilterSubmitButton />
+              </GenreProvider>
             </CalendarProvider>
           </AccordionContent>
         </AccordionItem>

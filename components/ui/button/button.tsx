@@ -9,7 +9,7 @@ export const buttonStyles = cva(
     variants: {
       intent: {
         filled:
-          'bg-purple-600 text-white border border-purple-700 dark:lg:hover:bg-purple-600 lg:hover:bg-purple-700 active:bg-purple-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-700',
+          'bg-purple-600 text-white border border-purple-700 dark:lg:hover:bg-purple-700 lg:hover:bg-purple-700 active:bg-purple-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-700',
         outlined:
           'border border-purple-700 lg:hover:bg-purple-600 lg:hover:text-white active:bg-purple-600 dark:lg:hover:bg-purple-400',
         text: 'lg:hover:text-purple-600 active:text-purple-200 dark:lg:hover:text-purple-500',

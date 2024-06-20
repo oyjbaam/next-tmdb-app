@@ -4,15 +4,15 @@ import React from 'react'
 const CalendarFooter = () => {
   const { startDate, endDate } = useCalendarContext()
   return (
-    <div className="py-2 space-y-1">
+    <div className="py-2 space-y-1 text-slate-400">
       {startDate ? (
         <div>
-          <span>시작 : {startDate}</span>
+          시작 : <span className="dark:text-slate-300"> {startDate}</span>
         </div>
       ) : null}
       {endDate ? (
         <div>
-          <span>종료 : {endDate}</span>
+          종료 : <span className="dark:text-slate-300"> {endDate}</span>
         </div>
       ) : null}
     </div>

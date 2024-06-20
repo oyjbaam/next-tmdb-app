@@ -1,18 +1,18 @@
-import { getGenreList } from '@/shared/api/tmdbFilterListApi'
-import { ChannelType } from '@/shared/types'
+'use client'
+import { Genre } from '@/shared/types'
 import FilterItem from './FilterItem'
 import GenreCheckbox from './GenreCheckbox'
 
 type SelectGenreProps = {
-  channel: ChannelType
+  data: Genre[]
 }
 
-const SelectGenre = async ({ channel }: SelectGenreProps) => {
-  const res = await getGenreList(channel)
-
+const SelectGenre = ({ data }: SelectGenreProps) => {
   return (
     <FilterItem title="장르">
-      <GenreCheckbox data={res.genres} />
+      {data.map(gen => (
+        <GenreCheckbox key={gen.id} genre={gen} />
+      ))}
     </FilterItem>
   )
 }
