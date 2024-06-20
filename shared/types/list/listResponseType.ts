@@ -1,9 +1,20 @@
-import { CommonListResponseType } from './commonListType'
-import { Dates, MovieListResultType } from './movieListType'
-import { TvShowListResultType } from './tvListType'
+import * as z from 'zod'
 
-export type MovieOrTVResponseType = CommonListResponseType<MovieListResultType | TvShowListResultType>
+import { MovieListSchema } from './movieListType'
+import { TvListSchema } from './tvListType'
+import { PersonListSchema } from './personListType'
 
-export type MovieResponseType = CommonListResponseType<MovieListResultType> & { dates: Dates }
+const DatesSchema = z.object({
+  maximum: z.string(),
+  minimum: z.string(),
+})
 
-export type TvShowResponse = CommonListResponseType<TvShowListResultType>
+const ResultSchema = z.object({
+  page: z.number(),
+  results: z.array(z.union([MovieListSchema, TvListSchema, PersonListSchema])),
+  total_results: z.number(),
+  total_pages: z.number(),
+  dates: DatesSchema.optional(),
+})
+
+export type ListResponseType = z.infer<typeof ResultSchema>

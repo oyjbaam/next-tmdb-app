@@ -1,6 +1,5 @@
 import {
   addMonths,
-  addYears,
   eachDayOfInterval,
   endOfMonth,
   endOfWeek,
@@ -9,18 +8,18 @@ import {
   startOfMonth,
   startOfWeek,
   subMonths,
-  subYears,
   isAfter,
 } from 'date-fns'
-import { useState } from 'react'
+import { useCallback, useState, useEffect } from 'react'
+import { useQueryString } from './useQueryString'
 
 const useCalendar = () => {
+  const { searchParams, router } = useQueryString()
   const [currentDate, setCurrentDate] = useState(new Date())
   const [currentYear, currentMonth, currentDay] = format(currentDate, 'yyyy-MM-dd').split('-')
-  const [startDate, setStartDate] = useState<string | null>(null)
-  const [endDate, setEndDate] = useState<string | null>(null)
+  const [startDate, setStartDate] = useState<string | null>(searchParams.get('primary_release_date.gte'))
+  const [endDate, setEndDate] = useState<string | null>(searchParams.get('primary_release_date.lte'))
   const [isSelectingStartDate, setIsSelectingStartDate] = useState(true)
-
   const startCurrentMonth = startOfMonth(currentDate)
   const endCurrentMonth = endOfMonth(currentDate)
   const startOfFirstWeek = startOfWeek(startCurrentMonth, { weekStartsOn: 0 })
@@ -31,13 +30,6 @@ const useCalendar = () => {
     end: endOfLastWeek,
   })
 
-  const handlePrevYear = () => {
-    setCurrentDate(prevDate => subYears(prevDate, 1))
-  }
-
-  const handleNextYear = () => {
-    setCurrentDate(prevDate => addYears(prevDate, 1))
-  }
   const handlePrevMonth = () => {
     setCurrentDate(prevDate => subMonths(prevDate, 1))
   }
@@ -75,6 +67,26 @@ const useCalendar = () => {
     }
   })
 
+  const generateLink = useCallback(() => {
+    const newQuery = new URLSearchParams(searchParams.toString())
+    if (startDate) {
+      newQuery.set('primary_release_date.gte', startDate)
+    } else {
+      newQuery.delete('primary_release_date.gte')
+    }
+
+    if (endDate) {
+      newQuery.set('primary_release_date.lte', endDate)
+    } else {
+      newQuery.delete('primary_release_date.lte')
+    }
+    router.push(`?${newQuery.toString()}`, { scroll: false })
+  }, [searchParams, router, startDate, endDate])
+
+  useEffect(() => {
+    generateLink()
+  }, [generateLink])
+
   return {
     currentDate: {
       year: currentYear,
@@ -83,11 +95,10 @@ const useCalendar = () => {
     },
     daysInMonth,
     dispatch: {
-      handlePrevYear,
-      handleNextYear,
       handlePrevMonth,
       handleNextMonth,
       handleSelectDate,
+      generateLink,
     },
     startDate,
     endDate,

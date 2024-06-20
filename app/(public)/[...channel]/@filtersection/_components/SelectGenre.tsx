@@ -1,13 +1,14 @@
-import { Genre } from '@/shared/types'
 import FilterItem from './FilterItem'
 import GenreCheckbox from './GenreCheckbox'
+import { getGenreList } from '@/shared/api/tmdbFilterListApi'
 
 type SelectGenreProps = {
-  data: Genre[]
   searchParams: Record<string, string | string[] | undefined>
+  genListParameter: 'movie' | 'tv'
 }
 
-const SelectGenre = ({ data, searchParams }: SelectGenreProps) => {
+const SelectGenre = async ({ searchParams, genListParameter }: SelectGenreProps) => {
+  const res = await getGenreList(genListParameter)
   const initialGenres = Array.isArray(searchParams.with_genres)
     ? searchParams.with_genres
     : searchParams.with_genres
@@ -16,7 +17,7 @@ const SelectGenre = ({ data, searchParams }: SelectGenreProps) => {
 
   return (
     <FilterItem title="장르">
-      {data.map((gen, idx) => (
+      {res.genres.map((gen, idx) => (
         <GenreCheckbox key={gen.id + idx} initialGenres={initialGenres} genre={gen} />
       ))}
     </FilterItem>

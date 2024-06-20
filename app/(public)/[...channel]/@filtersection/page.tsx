@@ -5,9 +5,8 @@ import SelectDate from './_components/SelectDate'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { ChevronDown } from 'lucide-react'
 import FlexBox from '@/components/ui/FlexBox'
-import CalendarProvider from '@/shared/context/calendarProvider'
-import { getGenreList } from '@/shared/api/tmdbFilterListApi'
 import FilterSubmitButton from './_components/FilterSubmitButton'
+import CalendarProvider from '@/shared/context/calendarProvider'
 
 type FilterSectionProps = {
   params: Record<string, [ChannelType, PathType]>
@@ -24,8 +23,6 @@ const FilterSection = async ({ params, searchParams }: FilterSectionProps) => {
   const pathParameter = path === 'movie' || path === 'tv' ? path : 'movie'
   const genListParameter = channel !== 'discover' ? channel : pathParameter
 
-  const res = await getGenreList(genListParameter)
-
   return (
     <section className="space-y-3 mb-6">
       <Accordion type="single" collapsible className="w-full">
@@ -37,11 +34,11 @@ const FilterSection = async ({ params, searchParams }: FilterSectionProps) => {
             </FlexBox>
           </AccordionTrigger>
           <AccordionContent className="p-1 space-y-3">
+            <SelectGenre searchParams={searchParams} genListParameter={genListParameter} />
             <CalendarProvider>
-              <SelectGenre data={res.genres} searchParams={searchParams} />
               <SelectDate />
-              <FilterSubmitButton genListParameter={genListParameter} />
             </CalendarProvider>
+            <FilterSubmitButton searchParams={searchParams} genListParameter={genListParameter} />
           </AccordionContent>
         </AccordionItem>
       </Accordion>

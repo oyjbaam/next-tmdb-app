@@ -11,11 +11,10 @@ type CalendarContextType = {
   currentDate: DateInfo
   daysInMonth: (DateInfo & { date: string; dayIndexOfWeek: number })[]
   dispatch: {
-    handlePrevYear: () => void
-    handleNextYear: () => void
     handlePrevMonth: () => void
     handleNextMonth: () => void
     handleSelectDate: (date: string) => void
+    generateLink: () => void
   }
   startDate: string | null
   endDate: string | null

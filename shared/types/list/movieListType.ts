@@ -1,22 +1,12 @@
-export type Dates = {
-  maximum: string
-  minimum: string
-}
+import * as z from 'zod'
+import { CommonMediaSchema } from './commonListType'
 
-export type MovieListResultType = {
-  adult: boolean
-  backdrop_path: string | null
-  genre_ids: number[]
-  id: number
-  media_type: string
-  original_language: string
-  overview: string
-  popularity: number
-  poster_path: string | null
-  vote_average: number
-  vote_count: number
-  release_date: string
-  video: boolean
-  title: string
-  original_title: string
-}
+// 영화 스키마
+export const MovieListSchema = CommonMediaSchema.extend({
+  title: z.string(),
+  original_title: z.string(),
+  release_date: z.string().nullable(),
+  video: z.boolean(),
+})
+
+export type MovieListResponseType = z.infer<typeof MovieListSchema>
