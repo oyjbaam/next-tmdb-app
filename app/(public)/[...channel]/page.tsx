@@ -1,49 +1,43 @@
-import Grid from '@/components/common/grid'
-import Link from 'next/link'
-import Card from '@/components/common/Card'
-import Pagination from '@/components/common/pagination'
-import { notFound } from 'next/navigation'
-import React from 'react'
-import { combineChannelAndPath } from '@/shared/util/combineChannelAndPath'
-import { getMovieTvList } from '@/shared/api/tmdbAPI'
-import { PATH_NAME } from '../../constants'
 import { ChannelType, PathType } from '@/shared/types/channel'
 
 type ChannelPageProps = {
   params: Record<string, [ChannelType, PathType]>
-  searchParams: Record<string, string | string[] | undefined>
 }
-
-const ChannelPage = async ({ params, searchParams }: ChannelPageProps) => {
+const returnTitle = (path: string, channel: string) => {
+  if (channel === 'movie') {
+    switch (path) {
+      case 'popular':
+        return '인기 영화'
+      case 'now_playing':
+        return '현재 상영중인 영화'
+      case 'upcoming':
+        return '개봉 예정인 영화'
+      case 'top_rated':
+        return '높은 평점인 영화'
+      default:
+        return ''
+    }
+  }
+  switch (path) {
+    case 'popular':
+      return '인기 TV 프로그램'
+    case 'airing_today':
+      return '오늘 방영 프로그램'
+    case 'on_the_air':
+      return 'TV 방영중'
+    case 'top_rated':
+      return '높은 평점 프로그램'
+    default:
+      return ''
+  }
+}
+const ChannelPage = async ({ params }: ChannelPageProps) => {
   const [channel, path] = params.channel
-  const page = typeof searchParams.page === 'string' ? searchParams.page : '1'
-  const query = typeof searchParams.query === 'string' ? searchParams.query : undefined
-  if (!(path in PATH_NAME) || !path) notFound()
-  const fetchUrl = combineChannelAndPath(channel, path, query)
-  const parameters = query ? `query=${query}&page=${page}` : `page=${page}`
-  const fetchResult = await getMovieTvList(`${fetchUrl}?${parameters}`)
-
-  const totalPages =
-    fetchResult.total_pages > 40
-      ? Array.from({ length: 40 }, (_, index) => index + 1)
-      : Array.from({ length: fetchResult.total_pages }, (_, index) => index + 1)
-
-  const paginationParam = query ? `${fetchUrl}?query=${query}&page=` : `${fetchUrl}?page=`
 
   return (
-    <>
-      <Grid>
-        {fetchResult.results.map(data => {
-          const mediaType = data.media_type ? data.media_type : channel
-          return (
-            <Link href={`/detail?mediaType=${mediaType}&id=${data.id}`} key={data.id}>
-              <Card data={data} />
-            </Link>
-          )
-        })}
-      </Grid>
-      <Pagination page={page} totalPages={totalPages} param={paginationParam} />
-    </>
+    <section className="pt-8 pb-4">
+      <h1 className="text-xl font-semibold">{returnTitle(path, channel)}</h1>
+    </section>
   )
 }
 

@@ -1,24 +1,46 @@
+'use client'
+import { MouseEvent, useCallback } from 'react'
 import Link from 'next/link'
 import { buttonStyles } from '@/components/ui/button'
 import { generatePagination } from '@/shared/util/generatePagination'
+import { useQueryString } from '@/shared/hooks/useQueryString'
 type PaginationProps = {
   page: string | string[]
   totalPages: number[]
-  param: string
+  query?: string
 }
-const Pagination = ({ page, totalPages, param }: PaginationProps) => {
+const Pagination = ({ page, totalPages, query }: PaginationProps) => {
+  const { searchParams } = useQueryString()
   const currentPageNum = Number(page)
   const arrNum = generatePagination(currentPageNum, totalPages)
   const pageLiClass = 'rounded-full inline-flex justify-center overflow-hidden'
 
+  const handleDisabledClick = (e: MouseEvent<HTMLAnchorElement>, disabled: boolean) => {
+    if (disabled) {
+      e.preventDefault()
+    }
+  }
+  const generateLink = useCallback(
+    (newPage: number) => {
+      const newQuery = new URLSearchParams(searchParams.toString())
+      newQuery.set('page', String(newPage))
+      if (query) {
+        newQuery.set('query', query)
+      }
+
+      return `?${newQuery.toString()}`
+    },
+    [query, searchParams]
+  )
   return (
     <nav className="w-full text-center my-8" aria-label="Page navigation">
       <ul className="inline-flex items-center gap-4 text-sm">
         <li className={`${pageLiClass} w-10`}>
           <Link
-            href={`${param}${currentPageNum > 1 ? currentPageNum - 1 : 1}`}
+            href={generateLink(currentPageNum > 1 ? currentPageNum - 1 : 1)}
             className={buttonStyles({ intent: 'text', rounded: 'full', sizes: 'sm', disabled: currentPageNum === 1 })}
             scroll={currentPageNum === 1 ? false : true}
+            onClick={e => handleDisabledClick(e, currentPageNum === 1)}
           >
             Prev
           </Link>
@@ -32,7 +54,7 @@ const Pagination = ({ page, totalPages, param }: PaginationProps) => {
           return (
             <li className={`${pageLiClass} w-8`} key={page}>
               <Link
-                href={`${param}${movePage}`}
+                href={generateLink(movePage)}
                 className={buttonStyles({ intent: 'text', rounded: 'full', sizes: 'sm', className: isActivePageClass })}
                 scroll={typeof page === 'number' ? true : false}
               >
@@ -43,7 +65,7 @@ const Pagination = ({ page, totalPages, param }: PaginationProps) => {
         })}
         <li className={`${pageLiClass} w-10`}>
           <Link
-            href={`${param}${currentPageNum < totalPages.length ? currentPageNum + 1 : currentPageNum}`}
+            href={generateLink(currentPageNum < totalPages.length ? currentPageNum + 1 : currentPageNum)}
             className={buttonStyles({
               intent: 'text',
               rounded: 'full',
@@ -51,6 +73,7 @@ const Pagination = ({ page, totalPages, param }: PaginationProps) => {
               disabled: currentPageNum === totalPages.length,
             })}
             scroll={currentPageNum === totalPages.length ? false : true}
+            onClick={e => handleDisabledClick(e, currentPageNum === totalPages.length)}
           >
             Next
           </Link>
