@@ -4,11 +4,13 @@ import Link from 'next/link'
 import { buttonStyles } from '@/components/ui/button'
 import { generatePagination } from '@/shared/util/generatePagination'
 import { useQueryString } from '@/shared/hooks/useQueryString'
+
 type PaginationProps = {
   page: string | string[]
   totalPages: number[]
   query?: string
 }
+
 const Pagination = ({ page, totalPages, query }: PaginationProps) => {
   const { searchParams } = useQueryString()
   const currentPageNum = Number(page)
@@ -46,13 +48,13 @@ const Pagination = ({ page, totalPages, query }: PaginationProps) => {
           </Link>
         </li>
 
-        {arrNum.map(page => {
+        {arrNum.map((page, idx) => {
           const isActivePageClass =
             page === currentPageNum ? 'bg-violet-500 lg:hover:bg-violet-700 text-white lg:hover:text-white' : ''
           const movePage = typeof page === 'number' ? page : currentPageNum
 
           return (
-            <li className={`${pageLiClass} w-8`} key={page}>
+            <li className={`${pageLiClass} w-8`} key={page + `${idx}`}>
               <Link
                 href={generateLink(movePage)}
                 className={buttonStyles({ intent: 'text', rounded: 'full', sizes: 'sm', className: isActivePageClass })}

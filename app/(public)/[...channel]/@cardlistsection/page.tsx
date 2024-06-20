@@ -33,10 +33,10 @@ const CardListSection = async ({ params, searchParams }: CardListSectionProps) =
   return (
     <>
       <Grid>
-        {fetchResult.results.map(data => {
+        {fetchResult.results.map((data, idx) => {
           const mediaType = data.media_type ? data.media_type : channel
           return (
-            <Link href={`/detail?mediaType=${mediaType}&id=${data.id}`} key={data.id}>
+            <Link href={`/detail?mediaType=${mediaType}&id=${data.id}`} key={data.id + idx}>
               <Card data={data} />
             </Link>
           )

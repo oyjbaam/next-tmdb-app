@@ -3,7 +3,6 @@
 'use client'
 import IconInput from '@/components/ui/input/iconInput'
 import { CiSearch } from 'react-icons/ci'
-
 import { useFormState } from 'react-dom'
 import { navigateSearchPage } from '@/shared/actions/search'
 

@@ -3,15 +3,15 @@ import React from 'react'
 type ChannelLayoutProps = {
   children: React.ReactNode
   filtersection: React.ReactNode
-  pagetitle: React.ReactNode
+  cardlistsection: React.ReactNode
 }
 
-const ChannelLayout = ({ children, filtersection, pagetitle }: ChannelLayoutProps) => {
+const ChannelLayout = ({ children, filtersection, cardlistsection }: ChannelLayoutProps) => {
   return (
     <div className="inner">
-      {pagetitle}
-      {filtersection}
       {children}
+      {filtersection}
+      {cardlistsection}
     </div>
   )
 }

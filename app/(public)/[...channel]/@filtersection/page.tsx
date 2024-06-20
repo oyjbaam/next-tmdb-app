@@ -8,19 +8,23 @@ import FlexBox from '@/components/ui/FlexBox'
 import CalendarProvider from '@/shared/context/calendarProvider'
 import { getGenreList } from '@/shared/api/tmdbFilterListApi'
 import FilterSubmitButton from './_components/FilterSubmitButton'
-import GenreProvider from '@/shared/context/genreProvider'
 
 type FilterSectionProps = {
   params: Record<string, [ChannelType, PathType]>
+  searchParams: Record<string, string | string[] | undefined>
 }
 
-const FilterSection = async ({ params }: FilterSectionProps) => {
-  const [channel] = params.channel
+const FilterSection = async ({ params, searchParams }: FilterSectionProps) => {
+  const [channel, path] = params.channel
 
   if (channel === 'search') {
     return null
   }
-  const res = await getGenreList(channel)
+
+  const pathParameter = path === 'movie' || path === 'tv' ? path : 'movie'
+  const genListParameter = channel !== 'discover' ? channel : pathParameter
+
+  const res = await getGenreList(genListParameter)
 
   return (
     <section className="space-y-3 mb-6">
@@ -34,11 +38,9 @@ const FilterSection = async ({ params }: FilterSectionProps) => {
           </AccordionTrigger>
           <AccordionContent className="p-1 space-y-3">
             <CalendarProvider>
-              <GenreProvider>
-                <SelectGenre data={res.genres} />
-                <SelectDate />
-                <FilterSubmitButton />
-              </GenreProvider>
+              <SelectGenre data={res.genres} searchParams={searchParams} />
+              <SelectDate />
+              <FilterSubmitButton genListParameter={genListParameter} />
             </CalendarProvider>
           </AccordionContent>
         </AccordionItem>
