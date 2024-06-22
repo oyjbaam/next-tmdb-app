@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-const DontHaveData = () => {
+const NoResults = () => {
   return (
     <div className="pt-40 flex flex-col justify-center items-center gap-y-4 overflow-hidden">
       <h1 className="text-2xl text-center">결과가 없습니다. 🥲</h1>
@@ -12,4 +12,4 @@ const DontHaveData = () => {
   )
 }
 
-export default DontHaveData
+export default NoResults
