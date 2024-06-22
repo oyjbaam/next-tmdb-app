@@ -6,7 +6,7 @@ import { generatePagination } from '@/shared/util/generatePagination'
 import { useQueryString } from '@/shared/hooks/useQueryString'
 
 type PaginationProps = {
-  page: string | string[]
+  page: string
   totalPages: number[]
   query?: string
 }

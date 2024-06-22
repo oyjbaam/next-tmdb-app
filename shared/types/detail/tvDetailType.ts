@@ -16,27 +16,48 @@ const NetworkSchema = z.object({
 
 const LastEpisodeToAirSchema = z
   .object({
-    air_date: z.string(),
-    episode_number: z.number(),
-    id: z.number(),
-    name: z.string(),
+    id: z.number().nullable(),
     overview: z.string().nullable(),
+    name: z.string().nullable(),
+    vote_average: z.number().nullable(),
+    vote_count: z.number().nullable(),
+    air_date: z.string().nullable(),
+    episode_number: z.number().nullable(),
+    episode_type: z.string().nullable(),
     production_code: z.string().nullable(),
-    season_number: z.number(),
+    season_number: z.number().nullable(),
+    show_id: z.number().nullable(),
     still_path: z.string().nullable(),
-    vote_average: z.number(),
-    vote_count: z.number(),
+  })
+  .nullable()
+
+const NextEpisodeToAirSchema = z
+  .object({
+    id: z.number().nullable(),
+    overview: z.string().nullable(),
+    name: z.string().nullable(),
+    vote_average: z.number().nullable(),
+    vote_count: z.number().nullable(),
+    air_date: z.string().nullable(),
+    episode_number: z.number().nullable(),
+    episode_type: z.string().nullable(),
+    production_code: z.string().nullable(),
+    runtime: z.number().nullable(),
+    season_number: z.number().nullable(),
+    show_id: z.number().nullable(),
+    still_path: z.string().nullable(),
   })
   .nullable()
 
 const SeasonSchema = z.object({
-  air_date: z.string(),
+  air_date: z.string().nullable(),
   episode_count: z.number(),
   id: z.number(),
   name: z.string(),
   overview: z.string().nullable(),
   poster_path: z.string().nullable(),
   season_number: z.number(),
+  vote_average: z.number().nullable(),
 })
 
 export const TvDetailSchema = CommonDetailSchema.extend({
@@ -47,6 +68,7 @@ export const TvDetailSchema = CommonDetailSchema.extend({
   languages: z.array(z.string()),
   last_air_date: z.string(),
   last_episode_to_air: LastEpisodeToAirSchema,
+  next_episode_to_air: NextEpisodeToAirSchema,
   name: z.string(),
   networks: z.array(NetworkSchema),
   number_of_episodes: z.number(),
