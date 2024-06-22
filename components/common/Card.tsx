@@ -1,18 +1,16 @@
-import type { MovieListResultType, TvShowListResultType } from '@/shared/types'
-import { isMovieListTypeGuard } from '@/shared/util/guard/isMovieListTypeGuard'
+import type { MovieListResponseType, TvListResponseType, PersonListResponseType } from '@/shared/types'
+import { getCardData } from '@/shared/util/guard/isListTypeGuard'
 import Image from 'next/image'
 
 type CardProps = {
-  data: MovieListResultType | TvShowListResultType
+  data: MovieListResponseType | TvListResponseType | PersonListResponseType
   isMain?: boolean
 }
 
 const Card = ({ data, isMain = false }: CardProps) => {
-  const title = isMovieListTypeGuard(data) ? data.title : data.name
-  const date = isMovieListTypeGuard(data) ? data.release_date : data.first_air_date
-  const isPosterPath = data.poster_path
-    ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
-    : '/images/defaultImage.png'
+  const { title, date, imgPath, vote } = getCardData(data)
+
+  const posterPath = imgPath ? `https://image.tmdb.org/t/p/w500${imgPath}` : '/images/defaultImage.png'
 
   const widthClass = isMain ? 'w-56' : 'w-96 sm:w-80 md:w-64 lg:w-56'
   const imgHeightClass = isMain
@@ -25,7 +23,7 @@ const Card = ({ data, isMain = false }: CardProps) => {
     >
       <div className={`relative ${imgHeightClass} backdrop-blur-md`}>
         <Image
-          src={isPosterPath}
+          src={posterPath}
           alt={title || '포스터 이미지'}
           loading="lazy"
           placeholder="blur"
@@ -38,7 +36,7 @@ const Card = ({ data, isMain = false }: CardProps) => {
       <div className="p-2">
         <div className="flex justify-between py-1 text-xs font-medium">
           <p>{date}</p>
-          <p>{Math.floor(data.vote_average || 0)}</p>
+          <p>{Math.floor(vote)}</p>
         </div>
         <span className="font-bold truncate block">{title}</span>
       </div>
