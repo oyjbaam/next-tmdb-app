@@ -6,15 +6,15 @@ import DetailHeader from './_components/DetailHeader'
 import CastList from './_components/CastList'
 import VideoAndPicture from './_components/VideoAndPicture'
 import Synopsis from './_components/Synopsis'
+import { MediaType } from '@/shared/types'
 type DetailPageProps = {
   searchParams: Record<string, string | undefined>
 }
 
 const DetailPage = async ({ searchParams }: DetailPageProps) => {
-  const mediaType = searchParams.mediaType ?? 'movie'
+  const mediaType = searchParams.mediaType as MediaType
   const dataId = searchParams.id ?? ''
-  const fetchUrl = `/${mediaType}/${dataId}`
-  const responseData = await getDetail(fetchUrl)
+  const responseData = await getDetail(mediaType, dataId)
   const detailData = getDetailData(responseData)
   const isMovie = isMovieDetailTypeGuard(responseData)
   const isTv = isTvDetailTypeGuard(responseData)
@@ -38,9 +38,9 @@ const DetailPage = async ({ searchParams }: DetailPageProps) => {
 
       <section className="space-y-8 px-5 lg:px-0 max-w-[600px] w-full">
         <DetailHeader data={detailData} />
-        {isMovieOrTv && <CastList fetchUrl={fetchUrl} />}
+        {isMovieOrTv && <CastList dataId={dataId} mediaType={mediaType} />}
         <Synopsis mediaType={mediaType} overview={overView} />
-        {isMovieOrTv && <VideoAndPicture fetchUrl={fetchUrl} />}
+        {isMovieOrTv && <VideoAndPicture dataId={dataId} mediaType={mediaType} />}
       </section>
     </>
   )

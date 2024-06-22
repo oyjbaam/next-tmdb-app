@@ -3,11 +3,13 @@ import VideoList from './VideoList'
 import ImageList from './ImageList'
 import VideoPictureSkeleton from './VideoPictureSkeleton'
 import FlexBox from '@/components/ui/FlexBox'
+import { MediaType } from '@/shared/types'
 type VideoAndPictureProps = {
-  fetchUrl: string
+  dataId: string
+  mediaType: MediaType
 }
 
-const VideoAndPicture = ({ fetchUrl }: VideoAndPictureProps) => {
+const VideoAndPicture = ({ mediaType, dataId }: VideoAndPictureProps) => {
   return (
     <div className="space-y-1 w-full">
       <h3 className="text-2xl dark:text-white">VIDEO / PICTURE</h3>
@@ -21,7 +23,7 @@ const VideoAndPicture = ({ fetchUrl }: VideoAndPictureProps) => {
             </FlexBox>
           }
         >
-          <VideoList fetchUrl={fetchUrl} />
+          <VideoList dataId={dataId} mediaType={mediaType} />
         </Suspense>
         <Suspense
           fallback={
@@ -32,7 +34,7 @@ const VideoAndPicture = ({ fetchUrl }: VideoAndPictureProps) => {
             </FlexBox>
           }
         >
-          <ImageList fetchUrl={fetchUrl} />
+          <ImageList dataId={dataId} mediaType={mediaType} />
         </Suspense>
       </div>
     </div>

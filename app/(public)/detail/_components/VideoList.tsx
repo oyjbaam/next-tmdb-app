@@ -2,15 +2,16 @@ import FlexBox from '@/components/ui/FlexBox'
 import { getVideoOrImage } from '@/shared/api/tmdbDetailApi'
 import React from 'react'
 import { isVideoResponse } from '@/shared/util/guard/isVideoResponseType'
-
 import VideoPopup from './VideoPopup'
+import { MediaType } from '@/shared/types'
 
 type VideoListProps = {
-  fetchUrl: string
+  dataId: string
+  mediaType: MediaType
 }
 
-const VideoList = async ({ fetchUrl }: VideoListProps) => {
-  const videoData = await getVideoOrImage(fetchUrl, 'videos')
+const VideoList = async ({ dataId, mediaType }: VideoListProps) => {
+  const videoData = await getVideoOrImage(mediaType, dataId, 'videos')
 
   if (!isVideoResponse(videoData)) {
     throw new Error('Invalid video data')

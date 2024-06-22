@@ -4,13 +4,15 @@ import { getVideoOrImage } from '@/shared/api/tmdbDetailApi'
 import { isImageResponse } from '@/shared/util/guard/isVideoResponseType'
 import Image from 'next/image'
 import ImagePopup from './ImagePopup'
+import { MediaType } from '@/shared/types'
 
 type ImageListProps = {
-  fetchUrl: string
+  dataId: string
+  mediaType: MediaType
 }
 
-const ImageList = async ({ fetchUrl }: ImageListProps) => {
-  const imgData = await getVideoOrImage(fetchUrl, 'images')
+const ImageList = async ({ dataId, mediaType }: ImageListProps) => {
+  const imgData = await getVideoOrImage(mediaType, dataId, 'images')
 
   if (!isImageResponse(imgData)) {
     throw new Error('Invalid Image data')

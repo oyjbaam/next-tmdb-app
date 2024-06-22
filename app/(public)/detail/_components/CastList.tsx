@@ -2,13 +2,14 @@ import FlexBox from '@/components/ui/FlexBox'
 import { getCredits } from '@/shared/api/tmdbDetailApi'
 import React from 'react'
 import Image from 'next/image'
-
+import { MediaType } from '@/shared/types'
 type CastListProps = {
-  fetchUrl: string
+  dataId: string
+  mediaType: MediaType
 }
 
-const CastList = async ({ fetchUrl }: CastListProps) => {
-  const creditsData = await getCredits(fetchUrl)
+const CastList = async ({ mediaType, dataId }: CastListProps) => {
+  const creditsData = await getCredits(mediaType, dataId)
 
   if (creditsData.cast.length < 1) {
     return null

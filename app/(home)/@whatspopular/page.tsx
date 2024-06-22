@@ -4,13 +4,14 @@ import TabsWrapper from '@/components/common/TabsWrapper'
 import { TabsContent } from '@/components/ui/tabs'
 import Card from '@/components/common/Card'
 import Link from 'next/link'
+import { ChannelType } from '@/shared/types'
 
 type WhatsPopularPageProps = {
   searchParams: Record<string, string | undefined>
 }
 
 const WhatsPopularPage = async ({ searchParams }: WhatsPopularPageProps) => {
-  const tabValue = searchParams.popular ?? 'movie'
+  const tabValue = (searchParams.popular ?? 'movie') as ChannelType
   const popularData = await getPopular(tabValue)
 
   return (

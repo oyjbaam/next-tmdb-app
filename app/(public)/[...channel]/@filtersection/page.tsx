@@ -14,14 +14,11 @@ type FilterSectionProps = {
 }
 
 const FilterSection = async ({ params, searchParams }: FilterSectionProps) => {
-  const [channel, path] = params.channel
+  const [channel] = params.channel
 
   if (channel === 'search') {
     return null
   }
-
-  const pathParameter = path === 'movie' || path === 'tv' ? path : 'movie'
-  const genListParameter = channel !== 'discover' ? channel : pathParameter
 
   return (
     <section className="space-y-3 mb-6">
@@ -34,11 +31,11 @@ const FilterSection = async ({ params, searchParams }: FilterSectionProps) => {
             </FlexBox>
           </AccordionTrigger>
           <AccordionContent className="p-1 space-y-3">
-            <SelectGenre searchParams={searchParams} genListParameter={genListParameter} />
+            <SelectGenre searchParams={searchParams} mediaType={channel} />
             <CalendarProvider>
               <SelectDate />
             </CalendarProvider>
-            <FilterSubmitButton searchParams={searchParams} genListParameter={genListParameter} />
+            <FilterSubmitButton />
           </AccordionContent>
         </AccordionItem>
       </Accordion>
