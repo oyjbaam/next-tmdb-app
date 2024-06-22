@@ -6,4 +6,6 @@ export const PATH_NAME = {
   airing_today: 'airing_today',
   on_the_air: 'on_the_air',
   multi: 'multi',
+  movie: 'movie',
+  tv: 'tv',
 }

@@ -18,10 +18,8 @@ const DefaultHeader = async () => {
         <SearchInput />
       </FlexBox>
       <FlexBox justifyContent="between" alignItems="center">
-        <ul className="flex items-center gap-4 relative">
-          <li>
-            <ToggleThemeButton />
-          </li>
+        <ul className="flex items-center gap-2 relative">
+          <ToggleThemeButton />
           {session ? <IsLoginButton session={session} /> : <AuthButtonGroup />}
         </ul>
       </FlexBox>

@@ -3,7 +3,6 @@ import NextAuth from 'next-auth'
 import { NextResponse } from 'next/server'
 import { authRoutes, apiAuthPrefix, publicRoutes } from './routes'
 import { match } from 'path-to-regexp'
-
 const { auth } = NextAuth(authConfig)
 
 export default auth(req => {

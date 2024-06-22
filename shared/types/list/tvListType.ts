@@ -1,17 +1,11 @@
-export type TvShowListResultType = {
-  adult: boolean
-  backdrop_path: string | null
-  genre_ids: number[]
-  id: number
-  media_type: string
-  original_language: string
-  overview: string
-  popularity: number
-  poster_path: string | null
-  vote_average: number
-  vote_count: number
-  name: string
-  original_name: string
-  first_air_date: string
-  origin_country: string[]
-}
+import { CommonMediaSchema } from './commonListType'
+import * as z from 'zod'
+
+export const TvListSchema = CommonMediaSchema.extend({
+  name: z.string(),
+  original_name: z.string(),
+  first_air_date: z.string().nullable(),
+  origin_country: z.array(z.string()),
+})
+
+export type TvListResponseType = z.infer<typeof TvListSchema>
