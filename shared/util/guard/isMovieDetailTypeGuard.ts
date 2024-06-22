@@ -45,5 +45,6 @@ export const getDetailData = (data: MovieDetailType | TvDetailType | PersonDetai
     date: data.birthday,
     imgPath: data.profile_path,
     overView: data.biography,
+    popularity: data.popularity,
   }
 }

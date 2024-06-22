@@ -45,10 +45,17 @@ const DetailHeader = ({ data }: DetailHeaderProps) => {
         )}
       </ul>
 
-      {data.vote && (
+      {data.vote !== null && data.vote !== undefined && (
         <FlexBox alignItems="center" className="gap-2 text-yellow-400">
           <StarRating voteAverage={data.vote} />
           <span className="text-base">{data.vote.toFixed(1)}</span>
+        </FlexBox>
+      )}
+
+      {data.popularity !== null && data.popularity !== undefined && (
+        <FlexBox alignItems="center" className="gap-2 text-yellow-400">
+          <StarIcon className="w-5 h-5" fill="gold" />
+          <span className="text-base">{data.popularity.toFixed(1)}</span>
         </FlexBox>
       )}
     </header>

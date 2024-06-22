@@ -21,5 +21,5 @@ export const getCardData = (data: MovieListResponseType | TvListResponseType | P
   if (isTvListTypeGuard(data)) {
     return { title: data.name, date: data.first_air_date, imgPath: data.poster_path, vote: data.vote_average }
   }
-  return { title: data.name, date: '', imgPath: data.profile_path, vote: data.popularity }
+  return { title: data.name, date: data.known_for_department, imgPath: data.profile_path, vote: data.popularity }
 }

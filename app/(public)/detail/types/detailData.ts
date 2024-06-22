@@ -6,8 +6,9 @@ export type DetailDataType = {
   date: string | null
   runtime?: number | null
   episode?: number
-  vote?: number
+  vote?: number | null
   imgPath: string | null
   overView: string | null
   genres?: Genre[]
+  popularity?: number | null
 }
