@@ -7,12 +7,17 @@ import { cn } from '@/shared/util/twMerge'
 import { format } from 'date-fns'
 import Calendar from '@/components/calendar/Calendar'
 import { useCalendarContext } from '@/shared/context/calendarProvider'
+import { ChannelType } from '@/shared/types'
 
-const SelectDate = () => {
+type SelectDateProps = {
+  channel: ChannelType
+}
+
+const SelectDate = ({ channel }: SelectDateProps) => {
   const { startDate } = useCalendarContext()
 
   return (
-    <FilterItem title="출시 날짜">
+    <FilterItem title={channel === 'movie' ? '출시 날짜' : '방영 일자'}>
       <Popover>
         <PopoverTrigger asChild>
           <Button

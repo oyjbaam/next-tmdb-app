@@ -33,7 +33,7 @@ const FilterSection = async ({ params, searchParams }: FilterSectionProps) => {
           <AccordionContent className="p-1 space-y-3">
             <SelectGenre searchParams={searchParams} mediaType={channel} />
             <CalendarProvider>
-              <SelectDate />
+              <SelectDate channel={channel} />
             </CalendarProvider>
             <FilterSubmitButton />
           </AccordionContent>
