@@ -7,6 +7,7 @@ import {
   TvDetailType,
   PersonDetailResponseType,
   MediaType,
+  ListResponseType,
 } from '../types'
 
 /**
@@ -35,4 +36,11 @@ export const getVideoOrImage = (
   type: 'videos' | 'images'
 ): Promise<VideoResponseType | ImageResponseType> => {
   return requestFetch(`/${mediaType}/${id}/${type}`)
+}
+
+/**
+ * @return 비슷한 컨텐츠
+ */
+export const getSimilarContents = (mediaType: MediaType, id: string): Promise<ListResponseType> => {
+  return requestFetch(`/${mediaType}/${id}/similar`)
 }
