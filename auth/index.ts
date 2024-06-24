@@ -6,14 +6,27 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 import { db } from '@/shared/db'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  events: {
+    async linkAccount({ user }) {
+      await db.user.update({
+        where: { id: user.id },
+        data: { emailVerified: new Date() },
+      })
+    },
+  },
   callbacks: {
-    signIn: async ({ user }) => {
-      // if (user.id) {
-      //   const existingUser = await getUserById(user.id)
-      //   if (!existingUser || !existingUser.emailVerified) {
-      //     return false
-      //   }
-      // }
+    signIn: async ({ user, account }) => {
+      // 이메일 확인 없이 Oauth 허용
+      if (account?.provider !== 'credentials') return true
+
+      if (user.id) {
+        const existingUser = await getUserById(user.id)
+
+        // 이메일 확인 없이 로그인 방지
+        if (!existingUser || !existingUser.emailVerified) {
+          return false
+        }
+      }
       return true
     },
     jwt: async ({ token }) => {
@@ -47,6 +60,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   secret: process.env.AUTH_SECRET,
   session: {
     strategy: 'jwt',
+  },
+  pages: {
+    signIn: '/auth/login',
+    error: '/auth/error',
   },
   ...authConfig,
 })
