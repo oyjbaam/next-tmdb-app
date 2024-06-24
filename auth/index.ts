@@ -2,10 +2,20 @@ import NextAuth from 'next-auth'
 import authConfig from './authConfig'
 import { getUserById } from '@/shared/data/user'
 import { getAccountByUserId } from '@/shared/data/account'
+import { PrismaAdapter } from '@auth/prisma-adapter'
+import { db } from '@/shared/db'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
-    signIn: async () => true,
+    signIn: async ({ user }) => {
+      // if (user.id) {
+      //   const existingUser = await getUserById(user.id)
+      //   if (!existingUser || !existingUser.emailVerified) {
+      //     return false
+      //   }
+      // }
+      return true
+    },
     jwt: async ({ token }) => {
       if (!token.sub) return token
       const existingUser = await getUserById(token.sub)
@@ -23,47 +33,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.id = token.sub
       }
 
-      if (token.role && session.user) {
-        session.user.role = token.role
-      }
       if (session.user) {
         session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean
         session.user.name = token.name
         session.user.email = token.email as string
         session.user.isOAuth = token.isOAuth as boolean
       }
-      // console.log('session', session)
+
       return session
     },
-    redirect: async ({ url, baseUrl }) => {
-      console.log('baseUrl', baseUrl)
-      if (url.startsWith('/')) return `${baseUrl}${url}`
-      if (url) {
-        const { search, origin } = new URL(url)
-        console.log('urldddd', url)
-        const callbackUrl = new URLSearchParams(search).get('callbackUrl')
-        console.log('callbackUrl', callbackUrl)
-        console.log('origin', origin)
-      }
-      // if (url.startsWith(baseUrl)) {
-      //   console.log('urldddddd', url);
-      //   const callbackUrl = new URL(url).searchParams.get('callbackUrl');
-      //   console.log('callbackUrl', callbackUrl);
-      //   if (callbackUrl) {
-      //     const decodedCallbackUrl = decodeURIComponent(callbackUrl);
-      //     console.log('`${baseUrl}${decodedCallbackUrl}`', `${baseUrl}${decodedCallbackUrl}`);
-      //     return `${baseUrl}${decodedCallbackUrl}`;
-      //   }
-      //   return url;
-      // }
-
-      return baseUrl
-    },
   },
+  adapter: PrismaAdapter(db),
   secret: process.env.AUTH_SECRET,
   session: {
     strategy: 'jwt',
-    maxAge: 60 * 60 * 24,
   },
   ...authConfig,
 })

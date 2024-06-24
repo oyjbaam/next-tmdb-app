@@ -43,7 +43,7 @@ export const requestFetch = async <T>(endPoint: string, config: RequestInit = {}
     let errorMessage = 'Something went wrong'
     try {
       const errorData = await res.json()
-      errorMessage = errorData.message || errorMessage
+      errorMessage = errorData.status_message || errorMessage
       console.error('Error response JSON:', errorData)
     } catch (parseError) {
       console.error('Error parsing JSON response:', parseError)
