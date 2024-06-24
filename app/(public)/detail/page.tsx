@@ -7,8 +7,34 @@ import CastList from './_components/CastList'
 import VideoAndPicture from './_components/VideoAndPicture'
 import Synopsis from './_components/Synopsis'
 import { MediaType } from '@/shared/types'
+import { Metadata } from 'next'
+
 type DetailPageProps = {
   searchParams: Record<string, string | undefined>
+}
+
+export async function generateMetadata({ searchParams }: DetailPageProps): Promise<Metadata> {
+  const mediaType = searchParams.mediaType as MediaType
+  const dataId = searchParams.id ?? ''
+  const responseData = await getDetail(mediaType, dataId)
+  const detailData = getDetailData(responseData)
+  const { imgPath, title, overView } = detailData
+  const posterPath = imgPath ? `https://image.tmdb.org/t/p/w500${imgPath}` : '/images/defaultImage.png'
+
+  const description = overView || ''
+  return {
+    title,
+    description,
+    openGraph: {
+      title: title || '',
+      description,
+      type: 'website',
+      url: `${process.env.NEXT_PUBLIC_CLIENT_URL}/detail?mediaType=${mediaType}&id=${dataId}`,
+      images: posterPath,
+      siteName: '',
+      locale: 'ko_KR',
+    },
+  }
 }
 
 const DetailPage = async ({ searchParams }: DetailPageProps) => {
