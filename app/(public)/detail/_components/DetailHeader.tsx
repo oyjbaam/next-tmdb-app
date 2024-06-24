@@ -2,15 +2,21 @@ import React from 'react'
 import { StarIcon } from 'lucide-react'
 import FlexBox from '@/components/ui/FlexBox'
 import { DetailDataType } from '../types/detailData'
-
+import { Oswald } from 'next/font/google'
 type DetailHeaderProps = {
   data: DetailDataType
 }
 
+const oswald = Oswald({
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+})
+
 const DetailHeader = ({ data }: DetailHeaderProps) => {
   return (
     <header className="space-y-4">
-      <div>
+      <div className={`${oswald.className}`}>
         <h1 className="text-6xl font-bold dark:text-white">{(data.original_title || '').toUpperCase()}</h1>
         <h2 className="text-3xl mt-1">{(data.title || '').toUpperCase()}</h2>
       </div>
