@@ -38,7 +38,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       token.isOAuth = !!existingAccount
       token.name = existingUser.name
       token.email = existingUser.email
-      token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled
+
       return token
     },
     session: async ({ session, token }) => {
@@ -47,7 +47,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
 
       if (session.user) {
-        session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean
         session.user.name = token.name
         session.user.email = token.email as string
         session.user.isOAuth = token.isOAuth as boolean
