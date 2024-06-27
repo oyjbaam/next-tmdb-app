@@ -1,4 +1,11 @@
-export const publicRoutes: string[] = ['/', '/movie/:path*', '/tv/:path*', '/detail/:path*', '/search/:path*']
+export const publicRoutes: string[] = [
+  '/',
+  '/movie/:path*',
+  '/tv/:path*',
+  '/detail/:path*',
+  '/search/:path*',
+  '/auth/new-verification',
+]
 
 export const movieChannelRoutes: string[] = ['/popular', '/now_playing', '/upcoming', '/top_rated']
 

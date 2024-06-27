@@ -31,8 +31,10 @@ const SignupForm = () => {
     setSuccess('')
     startTransition(async () => {
       const res = await signup(values)
-      if (res) {
+      if (res.error) {
         setError(res.error)
+      }
+      if (res.success) {
         setSuccess(res.success)
       }
     })
