@@ -11,7 +11,7 @@ const FormSuccessMessage = ({ message }: FormSuccessMessageProps) => {
     <FlexBox
       justifyContent="center"
       alignItems="center"
-      className="bg-emerald-500/15 p-3 rounded-md gap-x-2 text-sm text-emerald-500"
+      className="bg-emerald-700 p-3 rounded-md gap-x-2 text-sm text-destructive dark:text-destructive-foreground"
     >
       <CircleCheck className="h-4 w-4" />
       <p>{message}</p>

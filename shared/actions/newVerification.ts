@@ -1,8 +1,10 @@
 'use server'
-
 import { db } from '../db'
 import { getUserByEmail, getVerificationTokenByToken } from '../data'
 
+/**
+ * 이메일 인증 토큰 검증 및 업데이트, 삭제
+ */
 export const newVerification = async (token: string) => {
   const existingToken = await getVerificationTokenByToken(token)
 

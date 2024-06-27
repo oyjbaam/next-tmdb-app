@@ -20,8 +20,6 @@ model User {
   emailVerified         DateTime?
   image                 String?
   password              String?
-  isTwoFactorEnabled    Boolean                @default(false)
-  twoFactorConfirmation TwoFactorConfirmation?
   accounts              Account[]
 
   @@map("User")
@@ -57,11 +55,3 @@ model VerificationToken {
   @@map("VerificationToken")
 }
 
-model TwoFactorConfirmation {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId])
-  @@map("TwoFactorConfirmation")
-}
