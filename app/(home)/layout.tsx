@@ -1,5 +1,3 @@
-import React from 'react'
-
 type InnerLayoutProps = {
   children: React.ReactNode
   whatspopular: React.ReactNode

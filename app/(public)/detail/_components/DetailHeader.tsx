@@ -3,6 +3,8 @@ import { StarIcon } from 'lucide-react'
 import FlexBox from '@/components/ui/FlexBox'
 import { DetailDataType } from '../types/detailData'
 import { Oswald } from 'next/font/google'
+import { starColor, textColorClass } from '@/shared/util/starColor'
+
 type DetailHeaderProps = {
   data: DetailDataType
 }
@@ -52,7 +54,7 @@ const DetailHeader = ({ data }: DetailHeaderProps) => {
       </ul>
 
       {data.vote !== null && data.vote !== undefined && (
-        <FlexBox alignItems="center" className="gap-2 text-yellow-400">
+        <FlexBox alignItems="center" className={`gap-2 ${textColorClass[starColor(data.vote).index]}`}>
           <StarRating voteAverage={data.vote} />
           <span className="text-base">{data.vote.toFixed(1)}</span>
         </FlexBox>
@@ -81,7 +83,14 @@ const StarRating = ({ voteAverage }: StarRatingProps) => {
   return (
     <FlexBox className="gap-2">
       {stars.map(star => {
-        return <StarIcon className="w-5 h-5" key={star} fill={rating >= star ? 'gold' : 'none'} />
+        return (
+          <StarIcon
+            className="w-5 h-5"
+            key={star}
+            fill={rating >= star ? starColor(voteAverage).color : 'none'}
+            stroke={starColor(voteAverage).color}
+          />
+        )
       })}
     </FlexBox>
   )
