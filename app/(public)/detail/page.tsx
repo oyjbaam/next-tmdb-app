@@ -65,15 +65,20 @@ const DetailPage = async ({ searchParams }: DetailPageProps) => {
 
   return (
     <>
-      <section className="relative h-[750px] w-[500px] rounded-md overflow-hidden ">
-        <Image
-          src={posterPath}
-          alt={title || '포스터 이미지'}
-          fill
-          sizes="auto"
-          className="object-cover"
-          title={title || '포스터 이미지'}
-        />
+      <section className="relative lg:h-[750px] h-[35.8125rem] w-full md:pr-4">
+        <div className="relative w-full h-full overflow-hidden">
+          <Image
+            src={posterPath}
+            alt={title || '포스터 이미지'}
+            fill
+            sizes="auto"
+            className="object-contain"
+            title={title || '포스터 이미지'}
+            priority
+            decoding="async"
+            fetchPriority="high"
+          />
+        </div>
       </section>
 
       <section className="space-y-8 px-5 lg:px-0 max-w-[600px] w-full">

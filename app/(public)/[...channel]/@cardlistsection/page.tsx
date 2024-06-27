@@ -48,7 +48,11 @@ const CardListSection = async ({ params, searchParams }: CardListSectionProps) =
           {fetchResult.results.map((data, idx) => {
             const mediaType = data.media_type ? data.media_type : channel
             return (
-              <Link href={`/detail?mediaType=${mediaType}&id=${data.id}`} key={data.id + idx}>
+              <Link
+                href={`/detail?mediaType=${mediaType}&id=${data.id}`}
+                key={data.id + idx}
+                className="w-full sm:w-80 md:w-64 lg:w-56 max-w-96"
+              >
                 <Card data={data} />
               </Link>
             )

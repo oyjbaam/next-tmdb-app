@@ -36,7 +36,7 @@ const Pagination = ({ page, totalPages, query }: PaginationProps) => {
   )
   return (
     <nav className="w-full text-center my-8" aria-label="Page navigation">
-      <ul className="inline-flex items-center gap-4 text-sm">
+      <ul className="inline-flex items-center gap-1 text-sm md:gap-4">
         <li className={`${pageLiClass} w-10`}>
           <Link
             href={generateLink(currentPageNum > 1 ? currentPageNum - 1 : 1)}

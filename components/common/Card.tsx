@@ -12,14 +12,14 @@ const Card = ({ data, isMain = false }: CardProps) => {
 
   const posterPath = imgPath ? `https://image.tmdb.org/t/p/w500${imgPath}` : '/images/defaultImage.png'
 
-  const widthClass = isMain ? 'w-56' : 'w-96 sm:w-80 md:w-64 lg:w-56'
+  const widthClass = isMain ? 'w-56' : 'w-full max-w-96 sm:w-80 md:w-64 lg:w-56'
   const imgHeightClass = isMain
     ? 'h-[20.8125rem]'
     : 'h-[35.8125rem] lg:h-[20.8125rem] md:h-[23.8125rem] sm:h-[29.8125rem]'
 
   return (
     <div
-      className={`${widthClass} shrink-0 justify-between rounded-md flex flex-col overflow-hidden bg-white transition duration-200 cursor-pointer border border-slate-200 lg:hover:border-blue-300 lg:hover:text-blue-400 dark:bg-slate-700 dark:border-slate-600 shadow-md"`}
+      className={`${widthClass}  shrink-0 justify-between rounded-md flex flex-col overflow-hidden bg-white transition duration-200 cursor-pointer border border-slate-200 lg:hover:border-blue-300 lg:hover:text-blue-400 dark:bg-slate-700 dark:border-slate-600 shadow-md"`}
     >
       <div className={`relative ${imgHeightClass} backdrop-blur-md`}>
         <Image

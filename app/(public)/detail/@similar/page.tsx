@@ -22,7 +22,7 @@ const SimilarPage = async ({ searchParams }: SimilarPageProps) => {
           const type = data.media_type ? data.media_type : mediaType
           return (
             <Link href={`/detail?mediaType=${type}&id=${data.id}`} key={data.id}>
-              <Card data={data} />
+              <Card data={data} isMain />
             </Link>
           )
         })}
