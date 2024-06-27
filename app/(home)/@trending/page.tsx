@@ -2,8 +2,7 @@ import React from 'react'
 import TabsWrapper from '@/components/common/TabsWrapper'
 import { TabsContent } from '@/components/ui/tabs'
 import { getTrending } from '@/shared/api/tmdbAPI'
-import Card from '@/components/common/Card'
-import Link from 'next/link'
+import Card from '@/components/common/card/Card'
 
 type TrendingPageProps = {
   searchParams: Record<string, string | undefined>
@@ -22,9 +21,7 @@ const TrendingPage = async ({ searchParams }: TrendingPageProps) => {
           <div className="overflow-x-scroll flex gap-4 py-4">
             {trendingData.results.map(data => {
               return (
-                <Link href={`/detail?mediaType=${data.media_type}&id=${data.id}`} key={data.id}>
-                  <Card data={data} isMain />
-                </Link>
+                <Card href={`/detail?mediaType=${data.media_type}&id=${data.id}`} key={data.id} data={data} isMain />
               )
             })}
           </div>
@@ -33,9 +30,7 @@ const TrendingPage = async ({ searchParams }: TrendingPageProps) => {
           <div className="overflow-x-scroll flex gap-4 py-4">
             {trendingData.results.map(data => {
               return (
-                <Link href={`/detail?mediaType=${data.media_type}&id=${data.id}`} key={data.id}>
-                  <Card data={data} isMain />
-                </Link>
+                <Card href={`/detail?mediaType=${data.media_type}&id=${data.id}`} key={data.id} data={data} isMain />
               )
             })}
           </div>

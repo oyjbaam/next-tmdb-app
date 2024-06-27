@@ -2,8 +2,7 @@ import React from 'react'
 import { getPopular } from '@/shared/api/tmdbAPI'
 import TabsWrapper from '@/components/common/TabsWrapper'
 import { TabsContent } from '@/components/ui/tabs'
-import Card from '@/components/common/Card'
-import Link from 'next/link'
+import Card from '@/components/common/card/Card'
 import { ChannelType } from '@/shared/types'
 import FlexBox from '@/components/ui/FlexBox'
 
@@ -22,23 +21,15 @@ const WhatsPopularPage = async ({ searchParams }: WhatsPopularPageProps) => {
         <TabsContent value="movie" className="w-full">
           <FlexBox className="overflow-x-scroll gap-4 py-4">
             {popularData.results.map(movie => {
-              return (
-                <Link href={`/detail?mediaType=movie&id=${movie.id}`} key={movie.id}>
-                  <Card data={movie} isMain />
-                </Link>
-              )
+              return <Card href={`/detail?mediaType=movie&id=${movie.id}`} key={movie.id} data={movie} isMain />
             })}
           </FlexBox>
         </TabsContent>
         <TabsContent value="tv">
           <FlexBox className="overflow-x-scroll gap-4 py-4">
-            {popularData.results.map(tv => {
-              return (
-                <Link href={`/detail?mediaType=tv&id=${tv.id}`} key={tv.id}>
-                  <Card key={tv.id} data={tv} isMain />
-                </Link>
-              )
-            })}
+            {popularData.results.map(tv => (
+              <Card href={`/detail?mediaType=tv&id=${tv.id}`} key={tv.id} data={tv} isMain />
+            ))}
           </FlexBox>
         </TabsContent>
       </TabsWrapper>
