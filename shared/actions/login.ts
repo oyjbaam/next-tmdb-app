@@ -1,11 +1,10 @@
 'use server'
 import * as z from 'zod'
 import { LoginSchema } from '@/app/auth/login/schema/loginSchema'
-import { getUserByEmail } from '../data/user'
+import { getUserByEmail, generateVerifiToken, sendVerificationEmail } from '@/shared/data'
 import { signIn } from '@/auth'
 import { AuthError } from 'next-auth'
 import bcrypt from 'bcryptjs'
-import { generateVerifiToken } from '@/shared/data/generateVerifiToken'
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
   const validatedFields = LoginSchema.safeParse(values)
@@ -25,11 +24,13 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     return { error: '아이디 또는 패스워드를 확인해주세요.' }
   }
 
-  // if (!existingUser.emailVerified) {
-  //   const verifiToken = await generateVerifiToken(existingUser.email)
+  if (!existingUser.emailVerified) {
+    const verifiToken = await generateVerifiToken(existingUser.email)
 
-  //   return { success: '인증 이메일이 전송되었습니다.' }
-  // }
+    await sendVerificationEmail(verifiToken.email, verifiToken.token)
+
+    return { success: '인증 이메일이 전송되었습니다.' }
+  }
 
   try {
     await signIn('credentials', {
