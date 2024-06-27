@@ -15,17 +15,13 @@ type MoblieAuthButtonGroupProps = {
 const MoblieAuthButtonGroup = ({ session }: MoblieAuthButtonGroupProps) => {
   const [open, setOpen] = useState(false)
 
-  const handleCloseBackDrop = () => {
-    setOpen(false)
-  }
-
   return (
     <>
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <IconButton intent="text" icon={FaUser} aria-label="유저 아이콘" />
         </DropdownMenuTrigger>
-        {session ? <IsLoginDropdownMenu /> : <MobileAuthDropDownMenu onClick={handleCloseBackDrop} />}
+        {session ? <IsLoginDropdownMenu /> : <MobileAuthDropDownMenu />}
       </DropdownMenu>
       <IsOpenBackdrop open={open} />
     </>
@@ -33,14 +29,3 @@ const MoblieAuthButtonGroup = ({ session }: MoblieAuthButtonGroupProps) => {
 }
 
 export default MoblieAuthButtonGroup
-
-//  {/* 모바일 버튼 */}
-//  <li className="md:hidden flex">
-//  <DropdownMenu open={open} onOpenChange={setOpen}>
-//    <DropdownMenuTrigger asChild>
-//      <IconButton intent="text" icon={FaUser} aria-label="유저 아이콘" />
-//    </DropdownMenuTrigger>
-//    <MobileAuthDropDownMenu onClick={handleCloseBackdrop} />
-//  </DropdownMenu>
-//  <IsOpenBackdrop open={open} />
-// </li>
