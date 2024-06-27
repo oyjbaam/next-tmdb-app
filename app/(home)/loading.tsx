@@ -1,4 +1,4 @@
-import CardSkeleton from '@/components/common/cardSkeleton'
+import CardSkeleton from '@/components/common/CardSkeleton'
 import FlexBox from '@/components/ui/FlexBox'
 import React from 'react'
 

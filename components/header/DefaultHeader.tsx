@@ -1,6 +1,6 @@
 import AuthButtonGroup from './authBtnGroup/AuthButtonGroup'
 import ToggleThemeButton from './themeGroup/ToggleThemeButton'
-import SearchInput from './searchInput'
+import SearchInput from './SearchInput'
 import ToggleSideBarButton from './ToggleSideBarButton'
 import Logo from '../common/Logo'
 import FlexBox from '../ui/FlexBox'
