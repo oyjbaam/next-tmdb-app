@@ -14,17 +14,17 @@ import { useCallback, useState, useEffect } from 'react'
 import { useQueryString } from './useQueryString'
 
 const useCalendar = () => {
-  const { searchParams, router } = useQueryString()
+  const { router, params } = useQueryString()
   const [currentDate, setCurrentDate] = useState(new Date())
   const [currentYear, currentMonth, currentDay] = format(currentDate, 'yyyy-MM-dd').split('-')
-  const [startDate, setStartDate] = useState<string | null>(searchParams.get('primary_release_date.gte'))
-  const [endDate, setEndDate] = useState<string | null>(searchParams.get('primary_release_date.lte'))
+  const [startDate, setStartDate] = useState<string | null>(params.get('primary_release_date.gte'))
+  const [endDate, setEndDate] = useState<string | null>(params.get('primary_release_date.lte'))
   const [isSelectingStartDate, setIsSelectingStartDate] = useState(true)
+  const isDiscover = params.get('discover')
   const startCurrentMonth = startOfMonth(currentDate)
   const endCurrentMonth = endOfMonth(currentDate)
   const startOfFirstWeek = startOfWeek(startCurrentMonth, { weekStartsOn: 0 })
   const endOfLastWeek = endOfWeek(endCurrentMonth, { weekStartsOn: 0 })
-
   const days = eachDayOfInterval({
     start: startOfFirstWeek,
     end: endOfLastWeek,
@@ -68,7 +68,7 @@ const useCalendar = () => {
   })
 
   const generateLink = useCallback(() => {
-    const newQuery = new URLSearchParams(searchParams.toString())
+    const newQuery = params
     if (startDate) {
       newQuery.set('primary_release_date.gte', startDate)
     } else {
@@ -81,11 +81,18 @@ const useCalendar = () => {
       newQuery.delete('primary_release_date.lte')
     }
     router.push(`?${newQuery.toString()}`, { scroll: false })
-  }, [searchParams, router, startDate, endDate])
+  }, [params, router, startDate, endDate])
 
   useEffect(() => {
     generateLink()
-  }, [generateLink])
+  }, [generateLink, startDate, endDate])
+
+  useEffect(() => {
+    if (!isDiscover) {
+      setStartDate(null)
+      setEndDate(null)
+    }
+  }, [isDiscover])
 
   return {
     currentDate: {

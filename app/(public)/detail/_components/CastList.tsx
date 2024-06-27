@@ -2,13 +2,21 @@ import FlexBox from '@/components/ui/FlexBox'
 import { getCredits } from '@/shared/api/tmdbDetailApi'
 import React from 'react'
 import Image from 'next/image'
+import { MediaType } from '@/shared/types'
+import { Oswald } from 'next/font/google'
 
 type CastListProps = {
-  fetchUrl: string
+  dataId: string
+  mediaType: MediaType
 }
+const oswald = Oswald({
+  weight: ['400'],
+  subsets: ['latin'],
+  display: 'swap',
+})
 
-const CastList = async ({ fetchUrl }: CastListProps) => {
-  const creditsData = await getCredits(fetchUrl)
+const CastList = async ({ mediaType, dataId }: CastListProps) => {
+  const creditsData = await getCredits(mediaType, dataId)
 
   if (creditsData.cast.length < 1) {
     return null
@@ -16,7 +24,7 @@ const CastList = async ({ fetchUrl }: CastListProps) => {
 
   return (
     <div className="space-y-1">
-      <h3 className="text-2xl dark:text-white">THE CAST</h3>
+      <h3 className={`${oswald.className} text-2xl dark:text-white`}>THE CAST</h3>
       <FlexBox className="flex-wrap gap-4 w-full">
         {creditsData.cast.slice(0, 9).map(item => {
           const imgPath = item.profile_path

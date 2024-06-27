@@ -16,6 +16,10 @@ export const requestFetch = async <T>(endPoint: string, config: RequestInit = {}
   const url = BASE_URL + endPoint
   const fetchURL = new URL(url)
 
+  if (!fetchURL.pathname.endsWith('/images') && !fetchURL.pathname.includes('person')) {
+    fetchURL.searchParams.set('language', 'ko-kr')
+  }
+
   const urlString = fetchURL.toString()
 
   try {
@@ -39,7 +43,7 @@ export const requestFetch = async <T>(endPoint: string, config: RequestInit = {}
     let errorMessage = 'Something went wrong'
     try {
       const errorData = await res.json()
-      errorMessage = errorData.message || errorMessage
+      errorMessage = errorData.status_message || errorMessage
       console.error('Error response JSON:', errorData)
     } catch (parseError) {
       console.error('Error parsing JSON response:', parseError)

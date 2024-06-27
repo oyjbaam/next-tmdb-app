@@ -4,7 +4,6 @@ import GitHub from 'next-auth/providers/github'
 import Google from 'next-auth/providers/google'
 import { LoginSchema } from '@/app/auth/login/schema/loginSchema'
 import { getUserByEmail } from '@/shared/data/user'
-import bcrypt from 'bcryptjs'
 
 export default {
   providers: [
@@ -15,16 +14,11 @@ export default {
         const validatedFields = LoginSchema.safeParse(credentials)
 
         if (validatedFields.success) {
-          const { email, password } = validatedFields.data
+          const { email } = validatedFields.data
 
           try {
             const user = await getUserByEmail(email)
             if (!user || !user.password) return null
-            const passwordsMatch = await bcrypt.compare(password, user.password)
-
-            if (!passwordsMatch) {
-              throw new Error('패스워드가 일치 하지 않습니다.')
-            }
 
             return user
           } catch (error) {
@@ -39,7 +33,4 @@ export default {
       },
     }),
   ],
-  pages: {
-    signIn: '/auth/login',
-  },
 } satisfies NextAuthConfig

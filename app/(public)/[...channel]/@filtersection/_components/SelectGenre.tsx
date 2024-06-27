@@ -4,11 +4,11 @@ import { getGenreList } from '@/shared/api/tmdbFilterListApi'
 
 type SelectGenreProps = {
   searchParams: Record<string, string | string[] | undefined>
-  genListParameter: 'movie' | 'tv'
+  mediaType: 'movie' | 'tv'
 }
 
-const SelectGenre = async ({ searchParams, genListParameter }: SelectGenreProps) => {
-  const res = await getGenreList(genListParameter)
+const SelectGenre = async ({ searchParams, mediaType }: SelectGenreProps) => {
+  const res = await getGenreList(mediaType)
   const initialGenres = Array.isArray(searchParams.with_genres)
     ? searchParams.with_genres
     : searchParams.with_genres

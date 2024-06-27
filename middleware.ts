@@ -7,13 +7,13 @@ const { auth } = NextAuth(authConfig)
 
 export default auth(req => {
   const { nextUrl } = req
-  const isLoggedIn = !!req.auth
+  const isLoggedIn = Boolean(req.auth)
 
-  if (isApiAuthRequest(apiAuthPrefix)) {
+  if (isApiAuthRequest(nextUrl.pathname)) {
     return NextResponse.next()
   }
 
-  // 로그인 한 사용자 '/'으로 리디렉션
+  // 로그인 한 사용자 auth페이지 접근시 '/'으로 리디렉션
   if (isAuthRoute(nextUrl.pathname)) {
     if (isLoggedIn) {
       return NextResponse.redirect(new URL('/', nextUrl))
@@ -22,7 +22,7 @@ export default auth(req => {
   }
 
   // 로그인 X면서, 로그인 필요 페이지 접근시 '/auth/login'으로 리디렉션
-  if (!isLoggedIn && !isPublicRoute) {
+  if (!isLoggedIn && !isPublicRoute(nextUrl.pathname)) {
     return NextResponse.redirect(new URL('/auth/login', nextUrl))
   }
   return NextResponse.next()

@@ -3,7 +3,7 @@ import * as z from 'zod'
 import bcrypt from 'bcryptjs'
 import { db } from '../db'
 import { SignupSchema } from '@/app/auth/signup/schema/signupSchema'
-import { getUserByEmail } from '../data/user'
+import { getUserByEmail, generateVerifiToken, sendVerificationEmail } from '@/shared/data'
 
 export const signup = async (values: z.infer<typeof SignupSchema>) => {
   const validatedFields = SignupSchema.safeParse(values)
@@ -27,8 +27,8 @@ export const signup = async (values: z.infer<typeof SignupSchema>) => {
     },
   })
 
-  // const verificationToken = await generateVerificationToken(email)
-  // // TODO : Send verification token email
-  // await sendVerificationEmail(verificationToken.email, verificationToken.token)
-  return { success: '이메일 인증을 해주세요!' }
+  const verificationToken = await generateVerifiToken(email)
+
+  await sendVerificationEmail(verificationToken.email, verificationToken.token)
+  return { success: '인증 이메일이 전송되었습니다.' }
 }

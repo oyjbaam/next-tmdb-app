@@ -3,14 +3,21 @@ import VideoList from './VideoList'
 import ImageList from './ImageList'
 import VideoPictureSkeleton from './VideoPictureSkeleton'
 import FlexBox from '@/components/ui/FlexBox'
+import { MediaType } from '@/shared/types'
+import { Oswald } from 'next/font/google'
 type VideoAndPictureProps = {
-  fetchUrl: string
+  dataId: string
+  mediaType: MediaType
 }
-
-const VideoAndPicture = ({ fetchUrl }: VideoAndPictureProps) => {
+const oswald = Oswald({
+  weight: ['400'],
+  subsets: ['latin'],
+  display: 'swap',
+})
+const VideoAndPicture = ({ mediaType, dataId }: VideoAndPictureProps) => {
   return (
     <div className="space-y-1 w-full">
-      <h3 className="text-2xl dark:text-white">VIDEO / PICTURE</h3>
+      <h3 className={`${oswald.className} text-2xl dark:text-white`}>VIDEO / PICTURE</h3>
       <div className="space-y-2">
         <Suspense
           fallback={
@@ -21,7 +28,7 @@ const VideoAndPicture = ({ fetchUrl }: VideoAndPictureProps) => {
             </FlexBox>
           }
         >
-          <VideoList fetchUrl={fetchUrl} />
+          <VideoList dataId={dataId} mediaType={mediaType} />
         </Suspense>
         <Suspense
           fallback={
@@ -32,7 +39,7 @@ const VideoAndPicture = ({ fetchUrl }: VideoAndPictureProps) => {
             </FlexBox>
           }
         >
-          <ImageList fetchUrl={fetchUrl} />
+          <ImageList dataId={dataId} mediaType={mediaType} />
         </Suspense>
       </div>
     </div>

@@ -1,17 +1,15 @@
-export const publicRoutes: string[] = ['/', '/movie/:path*', '/tv/:path*']
-
-export const channelRoutes: string[] = [
-  '/movie/popular',
-  '/movie/now_playing',
-  '/movie/upcoming',
-  '/movie/top_rated',
-  '/tv/popular',
-  '/tv/airing_today',
-  '/tv/on_the_air',
-  '/tv/top_rated',
+export const publicRoutes: string[] = [
+  '/',
+  '/movie/:path*',
+  '/tv/:path*',
+  '/detail/:path*',
+  '/search/:path*',
+  '/auth/new-verification',
 ]
 
-export const tvChannelRoutes: string[] = ['/tv/popular', '/tv/airing_today', '/tv/on_the_air', '/tv/top_rated']
+export const movieChannelRoutes: string[] = ['/popular', '/now_playing', '/upcoming', '/top_rated']
+
+export const tvChannelRoutes: string[] = ['/popular', '/airing_today', '/on_the_air', '/top_rated']
 
 /**
  * 인증에 사용되는 경로 배열

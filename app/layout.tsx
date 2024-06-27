@@ -3,7 +3,7 @@ import './globals.css'
 import ThemeProviders from '@/shared/context/themeProviders'
 import DefaultHeader from '@/components/header/DefaultHeader'
 import SideNavigation from '@/components/nav/SideNav'
-
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { SessionProvider } from 'next-auth/react'
 import { auth } from '@/auth'
 import SidebarProvider from '@/shared/context/sidebarToggleProvider'
@@ -28,6 +28,7 @@ const RootLayout = async ({
               <DefaultHeader />
               <SideNavigation />
               <main className="w-full mx-auto mt-10 px-4 xl:px-0">{children}</main>
+              <SpeedInsights />
             </SidebarProvider>
           </ThemeProviders>
         </body>
