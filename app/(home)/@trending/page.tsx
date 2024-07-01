@@ -3,6 +3,7 @@ import TabsWrapper from '@/components/common/TabsWrapper'
 import { TabsContent } from '@/components/ui/tabs'
 import { getTrending } from '@/shared/api/tmdbAPI'
 import Card from '@/components/common/card/Card'
+import Link from 'next/link'
 
 type TrendingPageProps = {
   searchParams: Record<string, string | undefined>
@@ -21,7 +22,9 @@ const TrendingPage = async ({ searchParams }: TrendingPageProps) => {
           <div className="overflow-x-scroll flex gap-4 py-4">
             {trendingData.results.map(data => {
               return (
-                <Card href={`/detail?mediaType=${data.media_type}&id=${data.id}`} key={data.id} data={data} isMain />
+                <Link href={`/detail?mediaType=${data.media_type}&id=${data.id}`} key={data.id}>
+                  <Card data={data} isMain />
+                </Link>
               )
             })}
           </div>
@@ -30,7 +33,9 @@ const TrendingPage = async ({ searchParams }: TrendingPageProps) => {
           <div className="overflow-x-scroll flex gap-4 py-4">
             {trendingData.results.map(data => {
               return (
-                <Card href={`/detail?mediaType=${data.media_type}&id=${data.id}`} key={data.id} data={data} isMain />
+                <Link href={`/detail?mediaType=${data.media_type}&id=${data.id}`} key={data.id}>
+                  <Card data={data} isMain />
+                </Link>
               )
             })}
           </div>
