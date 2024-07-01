@@ -17,7 +17,7 @@ model User {
   password              String?
   accounts              Account[]
   likedMovies           LikedMovie[]
-  movieLists            MovieList[]
+  // movieLists            MovieList[]
   @@map("User")
 }
 
@@ -51,46 +51,47 @@ model VerificationToken {
   @@map("VerificationToken")
 }
 
-model Movie {
-  id            String @id @default(auto()) @map("_id") @db.ObjectId
-  tmdbId        Int
-  title         String
-  releaseDate   DateTime
-  imgPath       String
-  vote          Float
-  likedBy       LikedMovie[]
-  inMovieLists  MovieListMovie[]
-
-  @@map("Movie")
-}
-
 
 model LikedMovie {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  userId   String @map("user_id") @db.ObjectId
-  movieId  String @map("movie_id") @db.ObjectId
-  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  movie    Movie  @relation(fields: [movieId], references: [id], onDelete: Cascade)
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String    @db.ObjectId
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tmdbId      Int
+  title       String
+  releaseDate DateTime?
+  imgPath     String?
+  vote        Float?
+  mediaType   String?
 
   @@map("LikedMovie")
+  @@index([userId])
 }
 
-model MovieList {
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  userId    String @map("user_id") @db.ObjectId
-  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  movies    MovieListMovie[]
+// model MovieList {
+//   id        String @id @default(auto()) @map("_id") @db.ObjectId
+//   name      String
+//   userId    String @map("user_id") @db.ObjectId
+//   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   movies    MovieListMovie[]
 
-  @@map("MovieList")
-}
+//   @@map("MovieList")
+// }
+// model Movie {
+//   id          String @id @default(auto()) @map("_id") @db.ObjectId
+//   tmdbId      Int
+//   title       String
+//   releaseDate DateTime
+//   imgPath     String
+//   vote        Float
+//   inMovieLists MovieListMovie[]
+//   @@map("Movie")
+// }
 
-model MovieListMovie {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
-  movieListId String @map("movie_list_id") @db.ObjectId
-  movieId     String @map("movie_id") @db.ObjectId
-  movieList   MovieList @relation(fields: [movieListId], references: [id], onDelete: Cascade)
-  movie       Movie @relation(fields: [movieId], references: [id], onDelete: Cascade)
-
-  @@map("MovieListMovie")
-}
+// model MovieListMovie {
+//   id          String @id @default(auto()) @map("_id") @db.ObjectId
+//   movieListId String @map("movie_list_id") @db.ObjectId
+//   movieId     String @map("movie_id") @db.ObjectId
+//   movieList   MovieList @relation(fields: [movieListId], references: [id], onDelete: Cascade)
+//   movie       Movie @relation(fields: [movieId], references: [id], onDelete: Cascade)
+//   @@map("MovieListMovie")
+// }
