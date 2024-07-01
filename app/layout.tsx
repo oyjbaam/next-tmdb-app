@@ -7,6 +7,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { SessionProvider } from 'next-auth/react'
 import { auth } from '@/auth'
 import SidebarProvider from '@/shared/context/sidebarToggleProvider'
+import { Toaster } from '@/components/ui/sonner'
 
 export const metadata: Metadata = {
   title: 'TMDB Movie',
@@ -30,6 +31,7 @@ const RootLayout = async ({
               <main className="w-full mx-auto mt-10 px-4 xl:px-0">{children}</main>
               <SpeedInsights />
             </SidebarProvider>
+            <Toaster />
           </ThemeProviders>
         </body>
       </html>

@@ -29,7 +29,7 @@ export async function toggleLikeMovie(cardData: CardDataType): Promise<{ isSucce
       // 새로운 좋아요 추가
       await db.likedMovie.create({
         data: {
-          userId: user.id,
+          userId: user.id as string,
           tmdbId: cardData.id,
           title: cardData.title,
           releaseDate: cardData.date ? new Date(cardData.date) : null,

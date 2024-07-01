@@ -26,7 +26,6 @@ const Card = async ({ data, isMain = false }: CardProps) => {
     : 'h-[35.8125rem] lg:h-[20.8125rem] md:h-[23.8125rem] sm:h-[29.8125rem]'
 
   const likedMovie = await getLikedMovieById(id, user?.id)
-  console.log(likedMovie)
   const initialIsLike = !!likedMovie
 
   return (

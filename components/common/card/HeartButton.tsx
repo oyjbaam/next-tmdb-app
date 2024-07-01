@@ -1,9 +1,12 @@
 'use client'
+
 import React, { useState, MouseEvent } from 'react'
 import { IconButton } from '@/components/ui/button'
 import { Heart } from 'lucide-react'
 import type { CardDataType } from '@/shared/types/cardDataType'
 import { toggleLikeMovie } from '@/shared/actions/likeMovie'
+import { toast } from 'sonner'
+import { useQueryString } from '@/shared/hooks/useQueryString'
 
 type HeartButtonProps = {
   id: number
@@ -13,21 +16,25 @@ type HeartButtonProps = {
 
 const HeartButton = ({ id, cardData, initialIsLike }: HeartButtonProps) => {
   const [isLike, setIsLike] = useState(initialIsLike)
-  const [message, setMessage] = useState('')
+  const { router } = useQueryString()
+
   const onClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     try {
-      setMessage('')
       const updatedIsLike = await toggleLikeMovie(cardData)
-      setIsLike(updatedIsLike.isSuccess)
       if (updatedIsLike.message) {
-        setMessage(updatedIsLike.message)
+        if (confirm(updatedIsLike.message)) {
+          router.push('/auth/login')
+        }
       }
+      setIsLike(updatedIsLike.isSuccess)
     } catch (error) {
       console.error('Failed to toggle like:', error)
     }
   }
+
   const isLikedClass = isLike ? '*:fill-red-400 *:stroke-red-400 ' : ' *:fill-none '
+
   return (
     <IconButton
       onClick={onClick}
