@@ -3,7 +3,7 @@ import Credentials from 'next-auth/providers/credentials'
 import GitHub from 'next-auth/providers/github'
 import Google from 'next-auth/providers/google'
 import { LoginSchema } from '@/app/auth/login/schema/loginSchema'
-import { getUserByEmail } from '@/shared/data/user'
+import { getUserByEmail } from '@/shared/data'
 
 export default {
   providers: [
