@@ -2,7 +2,7 @@ import React from 'react'
 import TabsWrapper from '@/components/common/TabsWrapper'
 import { TabsContent } from '@/components/ui/tabs'
 import { getTrending } from '@/shared/api/tmdbAPI'
-import Card from '@/components/common/Card'
+import Card from '@/components/common/card/Card'
 import Link from 'next/link'
 
 type TrendingPageProps = {

@@ -1,5 +1,7 @@
-export * from './account'
-export * from './generateVerifiToken'
-export * from './resendMail'
-export * from './user'
-export * from './verificationToken'
+export * from './user/account'
+export * from './user/generateVerifiToken'
+export * from './user/resendMail'
+export * from './user/user'
+export * from './user/verificationToken'
+
+export * from './movie/likedMovie'

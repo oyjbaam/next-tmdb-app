@@ -1,7 +1,7 @@
 import { getSimilarContents } from '@/shared/api/tmdbDetailApi'
 import { MediaType } from '@/shared/types'
 import React from 'react'
-import Card from '@/components/common/Card'
+import Card from '@/components/common/card/Card'
 import FlexBox from '@/components/ui/FlexBox'
 import Link from 'next/link'
 
@@ -22,7 +22,7 @@ const SimilarPage = async ({ searchParams }: SimilarPageProps) => {
           const type = data.media_type ? data.media_type : mediaType
           return (
             <Link href={`/detail?mediaType=${type}&id=${data.id}`} key={data.id}>
-              <Card data={data} />
+              <Card data={data} isMain />
             </Link>
           )
         })}

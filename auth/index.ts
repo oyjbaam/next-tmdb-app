@@ -1,7 +1,6 @@
 import NextAuth from 'next-auth'
 import authConfig from './authConfig'
-import { getUserById } from '@/shared/data/user'
-import { getAccountByUserId } from '@/shared/data/account'
+import { getUserById, getAccountByUserId } from '@/shared/data'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { db } from '@/shared/db'
 

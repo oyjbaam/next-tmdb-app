@@ -1,11 +1,11 @@
-import React from 'react'
 import Link from 'next/link'
 import { buttonStyles } from '@/components/ui/button'
+import MoblieAuthButtonGroup from './MoblieAuthButtonGroup'
 
 const AuthButtonGroup = () => {
   return (
     <>
-      <li className="hidden md:flex">
+      <li className="hidden md:block space-x-1">
         <Link
           className={buttonStyles({ intent: 'filled', sizes: 'sm' })}
           href="/auth/login"
@@ -13,8 +13,6 @@ const AuthButtonGroup = () => {
         >
           Login
         </Link>
-      </li>
-      <li className="hidden md:flex">
         <Link
           className={buttonStyles({ intent: 'filled', sizes: 'sm' })}
           href="/auth/signup"
@@ -22,6 +20,9 @@ const AuthButtonGroup = () => {
         >
           Signup
         </Link>
+      </li>
+      <li className="block md:hidden">
+        <MoblieAuthButtonGroup />
       </li>
     </>
   )

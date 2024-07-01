@@ -5,7 +5,7 @@ const SideNavFooter = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="flex items-end flex-grow w-full mb-10">
+    <footer className="flex items-end flex-grow w-full lg:mb-10">
       <FlexBox
         alignItems="center"
         justifyContent="center"

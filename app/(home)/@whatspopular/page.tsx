@@ -2,10 +2,10 @@ import React from 'react'
 import { getPopular } from '@/shared/api/tmdbAPI'
 import TabsWrapper from '@/components/common/TabsWrapper'
 import { TabsContent } from '@/components/ui/tabs'
-import Card from '@/components/common/Card'
-import Link from 'next/link'
+import Card from '@/components/common/card/Card'
 import { ChannelType } from '@/shared/types'
 import FlexBox from '@/components/ui/FlexBox'
+import Link from 'next/link'
 
 type WhatsPopularPageProps = {
   searchParams: Record<string, string | undefined>
@@ -35,7 +35,7 @@ const WhatsPopularPage = async ({ searchParams }: WhatsPopularPageProps) => {
             {popularData.results.map(tv => {
               return (
                 <Link href={`/detail?mediaType=tv&id=${tv.id}`} key={tv.id}>
-                  <Card key={tv.id} data={tv} isMain />
+                  <Card data={tv} isMain />
                 </Link>
               )
             })}

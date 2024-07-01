@@ -37,9 +37,6 @@ const LoginForm = () => {
         setError(res.error)
         return
       }
-      // if (data?.twoFactor) {
-      //   setShowTwoFactor(true)
-      // }
     })
   }
 

@@ -7,6 +7,7 @@ import {
   DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu'
 import { logout } from '@/shared/actions/logout'
+import Link from 'next/link'
 
 const IsLoginDropdownMenu = () => {
   return (
@@ -14,9 +15,9 @@ const IsLoginDropdownMenu = () => {
       <DropdownMenuLabel className="dark:text-slate-400">My Account</DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuGroup>
-        <DropdownMenuItem role="button" className="cursor-pointer">
-          Settings
-        </DropdownMenuItem>
+        <Link href="/mypage" title="마이 페이지로 가기">
+          <DropdownMenuItem className="cursor-pointer">마이페이지</DropdownMenuItem>
+        </Link>
         <DropdownMenuItem></DropdownMenuItem>
         <DropdownMenuItem></DropdownMenuItem>
       </DropdownMenuGroup>

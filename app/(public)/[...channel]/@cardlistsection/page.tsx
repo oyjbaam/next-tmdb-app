@@ -1,7 +1,6 @@
-import Grid from '@/components/common/grid'
-import Link from 'next/link'
-import Card from '@/components/common/Card'
-import Pagination from '@/components/common/pagination'
+import Grid from '@/components/common/Grid'
+import Card from '@/components/common/card/Card'
+import Pagination from '@/components/common/Pagination'
 import { notFound } from 'next/navigation'
 import { getMovieTvList } from '@/shared/api/tmdbAPI'
 import { PATH_NAME } from '@/app/constants'
@@ -9,6 +8,7 @@ import { ChannelType, PathType } from '@/shared/types/channel'
 import { getDiscoverList } from '@/shared/api/tmdbFilterListApi'
 import NoResults from './_components/NoResults'
 import { ListResponseType } from '@/shared/types'
+import Link from 'next/link'
 
 type CardListSectionProps = {
   params: Record<string, [ChannelType, PathType]>

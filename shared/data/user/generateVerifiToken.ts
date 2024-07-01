@@ -1,6 +1,6 @@
 import { getVerificationTokenByEmail } from './verificationToken'
 import { v4 as uuidv4 } from 'uuid'
-import { db } from '../db'
+import { db } from '@/shared/db'
 
 export const generateVerifiToken = async (email: string) => {
   const token = uuidv4()
