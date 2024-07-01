@@ -1,4 +1,4 @@
-import { db } from '../db'
+import { db } from '@/shared/db'
 
 /**
  * @returns email로 db에서 인증 토큰 찾아 리턴
