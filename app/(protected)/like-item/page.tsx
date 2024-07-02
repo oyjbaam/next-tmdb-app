@@ -4,12 +4,18 @@ import { getcurrentUser } from '@/shared/lib/getCurrentUser'
 import Grid from '@/components/common/Grid'
 import Card from '@/components/common/card/Card'
 import Link from 'next/link'
+import FlexBox from '@/components/ui/FlexBox'
 
 const LikeItemPage = async () => {
   const user = await getcurrentUser()
   const likedList = await getLikedList(user?.id)
-  if (!likedList) {
-    return null
+
+  if (!likedList || likedList.length === 0) {
+    return (
+      <FlexBox alignItems="center" justifyContent="center">
+        <h1 className="text-2xl">👉 좋아요 리스트가 없습니다</h1>
+      </FlexBox>
+    )
   }
 
   return (

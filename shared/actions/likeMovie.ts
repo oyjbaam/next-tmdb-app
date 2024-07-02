@@ -4,6 +4,7 @@ import { db } from '../db'
 import type { CardDataType } from '@/shared/types/cardDataType'
 import { getLikedByUserIdAndTmdbId } from '../data'
 import { ExtendedUser } from '@/next-auth'
+import { revalidatePath } from 'next/cache'
 
 export const toggleLikeMovie = async (cardData: CardDataType, user?: ExtendedUser) => {
   if (!user) {
@@ -20,7 +21,7 @@ export const toggleLikeMovie = async (cardData: CardDataType, user?: ExtendedUse
       await db.likedMovie.delete({
         where: { id: existingLike.id },
       })
-
+      revalidatePath('/')
       return { success: '' }
     } else {
       // 새로운 좋아요 추가
@@ -35,7 +36,7 @@ export const toggleLikeMovie = async (cardData: CardDataType, user?: ExtendedUse
           mediaType: cardData.mediaType,
         },
       })
-
+      revalidatePath('/')
       return { success: '' }
     }
   } catch (error) {
