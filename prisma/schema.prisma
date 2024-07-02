@@ -58,10 +58,10 @@ model LikedMovie {
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   tmdbId      Int
   title       String
-  releaseDate DateTime?
+  releaseDate String?
   imgPath     String?
-  vote        Float?
-  mediaType   String?
+  vote        Float
+  mediaType   String
 
   @@map("LikedMovie")
   @@index([userId])

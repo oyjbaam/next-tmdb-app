@@ -3,6 +3,6 @@ export type CardDataType = {
   title: string
   date: string | null
   imgPath: string | null
-  vote: number | null
-  mediaType: string | undefined
+  vote: number
+  mediaType: string
 }

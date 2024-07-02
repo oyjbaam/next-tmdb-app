@@ -2,8 +2,10 @@ import {
   MovieListResponseType,
   MovieListSchema,
   PersonListResponseType,
+  PersonListSchema,
   TvListResponseType,
   TvListSchema,
+  LikedListType,
 } from '@/shared/types'
 
 export const isMovieListTypeGuard = (data: unknown): data is MovieListResponseType => {
@@ -14,7 +16,13 @@ export const isTvListTypeGuard = (data: unknown): data is TvListResponseType => 
   return TvListSchema.safeParse(data).success
 }
 
-export const getCardData = (data: MovieListResponseType | TvListResponseType | PersonListResponseType) => {
+export const isPersonListTypeGuard = (data: unknown): data is PersonListResponseType => {
+  return PersonListSchema.safeParse(data).success
+}
+
+export const getCardData = (
+  data: MovieListResponseType | TvListResponseType | PersonListResponseType | LikedListType
+) => {
   if (isMovieListTypeGuard(data)) {
     return {
       id: data.id,
@@ -35,12 +43,22 @@ export const getCardData = (data: MovieListResponseType | TvListResponseType | P
       mediaType: data.media_type ?? 'tv',
     }
   }
+  if (isPersonListTypeGuard(data)) {
+    return {
+      id: data.id,
+      title: data.name,
+      date: data.known_for_department,
+      imgPath: data.profile_path,
+      vote: data.popularity,
+      mediaType: data.media_type,
+    }
+  }
   return {
-    id: data.id,
-    title: data.name,
-    date: data.known_for_department,
-    imgPath: data.profile_path,
-    vote: data.popularity,
-    mediaType: data.media_type,
+    id: data.tmdbId,
+    title: data.title,
+    date: data.releaseDate,
+    imgPath: data.imgPath,
+    vote: data.vote,
+    mediaType: data.mediaType,
   }
 }

@@ -2,7 +2,7 @@
 
 import { db } from '../db'
 import type { CardDataType } from '@/shared/types/cardDataType'
-import { getLikedMovieById } from '../data'
+import { getLikedByUserIdAndTmdbId } from '../data'
 import { ExtendedUser } from '@/next-auth'
 
 export const toggleLikeMovie = async (cardData: CardDataType, user?: ExtendedUser) => {
@@ -13,7 +13,7 @@ export const toggleLikeMovie = async (cardData: CardDataType, user?: ExtendedUse
   }
 
   try {
-    const existingLike = await getLikedMovieById(cardData.id, user.id)
+    const existingLike = await getLikedByUserIdAndTmdbId(cardData.id, user.id)
 
     if (existingLike) {
       // 이미 좋아요한 경우, 좋아요 취소
@@ -29,8 +29,8 @@ export const toggleLikeMovie = async (cardData: CardDataType, user?: ExtendedUse
           userId: user.id as string,
           tmdbId: cardData.id,
           title: cardData.title,
-          releaseDate: cardData.date ? new Date(cardData.date) : null,
-          imgPath: cardData.imgPath || null,
+          releaseDate: cardData.date,
+          imgPath: cardData.imgPath,
           vote: cardData.vote,
           mediaType: cardData.mediaType,
         },
