@@ -60,7 +60,7 @@ const DetailPage = async ({ searchParams }: DetailPageProps) => {
   const isTv = isTvDetailTypeGuard(responseData)
 
   const isMovieOrTv = isMovie || isTv
-  const { imgPath, title, overView } = detailData
+  const { imgPath, title, overView, id } = detailData
   const posterPath = imgPath ? `https://image.tmdb.org/t/p/w500${imgPath}` : '/images/defaultImage.png'
 
   return (
@@ -82,7 +82,7 @@ const DetailPage = async ({ searchParams }: DetailPageProps) => {
       </section>
 
       <section className="space-y-8 px-5 lg:px-0 max-w-[600px] w-full">
-        <DetailHeader data={detailData} />
+        <DetailHeader data={detailData} dataId={id} />
         {isMovieOrTv && <CastList dataId={dataId} mediaType={mediaType} />}
         <Synopsis mediaType={mediaType} overview={overView} />
         {isMovieOrTv && <VideoAndPicture dataId={dataId} mediaType={mediaType} />}

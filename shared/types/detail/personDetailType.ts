@@ -8,7 +8,7 @@ export const PersonDetailSchema = z.object({
   deathday: z.string().nullable(),
   gender: z.number().nullable(),
   homepage: z.string().nullable(),
-  id: z.number().nullable(),
+  id: z.number(),
   imdb_id: z.string().nullable(),
   known_for_department: z.string(),
   name: z.string().nullable(),

@@ -6,7 +6,7 @@ import FlexBox from '@/components/ui/FlexBox'
 import HeartButton from './HeartButton'
 import ListButton from './ListButton'
 import type { MovieListResponseType, TvListResponseType, PersonListResponseType, LikedListType } from '@/shared/types'
-import { getLikedByUserIdAndTmdbId } from '@/shared/data'
+import { getLikedItem } from '@/shared/lib/getLikedItem'
 import { getcurrentUser } from '@/shared/lib/getCurrentUser'
 
 type CardProps = {
@@ -16,22 +16,20 @@ type CardProps = {
 
 const Card = async ({ data, isMain = false }: CardProps) => {
   const cardData = getCardData(data)
-  const user = await getcurrentUser()
   const { title, date, imgPath, vote, id } = cardData
+  const user = await getcurrentUser()
+  const initialIsLike = await getLikedItem(id, user?.id)
+
   const posterPath = imgPath ? `https://image.tmdb.org/t/p/w500${imgPath}` : '/images/defaultImage.png'
-
   const widthClass = isMain ? 'w-56' : 'w-full max-w-96 sm:w-80 md:w-64 lg:w-56'
-
-  const likedMovie = await getLikedByUserIdAndTmdbId(id, user?.id)
-  const initialIsLike = !!likedMovie
 
   return (
     <div
       className={`${widthClass} relative shrink-0 rounded-md overflow-hidden bg-white transition duration-200 cursor-pointer border border-slate-200 lg:hover:border-blue-300 lg:hover:text-blue-400 dark:bg-slate-700 dark:border-slate-600 shadow-md`}
     >
-      <HeartButton id={id} cardData={cardData} initialIsLike={initialIsLike} user={user} />
+      <HeartButton id={id} cardData={cardData} initialIsLike={initialIsLike} user={user} isCard />
       <ListButton id={id} cardData={cardData} />
-      <div className="w-80"></div>
+
       <div className={'relative aspect-card backdrop-blur-md'}>
         <Image
           src={posterPath}

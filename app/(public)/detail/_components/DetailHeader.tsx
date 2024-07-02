@@ -4,9 +4,13 @@ import FlexBox from '@/components/ui/FlexBox'
 import { DetailDataType } from '../types/detailData'
 import { Oswald } from 'next/font/google'
 import { starColor, textColorClass } from '@/shared/util/starColor'
+import HeartButton from '@/components/common/card/HeartButton'
+import { getLikedItem } from '@/shared/lib/getLikedItem'
+import { getcurrentUser } from '@/shared/lib/getCurrentUser'
 
 type DetailHeaderProps = {
   data: DetailDataType
+  dataId: number
 }
 
 const oswald = Oswald({
@@ -15,7 +19,19 @@ const oswald = Oswald({
   display: 'swap',
 })
 
-const DetailHeader = ({ data }: DetailHeaderProps) => {
+const DetailHeader = async ({ data, dataId }: DetailHeaderProps) => {
+  const user = await getcurrentUser()
+  const initialIsLike = await getLikedItem(dataId, user?.id)
+
+  const cardData = {
+    id: dataId,
+    title: data.title as string,
+    date: data.date,
+    imgPath: data.imgPath,
+    vote: data.vote || 0,
+    mediaType: data.mediaType,
+  }
+
   return (
     <header className="space-y-4">
       <div className={`${oswald.className}`}>
@@ -52,18 +68,23 @@ const DetailHeader = ({ data }: DetailHeaderProps) => {
           </>
         )}
       </ul>
-
       {data.vote !== null && data.vote !== undefined && (
-        <FlexBox alignItems="center" className={`gap-2 ${textColorClass[starColor(data.vote).index]}`}>
-          <StarRating voteAverage={data.vote} />
-          <span className="text-base">{data.vote.toFixed(1)}</span>
+        <FlexBox alignItems="center" className="gap-4">
+          <FlexBox alignItems="center" className={`gap-2 ${textColorClass[starColor(data.vote).index]}`}>
+            <StarRating voteAverage={data.vote} />
+            <span className="text-base">{data.vote.toFixed(1)}</span>
+          </FlexBox>
+          <HeartButton initialIsLike={initialIsLike} id={dataId} user={user} cardData={cardData} isCard={false} />
         </FlexBox>
       )}
 
       {data.popularity !== null && data.popularity !== undefined && (
-        <FlexBox alignItems="center" className="gap-2 text-yellow-400">
-          <StarIcon className="w-5 h-5" fill="gold" />
-          <span className="text-base">{data.popularity.toFixed(1)}</span>
+        <FlexBox alignItems="center" className="gap-4">
+          <FlexBox alignItems="center" className="gap-2 text-yellow-400">
+            <StarIcon className="w-5 h-5" fill="gold" />
+            <span className="text-base">{data.popularity.toFixed(1)}</span>
+          </FlexBox>
+          <HeartButton initialIsLike={initialIsLike} id={dataId} user={user} cardData={cardData} isCard={false} />
         </FlexBox>
       )}
     </header>
