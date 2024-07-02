@@ -47,7 +47,7 @@ const Card = async ({ data, isMain = false }: CardProps) => {
           <span>{date}</span>
           <FlexBox className="gap-1" alignItems="center">
             <StarIcon className="h-3 w-3" fill={starColor(vote).color} stroke={starColor(vote).color} />
-            <span className={`${textColorClass[starColor(vote).index]}`}>{Math.round(vote)}</span>
+            <span className={`${textColorClass[starColor(vote).index]}`}>{Math.round(vote || 0)}</span>
           </FlexBox>
         </div>
         <span className="font-bold truncate block">{title}</span>

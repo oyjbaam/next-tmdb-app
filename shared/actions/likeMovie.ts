@@ -31,7 +31,7 @@ export const toggleLikeMovie = async (cardData: CardDataType, user?: ExtendedUse
           title: cardData.title,
           releaseDate: cardData.date,
           imgPath: cardData.imgPath,
-          vote: cardData.vote,
+          vote: cardData.vote ?? 0,
           mediaType: cardData.mediaType,
         },
       })
