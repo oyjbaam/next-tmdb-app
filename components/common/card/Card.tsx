@@ -20,22 +20,19 @@ const Card = async ({ data, isMain = false }: CardProps) => {
   const { title, date, imgPath, vote, id } = cardData
   const posterPath = imgPath ? `https://image.tmdb.org/t/p/w500${imgPath}` : '/images/defaultImage.png'
 
-  const widthClass = isMain ? 'w-56' : 'w-96 max-w-96 sm:w-80 md:w-64 lg:w-56'
-  const imgHeightClass = isMain
-    ? 'h-[20.8125rem]'
-    : 'h-[35.8125rem] lg:h-[20.8125rem] md:h-[23.8125rem] sm:h-[29.8125rem]'
+  const widthClass = isMain ? 'w-56' : 'w-full max-w-96 sm:w-80 md:w-64 lg:w-56'
 
   const likedMovie = await getLikedByUserIdAndTmdbId(id, user?.id)
   const initialIsLike = !!likedMovie
 
   return (
     <div
-      className={`${widthClass}  flex flex-col justify-between relative shrink-0 rounded-md overflow-hidden bg-white transition duration-200 cursor-pointer border border-slate-200 lg:hover:border-blue-300 lg:hover:text-blue-400 dark:bg-slate-700 dark:border-slate-600 shadow-md`}
+      className={`${widthClass} relative shrink-0 rounded-md overflow-hidden bg-white transition duration-200 cursor-pointer border border-slate-200 lg:hover:border-blue-300 lg:hover:text-blue-400 dark:bg-slate-700 dark:border-slate-600 shadow-md`}
     >
       <HeartButton id={id} cardData={cardData} initialIsLike={initialIsLike} user={user} />
       <ListButton id={id} cardData={cardData} />
-
-      <div className={`relative ${imgHeightClass} backdrop-blur-md`}>
+      <div className="w-80"></div>
+      <div className={'relative aspect-card backdrop-blur-md'}>
         <Image
           src={posterPath}
           alt={title || '포스터 이미지'}

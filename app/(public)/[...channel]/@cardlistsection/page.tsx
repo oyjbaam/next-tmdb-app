@@ -9,7 +9,6 @@ import { getDiscoverList } from '@/shared/api/tmdbFilterListApi'
 import NoResults from './_components/NoResults'
 import { ListResponseType } from '@/shared/types'
 import Link from 'next/link'
-
 type CardListSectionProps = {
   params: Record<string, [ChannelType, PathType]>
   searchParams: Record<string, string | string[] | undefined>
@@ -48,7 +47,7 @@ const CardListSection = async ({ params, searchParams }: CardListSectionProps) =
           {fetchResult.results.map((data, idx) => {
             const mediaType = data.media_type ? data.media_type : channel
             return (
-              <Link href={`/detail?mediaType=${mediaType}&id=${data.id}`} key={data.id + idx}>
+              <Link href={`/detail?mediaType=${mediaType}&id=${data.id}`} key={data.id + idx} className="w-full h-full">
                 <Card data={data} />
               </Link>
             )

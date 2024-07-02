@@ -22,7 +22,6 @@ export const toggleLikeMovie = async (cardData: CardDataType, user?: ExtendedUse
         where: { id: existingLike.id },
       })
       revalidatePath('/')
-      return { success: '' }
     } else {
       // 새로운 좋아요 추가
       await db.likedMovie.create({
@@ -37,7 +36,6 @@ export const toggleLikeMovie = async (cardData: CardDataType, user?: ExtendedUse
         },
       })
       revalidatePath('/')
-      return { success: '' }
     }
   } catch (error) {
     console.error('Error in toggleLikeMovie:', error)

@@ -23,7 +23,11 @@ const LikeItemPage = async () => {
       {likedList?.map(item => {
         {
           return (
-            <Link key={item.tmdbId} href={`/detail?mediaType=${item.mediaType}&id=${item.tmdbId}`}>
+            <Link
+              key={item.tmdbId}
+              href={`/detail?mediaType=${item.mediaType}&id=${item.tmdbId}`}
+              className="w-full h-full"
+            >
               <Card data={item} />
             </Link>
           )
