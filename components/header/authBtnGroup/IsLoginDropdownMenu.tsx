@@ -18,7 +18,9 @@ const IsLoginDropdownMenu = () => {
         <Link href="/mypage" title="마이 페이지로 가기">
           <DropdownMenuItem className="cursor-pointer">마이페이지</DropdownMenuItem>
         </Link>
-        <DropdownMenuItem></DropdownMenuItem>
+        <Link href="/like-item" title="좋아요 목록 페이지로 가기">
+          <DropdownMenuItem className="cursor-pointer">좋아요 목록</DropdownMenuItem>
+        </Link>
         <DropdownMenuItem></DropdownMenuItem>
       </DropdownMenuGroup>
       <DropdownMenuSeparator />
