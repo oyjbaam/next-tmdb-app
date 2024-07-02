@@ -3,15 +3,12 @@
 import { db } from '../db'
 import type { CardDataType } from '@/shared/types/cardDataType'
 import { getLikedMovieById } from '../data'
-import { getcurrentUser } from '../lib/getCurrentUser'
+import { ExtendedUser } from '@/next-auth'
 
-export async function toggleLikeMovie(cardData: CardDataType): Promise<{ isSuccess: boolean; message: string }> {
-  const user = await getcurrentUser()
-
+export const toggleLikeMovie = async (cardData: CardDataType, user?: ExtendedUser) => {
   if (!user) {
     return {
-      isSuccess: false,
-      message: '로그인이 필요합니다.',
+      error: '로그인이 필요합니다.',
     }
   }
 
@@ -24,7 +21,7 @@ export async function toggleLikeMovie(cardData: CardDataType): Promise<{ isSucce
         where: { id: existingLike.id },
       })
 
-      return { isSuccess: false, message: '' }
+      return { success: '' }
     } else {
       // 새로운 좋아요 추가
       await db.likedMovie.create({
@@ -39,7 +36,7 @@ export async function toggleLikeMovie(cardData: CardDataType): Promise<{ isSucce
         },
       })
 
-      return { isSuccess: true, message: '' }
+      return { success: '' }
     }
   } catch (error) {
     console.error('Error in toggleLikeMovie:', error)

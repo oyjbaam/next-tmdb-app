@@ -5,35 +5,33 @@ import { IconButton } from '@/components/ui/button'
 import { Heart } from 'lucide-react'
 import type { CardDataType } from '@/shared/types/cardDataType'
 import { toggleLikeMovie } from '@/shared/actions/likeMovie'
-import { toast } from 'sonner'
-import { useQueryString } from '@/shared/hooks/useQueryString'
+import { ExtendedUser } from '@/next-auth'
 
 type HeartButtonProps = {
   id: number
   cardData: CardDataType
   initialIsLike: boolean
+  user?: ExtendedUser
 }
 
-const HeartButton = ({ id, cardData, initialIsLike }: HeartButtonProps) => {
+const HeartButton = ({ id, cardData, initialIsLike, user }: HeartButtonProps) => {
   const [isLike, setIsLike] = useState(initialIsLike)
-  const { router } = useQueryString()
 
   const onClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
+    setIsLike(prev => !prev)
     try {
-      const updatedIsLike = await toggleLikeMovie(cardData)
-      if (updatedIsLike.message) {
-        if (confirm(updatedIsLike.message)) {
-          router.push('/auth/login')
-        }
+      const updatedIsLike = await toggleLikeMovie(cardData, user)
+      if (updatedIsLike.error) {
+        alert(updatedIsLike.error)
       }
-      setIsLike(updatedIsLike.isSuccess)
     } catch (error) {
+      setIsLike(prev => !prev)
       console.error('Failed to toggle like:', error)
     }
   }
 
-  const isLikedClass = isLike ? '*:fill-red-400 *:stroke-red-400 ' : ' *:fill-none '
+  const isLikedClass = isLike && user ? '*:fill-red-400 *:stroke-red-400 ' : ' *:fill-none '
 
   return (
     <IconButton
