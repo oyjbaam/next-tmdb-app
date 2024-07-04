@@ -6,6 +6,7 @@ import { Heart } from 'lucide-react'
 import type { CardDataType } from '@/shared/types/cardDataType'
 import { toggleLikeMovie } from '@/shared/actions/likeMovie'
 import { ExtendedUser } from '@/next-auth'
+import { cn } from '@/shared/util/twMerge'
 
 type HeartButtonProps = {
   id: number
@@ -37,9 +38,13 @@ const HeartButton = ({ id, cardData, initialIsLike, user, isCard = false }: Hear
   return (
     <IconButton
       onClick={onClick}
-      id={`${id}`}
+      id={String(id)}
       intent="text"
-      className={`${isLikedClass} ${isCardPosition} text-slate-300 bg-slate-300/30  lg:dark:hover:bg-purple-500 lg:dark:hover:text-slate-300 lg:hover:bg-purple-500 lg:hover:text-slate-300`}
+      className={cn(
+        isLikedClass,
+        isCardPosition,
+        'text-foreground bg-slate-300/50 lg:dark:hover:bg-purple-500 lg:dark:hover:text-slate-300 lg:hover:bg-purple-500 lg:hover:text-slate-300'
+      )}
     >
       <Heart />
     </IconButton>
