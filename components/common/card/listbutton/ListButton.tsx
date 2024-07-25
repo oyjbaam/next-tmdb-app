@@ -5,11 +5,11 @@ import { IconButton, Button } from '@/components/ui/button'
 import type { CardDataType } from '@/shared/types/cardDataType'
 import FlexBox from '@/components/ui/FlexBox'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog'
-import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input/input'
 import { MovieList } from '@prisma/client'
 import { createMyList } from '@/shared/actions/createMyList'
 import { ExtendedUser } from '@/next-auth'
+import { RxCross2 } from 'react-icons/rx'
 
 type ListButtonProps = {
   id: number
@@ -68,21 +68,27 @@ const ListButton = ({ id, myList, user }: ListButtonProps) => {
         <DialogHeader>
           <DialogTitle>목록에 저장</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
+        <ul className="flex flex-col gap-4 py-4 items-start">
           {myList && myList?.length > 0 ? (
             myList?.map(list => {
               return (
-                <div key={list.id} className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="name" className="text-right">
-                    {list.name}
-                  </Label>
-                </div>
+                <li key={list.id} className="flex justify-between w-full">
+                  <Button intent="text" className="p-0">
+                    <span className="text-right">{list.name}</span>
+                  </Button>
+                  <Button intent="text" className="p-0">
+                    <RxCross2 className="h-4 w-4" />
+                    <span className="sr-only">Close</span>
+                  </Button>
+                </li>
               )
             })
           ) : (
-            <span>목록이 없습니다.</span>
+            <li>
+              <span>목록이 없습니다.</span>
+            </li>
           )}
-        </div>
+        </ul>
         {!openCreateList ? (
           <DialogFooter>
             <Button
