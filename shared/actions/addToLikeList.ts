@@ -13,32 +13,27 @@ export const toggleLikeMovie = async (cardData: CardDataType, user?: ExtendedUse
     }
   }
 
-  try {
-    const existingLike = await getLikedByUserIdAndTmdbId(cardData.id, user.id)
+  const existingLike = await getLikedByUserIdAndTmdbId(cardData.id, user.id)
 
-    if (existingLike) {
-      // 이미 좋아요한 경우, 좋아요 취소
-      await db.likedMovie.delete({
-        where: { id: existingLike.id },
-      })
-      revalidateTag(`myFavorite:${user.id}`)
-    } else {
-      // 새로운 좋아요 추가
-      await db.likedMovie.create({
-        data: {
-          userId: user.id as string,
-          tmdbId: cardData.id,
-          title: cardData.title,
-          releaseDate: cardData.date,
-          imgPath: cardData.imgPath,
-          vote: cardData.vote ?? 0,
-          mediaType: cardData.mediaType,
-        },
-      })
-      revalidateTag(`myFavorite:${user.id}`)
-    }
-  } catch (error) {
-    console.error('Error in toggleLikeMovie:', error)
-    throw error
+  if (existingLike) {
+    // 이미 좋아요한 경우, 좋아요 취소
+    await db.likedMovie.delete({
+      where: { id: existingLike.id },
+    })
+    revalidateTag(`myFavorite:${user.id}`)
+  } else {
+    // 새로운 좋아요 추가
+    await db.likedMovie.create({
+      data: {
+        userId: user.id as string,
+        tmdbId: cardData.id,
+        title: cardData.title,
+        releaseDate: cardData.date,
+        imgPath: cardData.imgPath,
+        vote: cardData.vote ?? 0,
+        mediaType: cardData.mediaType,
+      },
+    })
+    revalidateTag(`myFavorite:${user.id}`)
   }
 }
