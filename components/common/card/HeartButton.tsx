@@ -4,7 +4,7 @@ import React, { useState, MouseEvent } from 'react'
 import { IconButton } from '@/components/ui/button'
 import { Heart } from 'lucide-react'
 import type { CardDataType } from '@/shared/types/cardDataType'
-import { toggleLikeMovie } from '@/shared/actions/likeMovie'
+import { toggleLikeMovie } from '@/shared/actions/addToLikeList'
 import { ExtendedUser } from '@/next-auth'
 import { cn } from '@/shared/util/twMerge'
 

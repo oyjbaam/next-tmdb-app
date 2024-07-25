@@ -20,7 +20,7 @@ export const isPersonListTypeGuard = (data: unknown): data is PersonListResponse
   return PersonListSchema.safeParse(data).success
 }
 
-export const getCardData = (
+export const transformToCardData = (
   data: MovieListResponseType | TvListResponseType | PersonListResponseType | LikedListType
 ) => {
   if (isMovieListTypeGuard(data)) {

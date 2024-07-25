@@ -35,7 +35,7 @@ const DialogContent = React.forwardRef<
 >(({ className, children, ...props }, ref) => {
   return (
     <DialogPortal>
-      <DialogOverlay />
+      <DialogOverlay onClick={e => e.preventDefault()} />
       <DialogPrimitive.Content
         ref={ref}
         className={cn(
