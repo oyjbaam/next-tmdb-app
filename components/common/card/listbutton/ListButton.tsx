@@ -1,6 +1,6 @@
 'use client'
 import React, { MouseEvent, useState } from 'react'
-import { List, CirclePlus } from 'lucide-react'
+import { List, CirclePlus, X } from 'lucide-react'
 import { IconButton, Button } from '@/components/ui/button'
 import type { CardDataType } from '@/shared/types/cardDataType'
 import FlexBox from '@/components/ui/FlexBox'
@@ -8,8 +8,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Dialog
 import { Input } from '@/components/ui/input/input'
 import { MovieList } from '@prisma/client'
 import { createMyList } from '@/shared/actions/createMyList'
+import { addMovieToList } from '@/shared/actions/addToMyList'
 import { ExtendedUser } from '@/next-auth'
-import { RxCross2 } from 'react-icons/rx'
 
 type ListButtonProps = {
   id: number
@@ -18,7 +18,7 @@ type ListButtonProps = {
   user?: ExtendedUser
 }
 
-const ListButton = ({ id, myList, user }: ListButtonProps) => {
+const ListButton = ({ id, cardData, myList, user }: ListButtonProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [openCreateList, setOpenCreateList] = useState(false)
 
@@ -52,6 +52,14 @@ const ListButton = ({ id, myList, user }: ListButtonProps) => {
     }
   }
 
+  const handleAddMyList = async (listId: string) => {
+    if (!user) {
+      alert('로그인이 필요합니다.')
+      return
+    }
+    const addListResult = await addMovieToList(user.id as string, listId, cardData)
+  }
+
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
@@ -73,11 +81,11 @@ const ListButton = ({ id, myList, user }: ListButtonProps) => {
             myList?.map(list => {
               return (
                 <li key={list.id} className="flex justify-between w-full">
-                  <Button intent="text" className="p-0">
+                  <Button intent="text" className="p-0" onClick={() => handleAddMyList(list.id)}>
                     <span className="text-right">{list.name}</span>
                   </Button>
                   <Button intent="text" className="p-0">
-                    <RxCross2 className="h-4 w-4" />
+                    <X className="h-4 w-4" />
                     <span className="sr-only">Close</span>
                   </Button>
                 </li>

@@ -20,7 +20,6 @@ export const toggleLikeMovie = async (cardData: CardDataType, user?: ExtendedUse
     await db.likedMovie.delete({
       where: { id: existingLike.id },
     })
-    revalidateTag(`myFavorite:${user.id}`)
   } else {
     // 새로운 좋아요 추가
     await db.likedMovie.create({
