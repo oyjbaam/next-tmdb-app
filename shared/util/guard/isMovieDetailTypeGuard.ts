@@ -17,6 +17,7 @@ export const isTvDetailTypeGuard = (data: unknown): data is TvDetailType => {
 export const getDetailData = (data: MovieDetailType | TvDetailType | PersonDetailResponseType) => {
   if (isMovieDetailTypeGuard(data)) {
     return {
+      id: data.id,
       original_title: data.original_title,
       title: data.title,
       date: data.release_date,
@@ -25,10 +26,12 @@ export const getDetailData = (data: MovieDetailType | TvDetailType | PersonDetai
       imgPath: data.poster_path,
       overView: data.overview,
       genres: data.genres,
+      mediaType: 'movie',
     }
   }
   if (isTvDetailTypeGuard(data)) {
     return {
+      id: data.id,
       original_title: data.original_name,
       title: data.name,
       date: data.first_air_date,
@@ -37,14 +40,17 @@ export const getDetailData = (data: MovieDetailType | TvDetailType | PersonDetai
       imgPath: data.poster_path,
       overView: data.overview,
       genres: data.genres,
+      mediaType: 'tv',
     }
   }
   return {
+    id: data.id,
     original_title: data.name,
     title: data.name,
     date: data.birthday,
     imgPath: data.profile_path,
     overView: data.biography,
     popularity: data.popularity,
+    mediaType: 'person',
   }
 }

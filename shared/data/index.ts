@@ -5,3 +5,4 @@ export * from './user/user'
 export * from './user/verificationToken'
 
 export * from './movie/likedMovie'
+export * from './movie/myList'

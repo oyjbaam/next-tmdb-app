@@ -1,8 +1,11 @@
-export const starColor = (vote: number) => {
-  const rating = Math.round(vote) / 2
+export const starColor = (vote: number | undefined) => {
   const colors = ['#ff5a5a', '#ffc75a', '#3ce420']
-  const index = Math.min(Math.floor(rating / 1.67), 2)
-  return { color: colors[index], index }
+  if (vote) {
+    const rating = Math.round(vote) / 2
+    const index = Math.min(Math.floor(rating / 1.67), 2)
+    return { color: colors[index], index }
+  }
+  return { color: colors[0], index: 0 }
 }
 
 export const textColorClass: Record<number, string> = {

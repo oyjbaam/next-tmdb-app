@@ -1,19 +1,19 @@
-const BASE_URL = process.env.NEXT_PUBLIC_TMDB_BASEURL
+const TMDB_BASE_URL = process.env.NEXT_PUBLIC_TMDB_BASEURL
 const API_KEY = process.env.TMDB_API_KEY
 
-const createOptions = (): RequestInit => {
+const createOptions = (apikey: string): RequestInit => {
   const headers: HeadersInit = {
     Accept: 'application/json',
     'Content-Type': 'application/json;charset=UTF-8',
-    Authorization: `Bearer ${API_KEY}`,
+    Authorization: `Bearer ${apikey}`,
   }
 
   return { headers }
 }
 
 export const requestFetch = async <T>(endPoint: string, config: RequestInit = {}): Promise<T> => {
-  const options = createOptions()
-  const url = BASE_URL + endPoint
+  const options = createOptions(API_KEY)
+  const url = TMDB_BASE_URL + endPoint
   const fetchURL = new URL(url)
 
   if (!fetchURL.pathname.endsWith('/images') && !fetchURL.pathname.includes('person')) {

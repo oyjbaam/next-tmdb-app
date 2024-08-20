@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { logout } from '@/shared/actions/logout'
 import Link from 'next/link'
+import { List, User, Heart } from 'lucide-react'
 
 const IsLoginDropdownMenu = () => {
   return (
@@ -16,10 +17,23 @@ const IsLoginDropdownMenu = () => {
       <DropdownMenuSeparator />
       <DropdownMenuGroup>
         <Link href="/mypage" title="마이 페이지로 가기">
-          <DropdownMenuItem className="cursor-pointer">마이페이지</DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer">
+            <User className="h-4 w-4 mr-2" />
+            마이페이지
+          </DropdownMenuItem>
         </Link>
-        <DropdownMenuItem></DropdownMenuItem>
-        <DropdownMenuItem></DropdownMenuItem>
+        <Link href="/like-item" title="좋아요 페이지로 가기">
+          <DropdownMenuItem className="cursor-pointer">
+            <Heart className="h-4 w-4 mr-2" />
+            좋아요
+          </DropdownMenuItem>
+        </Link>
+        <Link href="/my-list" title="목록 페이지로 가기">
+          <DropdownMenuItem className="cursor-pointer">
+            <List className="h-4 w-4 mr-2" />
+            나의 목록
+          </DropdownMenuItem>
+        </Link>
       </DropdownMenuGroup>
       <DropdownMenuSeparator />
       <DropdownMenuItem

@@ -11,4 +11,5 @@ export type DetailDataType = {
   overView: string | null
   genres?: Genre[]
   popularity?: number | null
+  mediaType: string
 }

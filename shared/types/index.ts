@@ -13,5 +13,6 @@ export * from './list/movieListType'
 export * from './list/tvListType'
 export * from './list/listResponseType'
 export * from './list/personListType'
+export * from './list/likeListType'
 
 export * from './filter/genreType'
