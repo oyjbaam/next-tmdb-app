@@ -4,6 +4,7 @@ import { getcurrentUser } from '@/shared/lib/getCurrentUser'
 import Grid from '@/components/common/Grid'
 import Link from 'next/link'
 import FlexBox from '@/components/ui/FlexBox'
+import { Button } from '@/components/ui/button'
 
 const MyListPage = async () => {
   const user = await getcurrentUser()
@@ -23,7 +24,7 @@ const MyListPage = async () => {
         {
           return (
             <Link key={item.id} href={`/my-list/${item.id}`} className="w-full h-full">
-              <span>{item.name}</span>
+              <Button>{item.name}</Button>
             </Link>
           )
         }
